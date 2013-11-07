@@ -27,11 +27,11 @@ Roadmap
  		- Repositories contributed	
  	- Stackoverflow
  		- Reputation [OK]
- 		- Max single answer votes
+ 		- Max single answer score [OK]
  		- Total answers [OK]
  		- Total accepted answers
  		- Total questions [OK]
- 		- Max single question favorited
+ 		- Max single question score
  		- Total bronze badges
  		- Total silver badges
  		- Total golden badges

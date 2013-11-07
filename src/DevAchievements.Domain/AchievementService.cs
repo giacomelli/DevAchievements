@@ -9,17 +9,28 @@ namespace DevAchievements.Domain
 	public class AchievementService
 	{
 		#region Methods
-		public IList<Achievement> GetAchievementsByDeveloper(DeveloperAchievementProviderAccount developer)
+		public IList<Achievement> GetAchievementsByDeveloper(DeveloperAccount developer)
 		{
 			var achievements = new List<Achievement> ();
 			var providersTypes = GetAchievementProviders ();
 
 			foreach (var t in providersTypes) {
 				var provider = Activator.CreateInstance (t) as IAchievementProvider;
-				provider.CheckAvailability ();
+				
+                
+                provider.CheckAvailability ();
 
 				if (provider.IsAvailable) {
-					achievements.AddRange(provider.GetAchievementsByDeveloper(developer));
+
+                    foreach (var issuer in provider.SupportedIssuers)
+                    {
+                        var accountAtIssuer = developer.GetAccountAtIssuer(issuer.Name);
+
+                        if (accountAtIssuer != null)
+                        {
+                            achievements.AddRange(provider.GetAchievements(accountAtIssuer));
+                        }
+                    }
 				}
 			}
 

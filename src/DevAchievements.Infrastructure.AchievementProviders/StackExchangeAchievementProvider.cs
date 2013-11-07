@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using DevAchievements.Domain;
 using StackExchange.StacMan;
-using StackExchange.StacMan.Users;
 
 namespace DevAchievements.Infrastructure.AchievementProviders
 {
@@ -22,19 +21,32 @@ namespace DevAchievements.Infrastructure.AchievementProviders
             
         }
 
-        public override IList<Achievement> GetAchievementsByDeveloper(DeveloperAchievementProviderAccount developer)
+        public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
         {
             var achievements = new List<Achievement>();
 
             var client = new StacManClient();
-           // var filter = client.Filters.Create("!9f8L713BL", new string[] { "user.answer_count", "user.question_count" }).Result.Data.Items.FirstOrDefault();
-            var user = client.Users.GetAll("stackoverflow", "!-.CabxAv7Udo", inname: developer.UserName).Result.Data.Items.FirstOrDefault();                        
+            var user = client.Users.GetAll("stackoverflow", "!-.CabxAv7Udo", inname: account.UserName).Result.Data.Items.FirstOrDefault();
 
             if (user != null)
             {
-                AddAchievement(achievements, "Reputation", user.Reputation);
-                AddAchievement(achievements, "Total answers", user.AnswerCount);
-                AddAchievement(achievements, "Total questions", user.QuestionCount);
+                var answers = client.Users.GetAnswers("stackoverflow", new int[] { user.UserId }, "!9f8L7FuTn").Result.Data.Items;
+
+                if (user != null)
+                {
+                    AddAchievement(achievements, "Reputation", user.Reputation, user.Link);
+
+                    var maxSingleAnswerScore = answers.OrderByDescending(a => a.Score).FirstOrDefault();
+
+                    if (maxSingleAnswerScore != null)
+                    {
+                        AddAchievement(achievements, "Max single answer score", maxSingleAnswerScore.Score, maxSingleAnswerScore.Link);
+                    }
+
+                    AddAchievement(achievements, "Total answers", user.AnswerCount, user.Link);
+                    AddAchievement(achievements, "Total questions", user.QuestionCount, user.Link);
+
+                }
             }
 
             return achievements;

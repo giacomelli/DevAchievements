@@ -11,8 +11,8 @@ namespace DevAchievements.Infrastructure.AchievementProviders.FunctionalTests
 		public void GetAchievementsByDeveloper_UserName_Achievements ()
 		{
 			var target = new StackExchangeAchievementProvider ();
-			var actual = target.GetAchievementsByDeveloper (new DeveloperAchievementProviderAccount ("giacomelli"));
-			Assert.AreEqual (3, actual.Count);
+			var actual = target.GetAchievements (new DeveloperAccountAtIssuer ("stackoverflow", "giacomelli"));
+			Assert.AreEqual (4, actual.Count);
 			Assert.AreEqual ("StackOverflow", actual[0].Issuer.Name);
 		}
 	}

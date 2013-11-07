@@ -1,20 +1,23 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DevAchievements.WebApp/Views/Web.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DevAchievements.WebApp/Controllers/HomeController.cs">
     <Files>
-      <File FileName="DevAchievements.Infrastructure.AchievementProviders/StackExchangeAchievementProvider.cs" Line="29" Column="44" />
-      <File FileName="DevAchievements.Infrastructure.AchievementProviders.FunctionalTests/StackExchangeAchievementProviderTest.cs" Line="1" Column="1" />
-      <File FileName="DevAchievements.WebApp/Controllers/HomeController.cs" Line="1" Column="1" />
-      <File FileName="DevAchievements.WebApp/Web.config" Line="21" Column="78" />
-      <File FileName="DevAchievements.WebApp/Views/Web.config" Line="12" Column="88" />
+      <File FileName="DevAchievements.WebApp/Controllers/HomeController.cs" Line="10" Column="2" />
+      <File FileName="DevAchievements.WebApp/Views/Web.config" Line="3" Column="16" />
+      <File FileName="DevAchievements.WebApp/Web.config" Line="1" Column="1" />
+      <File FileName="DevAchievements.WebApp/packages.config" Line="25" Column="69" />
+      <File FileName="DevAchievements.WebApp/Views/Home/Index.cshtml" Line="30" Column="18" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="DevAchievements.WebApp" expanded="True">
+          <Node name="WebApp" expanded="True">
             <Node name="References" expanded="True" />
+            <Node name="Controllers" expanded="True">
+              <Node name="HomeController.cs" selected="True" />
+            </Node>
             <Node name="Views" expanded="True">
-              <Node name="Web.config" selected="True" />
+              <Node name="Home" expanded="True" />
             </Node>
           </Node>
         </State>

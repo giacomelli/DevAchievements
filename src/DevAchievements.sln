@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAchievements.Domain", "DevAchievements.Domain\DevAchievements.Domain.csproj", "{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "DevAchievements.Domain\Domain.csproj", "{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAchievements.Domain.UnitTests", "DevAchievements.Domain.UnitTests\DevAchievements.Domain.UnitTests.csproj", "{15BBC168-69E5-4E3F-B098-9144AEAB122F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "DevAchievements.Domain.UnitTests\Domain.UnitTests.csproj", "{15BBC168-69E5-4E3F-B098-9144AEAB122F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAchievements.WebApp", "DevAchievements.WebApp\DevAchievements.WebApp.csproj", "{B975B356-7ED7-4D47-BE17-7C2099F263D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "DevAchievements.WebApp\WebApp.csproj", "{B975B356-7ED7-4D47-BE17-7C2099F263D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAchievements.Infrastructure.AchievementProviders", "DevAchievements.Infrastructure.AchievementProviders\DevAchievements.Infrastructure.AchievementProviders.csproj", "{550462B6-746B-471E-965A-7483B5E18764}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.AchievementProviders", "DevAchievements.Infrastructure.AchievementProviders\Infrastructure.AchievementProviders.csproj", "{550462B6-746B-471E-965A-7483B5E18764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DevAchievements.Infrastructure.AchievementProviders.FunctionalTests", "DevAchievements.Infrastructure.AchievementProviders.FunctionalTests\DevAchievements.Infrastructure.AchievementProviders.FunctionalTests.csproj", "{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.AchievementProviders.FunctionalTests", "DevAchievements.Infrastructure.AchievementProviders.FunctionalTests\Infrastructure.AchievementProviders.FunctionalTests.csproj", "{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6E95284A-D685-47ED-B940-C5F0227F8FDF}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,24 +18,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6E9528
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "DevAchievements.Application\Application.csproj", "{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15BBC168-69E5-4E3F-B098-9144AEAB122F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15BBC168-69E5-4E3F-B098-9144AEAB122F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15BBC168-69E5-4E3F-B098-9144AEAB122F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15BBC168-69E5-4E3F-B098-9144AEAB122F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{550462B6-746B-471E-965A-7483B5E18764}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{550462B6-746B-471E-965A-7483B5E18764}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{550462B6-746B-471E-965A-7483B5E18764}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -44,11 +38,25 @@ Global
 		{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DevAchievements.WebApp\WebApp.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = DevAchievements.WebApp\DevAchievements.WebApp.csproj
 	EndGlobalSection
 EndGlobal

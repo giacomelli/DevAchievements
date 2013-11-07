@@ -17,6 +17,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
         {
             m_issuer = issuer;
             IsAvailable = true;
+            SupportedIssuers = new AchievementIssuer[] { issuer };
         }
         #endregion
 
@@ -26,19 +27,22 @@ namespace DevAchievements.Infrastructure.AchievementProviders
             get;
             protected set;
         }
-        #endregion
+
+        public AchievementIssuer[] SupportedIssuers { get; private set;  }
+        #endregion  
 
         #region Methods
         public abstract void CheckAvailability();
 
-        public abstract IList<Achievement> GetAchievementsByDeveloper(DeveloperAchievementProviderAccount developer);
+        public abstract IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account);
         
-        protected void AddAchievement(IList<Achievement> achievements, string name, object value)
+        protected void AddAchievement(IList<Achievement> achievements, string name, object value, string link)
         {
             var followersAchievement = new Achievement()
             {
                 Name = name,
                 Value = value,
+                Link = link,
                 Issuer = m_issuer
             };
 

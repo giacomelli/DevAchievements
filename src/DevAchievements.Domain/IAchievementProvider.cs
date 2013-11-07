@@ -7,11 +7,12 @@ namespace DevAchievements.Domain
 	{
 		#region Properties
 		bool IsAvailable { get; }
+        AchievementIssuer[] SupportedIssuers { get; }
 		#endregion
 
 		#region Methods
 		void CheckAvailability();
-		IList<Achievement> GetAchievementsByDeveloper (DeveloperAchievementProviderAccount developer);
+		IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account);
 		#endregion
 	}
 }

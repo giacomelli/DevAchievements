@@ -18,7 +18,7 @@ namespace DevAchievements.Domain.UnitTests
 		}
 
 
-		public IList<Achievement> GetAchievementsByDeveloper (DeveloperAchievementProviderAccount developer)
+        public IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
 		{
 			return new List<Achievement> () {
 				new Achievement () {
@@ -26,6 +26,12 @@ namespace DevAchievements.Domain.UnitTests
 				}
 			};
 		}
+
+
+        public AchievementIssuer[] SupportedIssuers
+        {
+            get { return new AchievementIssuer[] { new AchievementIssuer("Test") }; }
+        }        
 		#endregion
-	}
+    }
 }

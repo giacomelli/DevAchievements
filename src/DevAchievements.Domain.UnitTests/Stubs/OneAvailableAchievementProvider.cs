@@ -18,9 +18,9 @@ namespace DevAchievements.Domain.UnitTests
 			}
 		}
 
-		public IList<Achievement> GetAchievementsByDeveloper (DeveloperAchievementProviderAccount developer)
+		public IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account)
 		{
-			if (developer.UserName.Equals ("DeveloperWithAchievements")) {
+			if (account.UserName.Equals ("DeveloperWithAchievements")) {
 				return new List<Achievement> () {
 					new Achievement () {
 						Name = "Achievement Two"
@@ -30,6 +30,11 @@ namespace DevAchievements.Domain.UnitTests
 
 			return new List<Achievement> ();
 		}
+
+        public AchievementIssuer[] SupportedIssuers
+        {
+            get { return new AchievementIssuer[] { new AchievementIssuer("Test") }; }
+        } 
 		#endregion
 	}
 }

@@ -45,6 +45,9 @@
     <Reference Include="StacMan">
       <HintPath>..\packages\StacMan.1.1.0.0\lib\net45\StacMan.dll</HintPath>
     </Reference>
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.3\lib\net35\HelperSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementsProviderBase.cs" />
@@ -54,9 +57,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\DevAchievements.Domain\DevAchievements.Domain.csproj">
+    <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">
       <Project>{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}</Project>
-      <Name>DevAchievements.Domain</Name>
+      <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
