@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "DevAchievements.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.UnitTests", "DevAchievements.Domain.UnitTests\Domain.UnitTests.csproj", "{15BBC168-69E5-4E3F-B098-9144AEAB122F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "DevAchievements.WebApp\WebApp.csproj", "{B975B356-7ED7-4D47-BE17-7C2099F263D3}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.AchievementProviders", "DevAchievements.Infrastructure.AchievementProviders\Infrastructure.AchievementProviders.csproj", "{550462B6-746B-471E-965A-7483B5E18764}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.AchievementProviders.FunctionalTests", "DevAchievements.Infrastructure.AchievementProviders.FunctionalTests\Infrastructure.AchievementProviders.FunctionalTests.csproj", "{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}"
@@ -19,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{6E9528
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "DevAchievements.Application\Application.csproj", "{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "DevAchievements.WebApp\WebApp.csproj", "{8D643429-DD20-4055-BEEE-C3F68ECA4FBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,10 +38,10 @@ Global
 		{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DD44E0D-0D67-4A0E-83C1-732D5FE9A65D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B975B356-7ED7-4D47-BE17-7C2099F263D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D643429-DD20-4055-BEEE-C3F68ECA4FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D643429-DD20-4055-BEEE-C3F68ECA4FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D643429-DD20-4055-BEEE-C3F68ECA4FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D643429-DD20-4055-BEEE-C3F68ECA4FBD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}.Release|Any CPU.ActiveCfg = Release|Any CPU

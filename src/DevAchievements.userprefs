@@ -1,0 +1,21 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DevAchievements.Infrastructure.AchievementProviders/GitHubAchievementProvider.cs">
+    <Files>
+      <File FileName="DevAchievements.WebApp/Controllers/HomeController.cs" Line="15" Column="11" />
+      <File FileName="DevAchievements.WebApp/App_Start/FilterConfig.cs" Line="13" Column="2" />
+      <File FileName="DevAchievements.WebApp/Views/Home/Index.cshtml" Line="18" Column="52" />
+      <File FileName="DevAchievements.Infrastructure.AchievementProviders/GitHubAchievementProvider.cs" Line="32" Column="53" />
+      <File FileName="DevAchievements.Domain/AchievementService.cs" Line="17" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

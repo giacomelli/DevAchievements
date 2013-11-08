@@ -1,4 +1,4 @@
-﻿@model DevAchievements.Application.AchievementsViewModel
+@model DevAchievements.Application.AchievementsViewModel
 @{
     Layout = null;
 }
@@ -11,29 +11,21 @@
     <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
     <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
     <title>DevAchievements</title>
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { autocomplete = "off", @class = "row panel-inline panel-default", id = "form-achievements" }))
+</head>
+<body>
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { autocomplete = "off", @class = "form-inline", id = "form-achievements" }))
     {  
-        <dl class="col-md-4 panel-body">
-            <dd>          
-                <label>
-                    GitHub
-                </label>
-            </dd>
-
-            <dt>
-                @Html.TextBox("githubUserName")
-            </dt>
-            <dd>          
-                <label>
-                    StackOverflow
-                </label>
-            </dd>
-
-            <dt>
-                @Html.TextBox("stackoverflowUserName")
-            </dt>
-            <dt><input type='submit' id='saveButton' name='saveButton' class='btn btn-orange' value='Refresh' /></dt>   
-        </dl>
+        <div class="form-group" style="margin:10px">
+	        <label>
+	            GitHub
+	        </label>
+	        @Html.TextBox("githubUserName")
+	        <label>
+	            StackOverflow
+	        </label>
+	        @Html.TextBox("stackoverflowUserName")
+	    	<input type='submit' id='saveButton' name='saveButton' class='btn btn-orange' value='Refresh' />   
+        </div>
     }
 
     @foreach(var issuer in Model.Issuers)
@@ -48,7 +40,5 @@
         }
         </ul>
     }
-</head>
-<body>
 </body>
 </html>

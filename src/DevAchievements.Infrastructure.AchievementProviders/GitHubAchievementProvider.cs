@@ -19,14 +19,6 @@ namespace DevAchievements.Infrastructure.AchievementProviders
         }
         #endregion
 
-        #region Properties
-        public bool IsAvailable {
-			get {
-				return true;
-			}
-		}
-		#endregion
-
 		#region Methods
         public override void CheckAvailability()
 		{
@@ -38,33 +30,32 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 			var userName = account.UserName;
 			var request = new RequestProxy (new NullLogger (), new AnonymousAuthenticationProvider ());
 			var userRepository = new UserRepository(request);
-			var followers = userRepository.Followers (userName);
+			var user = userRepository.Get (userName);
 
-			var repoRepository = new RepositoryRepository (request);
-			var repos = repoRepository.List (userName);
-			var ownRepos = repos.Where (r => r.Owner.Login.Equals (userName, StringComparison.OrdinalIgnoreCase));
+			if (user != null) {
+				var repoRepository = new RepositoryRepository (request);
+				var repos = repoRepository.List (userName);
+				var ownRepos = repos.Where (r => r.Owner.Login.Equals (userName, StringComparison.OrdinalIgnoreCase));
 
-            var link = "http://github.com/{0}".With(userName);
-            AddAchievement(achievements, "Followers", followers.Length, link);
-            AddAchievement(achievements, "Own repositories", ownRepos.Count(), link);
-			//AddAchievement (achievements, "Max single own repository stars", repos.Sum(r => r.StargazersUrl));
+				var link = "http://github.com/{0}".With (userName);
+				AddAchievement (achievements, "Followers", user.Followers, link);
+				AddAchievement (achievements, "Own repositories", ownRepos.Count (), link);
+				//AddAchievement (achievements, "Max single own repository stars", repos.Sum(r => r.StargazersUrl));
 
-            if (ownRepos.Count() == 0)
-            {
-                AddAchievement(achievements, "Own repositories total forks", 0, link);
-                AddAchievement(achievements, "Max single own repository forks", 0, link);
-                AddAchievement(achievements, "Own repositories total watchers", 0, link);
-                AddAchievement(achievements, "Max single own repository watchers", 0, link);
-            }
-            else
-            {
-                AddAchievement(achievements, "Own repositories total forks", ownRepos.Sum(r => r.Forks), link);
-                AddAchievement(achievements, "Max single own repository forks", ownRepos.Max(r => r.Forks), link);
-                AddAchievement(achievements, "Own repositories total watchers", ownRepos.Sum(r => r.Watchers), link);
-                AddAchievement(achievements, "Max single own repository watchers", ownRepos.Max(r => r.Watchers), link);
-            }
+				if (ownRepos.Count () == 0) {
+					AddAchievement (achievements, "Own repositories total forks", 0, link);
+					AddAchievement (achievements, "Max single own repository forks", 0, link);
+					AddAchievement (achievements, "Own repositories total watchers", 0, link);
+					AddAchievement (achievements, "Max single own repository watchers", 0, link);
+				} else {
+					AddAchievement (achievements, "Own repositories total forks", ownRepos.Sum (r => r.Forks), link);
+					AddAchievement (achievements, "Max single own repository forks", ownRepos.Max (r => r.Forks), link);
+					AddAchievement (achievements, "Own repositories total watchers", ownRepos.Sum (r => r.Watchers), link);
+					AddAchievement (achievements, "Max single own repository watchers", ownRepos.Max (r => r.Watchers), link);
+				}
 
-            AddAchievement(achievements, "Repositories contributed", repos.Count() - ownRepos.Count(), link);
+				AddAchievement (achievements, "Repositories contributed", repos.Count () - ownRepos.Count (), link);
+			}
 
 			return achievements;
 		}	
