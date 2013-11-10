@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "DevAchieveme
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "DevAchievements.WebApp\WebApp.csproj", "{8D643429-DD20-4055-BEEE-C3F68ECA4FBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.Web", "DevAchievements.Infrastructure.Web\Infrastructure.Web.csproj", "{F88388FC-CF47-46D8-AD5A-1274A003079F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3CE9B1D-65C2-4BEE-9F76-BE6D3CC2FA79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F88388FC-CF47-46D8-AD5A-1274A003079F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F88388FC-CF47-46D8-AD5A-1274A003079F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F88388FC-CF47-46D8-AD5A-1274A003079F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F88388FC-CF47-46D8-AD5A-1274A003079F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
