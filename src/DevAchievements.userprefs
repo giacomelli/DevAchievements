@@ -1,10 +1,18 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../../../../Downloads/jogosdaqui-buildoutput-48f804e/_PublishedWebsites/jogosdaqui.WebApi/Areas/Docs/Views/Web.config">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DevAchievements.WebApp/Web.config">
     <Files>
-      <File FileName="DevAchievements.WebApp/Web.config" Line="74" Column="96" />
-      <File FileName="../../../../../Downloads/jogosdaqui-buildoutput-48f804e/_PublishedWebsites/jogosdaqui.WebApi/Areas/Docs/Views/Web.config" Line="1" Column="1" />
+      <File FileName="DevAchievements.WebApp/Web.config" Line="40" Column="28" />
+      <File FileName="DevAchievements.WebApp/Global.asax.cs" Line="50" Column="1" />
+      <File FileName="DevAchievements.Infrastructure.Web/Logging/Log4netLogStrategy.cs" Line="16" Column="4" />
+      <File FileName="DevAchievements.WebApp/packages.config" Line="17" Column="99" />
+      <File FileName="DevAchievements.Infrastructure.Web/Configuration/WebBootstrap.cs" Line="17" Column="15" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True" />
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
