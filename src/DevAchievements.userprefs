@@ -1,11 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DevAchievements.WebApp/Global.asax.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="msbuilds/mvc.targets">
     <Files>
       <File FileName="DevAchievements.Infrastructure.Web/packages.config" Line="1" Column="1" />
       <File FileName="DevAchievements.Infrastructure.Web/Logging/Log4netLogStrategy.cs" Line="1" Column="1" />
       <File FileName="DevAchievements.WebApp/packages.config" Line="1" Column="1" />
-      <File FileName="DevAchievements.WebApp/Global.asax.cs" Line="5" Column="18" />
+      <File FileName="DevAchievements.WebApp/Global.asax.cs" Line="1" Column="1" />
+      <File FileName="msbuilds/mvc.targets" Line="15" Column="11" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
