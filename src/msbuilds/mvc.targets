@@ -1,0 +1,17 @@
+ <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+ 
+ <Target Name="MvcTargets">
+   	<ItemGroup>
+    	<FilesToCopy Include="..\packages\Microsoft.AspNet.WebPages*\lib\*\System.Web.Helpers.dll" />
+    	<FilesToCopy Include="..\packages\Microsoft.AspNet.WebPages*\lib\*\System.Web.WebPages.dll" />
+    	<FilesToCopy Include="..\packages\Microsoft.AspNet.WebPages*\lib\*\System.Web.WebPages.Razor.dll" />
+    	<FilesToCopy Include="..\packages\Microsoft.AspNet.Mvc*\lib\*\System.Web.Mvc.dll" />
+    	
+	</ItemGroup>
+
+    <Copy
+        SourceFiles="@(FilesToCopy)"
+        DestinationFolder="bin"
+    />
+</Target>
+</Project>
