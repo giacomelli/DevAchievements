@@ -1,6 +1,7 @@
 using System;
 using Skahal.Infrastructure.Framework.Logging;
 using log4net;
+using log4net.Config;
 
 namespace DevAchievements.Infrastructure.Web.Logging
 {
@@ -11,6 +12,13 @@ namespace DevAchievements.Infrastructure.Web.Logging
 	{
 		#region Fields
 		private static readonly ILog s_logger = LogManager.GetLogger(typeof(Log4netLogStrategy));
+		#endregion
+
+		#region Constructors
+		static Log4netLogStrategy()
+		{
+			XmlConfigurator.Configure ();
+		}
 		#endregion
 
 		#region implemented abstract members of LogStrategyBase
