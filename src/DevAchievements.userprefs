@@ -1,13 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DevAchievements.Domain/AchievementService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DevAchievements.Infrastructure.AchievementProviders.FunctionalTests/GitHubAchievementsProviderTest.cs">
     <Files>
-      <File FileName="DevAchievements.WebApp/Controllers/HomeController.cs" Line="1" Column="1" />
-      <File FileName="DevAchievements.WebApp/App_Start/FilterConfig.cs" Line="1" Column="1" />
-      <File FileName="DevAchievements.WebApp/Views/Home/Index.cshtml" Line="1" Column="1" />
-      <File FileName="DevAchievements.Infrastructure.AchievementProviders/GitHubAchievementProvider.cs" Line="1" Column="1" />
-      <File FileName="DevAchievements.Domain/AchievementService.cs" Line="60" Column="65" />
+      <File FileName="DevAchievements.Infrastructure.AchievementProviders/GitHub/GitHubAchievementProvider.cs" Line="26" Column="4" />
+      <File FileName="DevAchievements.Infrastructure.AchievementProviders/GitHub/GitHubAchievementBuilder.cs" Line="17" Column="3" />
+      <File FileName="DevAchievements.WebApp/Web.config" Line="67" Column="39" />
+      <File FileName="../../../../jogosdaqui/Plataforma/src/jogosdaqui.Mvc/Web.config" Line="4" Column="1" />
+      <File FileName="DevAchievements.Infrastructure.AchievementProviders.FunctionalTests/GitHubAchievementsProviderTest.cs" Line="15" Column="50" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State expanded="True" selected="True">
+          <Node name="Infrastructure.AchievementProviders.FunctionalTests" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

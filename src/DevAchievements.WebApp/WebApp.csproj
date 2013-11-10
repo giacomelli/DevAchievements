@@ -128,6 +128,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <ItemGroup>
     <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">
       <Project>{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}</Project>

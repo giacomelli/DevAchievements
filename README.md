@@ -18,11 +18,11 @@ Roadmap
  	- GitHub
  		- Followers [OK]
  		- Own repositories [OK]
- 		- Own repositories total stars
+ 		- Own repositories stars
  		- Max single own repository stars
- 		- Own repositories total forks [OK]
+ 		- Own repositories forks [OK]
  		- Max single own repository forks [OK]
- 		- Own repositories total watchers [OK]
+ 		- Own repositories watchers [OK]
  		- Max single own repository watchers [OK]
  		- Repositories contributed	
  	- Stackoverflow

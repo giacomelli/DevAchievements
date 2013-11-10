@@ -52,8 +52,9 @@
   <ItemGroup>
     <Compile Include="AchievementsProviderBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GitHubAchievementProvider.cs" />
     <Compile Include="StackExchangeAchievementProvider.cs" />
+    <Compile Include="GitHub\GitHubAchievementProvider.cs" />
+    <Compile Include="GitHub\GitHubAchievementBuilder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -65,5 +66,8 @@
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GitHub\" />
   </ItemGroup>
 </Project>

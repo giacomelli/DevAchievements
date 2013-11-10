@@ -34,7 +34,7 @@ namespace DevAchievements.Domain
 				}
 			}
 
-			return achievements.OrderBy(b => b.Name).ToList();
+			return achievements;
 		}
 		#endregion
 

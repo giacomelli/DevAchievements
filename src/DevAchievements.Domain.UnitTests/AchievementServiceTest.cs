@@ -27,8 +27,8 @@ namespace DevAchievements.Domain.UnitTests
             var actual = target.GetAchievementsByDeveloper(account);
 			Assert.AreEqual (2, actual.Count);
 
-			Assert.AreEqual ("Achievement One", actual [0].Name);
-			Assert.AreEqual ("Achievement Two", actual [1].Name);
+			Assert.AreEqual ("Achievement One", actual [1].Name);
+			Assert.AreEqual ("Achievement Two", actual [0].Name);
 		}
 	}
 }
