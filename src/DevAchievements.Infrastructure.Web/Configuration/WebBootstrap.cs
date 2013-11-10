@@ -14,7 +14,7 @@ namespace DevAchievements.Infrastructure.Web.Configuration
 
 		protected override ILogStrategy CreateLogStrategy ()
 		{
-			return new Log4netLogStrategy ();
+			return new Log4netLogStrategy ("App");
 		}
 
 		protected override IUserRepository CreateUserRepository ()

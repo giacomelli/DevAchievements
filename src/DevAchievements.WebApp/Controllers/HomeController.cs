@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DevAchievements.Application;
 using DevAchievements.Domain;
+using Skahal.Infrastructure.Framework.Logging;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -12,12 +13,14 @@ namespace DevAchievements.WebApp.Controllers
     {
         public ActionResult Index()
         {
+			LogService.Debug ("Home.Index.Get access");
 			return Index("giacomelli", "giacomelli");
         }
 
         [HttpPost]
         public ActionResult Index(string gitHubUserName, string stackoverflowUserName)
         {
+			LogService.Debug ("Home.Index.Post access");
 			var achievementService = new AchievementService ();
             var account = new DeveloperAccount();
             account.AddAccountAtIssuer(new DeveloperAccountAtIssuer("github", gitHubUserName));

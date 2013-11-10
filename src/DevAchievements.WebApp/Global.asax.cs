@@ -34,6 +34,7 @@ namespace DevAchievements.WebApp
 		protected void Application_Start ()
 		{
 			LogService.Debug ("Application starting...");
+			LogService.Debug ("Machine: {0}", Environment.MachineName);
 
 			LogService.Debug ("Registering areas...");
 			AreaRegistration.RegisterAllAreas ();
