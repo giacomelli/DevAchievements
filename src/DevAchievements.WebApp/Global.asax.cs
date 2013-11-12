@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using DevAchievements.Infrastructure.AchievementProviders;
 using DevAchievements.Infrastructure.Web.Configuration;
 using Skahal.Infrastructure.Framework.Logging;
 
@@ -48,6 +49,10 @@ namespace DevAchievements.WebApp
 			LogService.Debug ("Bootstrap setup...");
 			new WebBootstrap ().Setup ();
 
+            LogService.Debug("Loading achievements provider assembly...");
+            var dummy = typeof(AchievementProviderBase);
+            LogService.Debug("{0} assembly loaded.", dummy.Assembly.GetName().Name);
+            
 			LogService.Debug ("Application started.");
 		}
 
