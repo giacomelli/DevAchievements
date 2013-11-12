@@ -17,6 +17,7 @@ namespace DevAchievements.Application
 
         public string GitHubUserName { get; set; }
         public string StackOverflowUserName { get; set; }
+		public string VsaUserName { get; set; }
         public IList<AchievementIssuer> Issuers { get; private set; }
         public IList<Achievement> Achievements { get; private set; }
 

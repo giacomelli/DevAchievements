@@ -48,6 +48,10 @@
     <Reference Include="HelperSharp">
       <HintPath>..\packages\HelperSharp.0.0.3.3\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.3.3\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementsProviderBase.cs" />
@@ -55,6 +59,9 @@
     <Compile Include="StackExchangeAchievementProvider.cs" />
     <Compile Include="GitHub\GitHubAchievementProvider.cs" />
     <Compile Include="GitHub\GitHubAchievementBuilder.cs" />
+    <Compile Include="Vsa\VsaAchievementProvider.cs" />
+    <Compile Include="Vsa\VsaResponse.cs" />
+    <Compile Include="Vsa\VsaAchievementResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -69,5 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GitHub\" />
+    <Folder Include="Vsa\" />
   </ItemGroup>
 </Project>
