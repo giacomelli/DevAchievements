@@ -6,7 +6,7 @@ using HelperSharp;
 using System.Linq;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
-{
+{ 
 	public class VsaAchievementProvider : AchievementProviderBase
 	{
 		#region Constructors
