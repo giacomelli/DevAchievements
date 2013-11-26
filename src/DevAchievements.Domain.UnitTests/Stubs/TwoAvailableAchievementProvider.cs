@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-
+	
 namespace DevAchievements.Domain.UnitTests
 {
 	public class AvailableAchievementProvider : IAchievementProvider
@@ -10,6 +10,12 @@ namespace DevAchievements.Domain.UnitTests
 		public void CheckAvailability ()
 		{
 
+		}
+
+		public bool Enabled {
+			get {
+				return true;
+			}
 		}
 
 		public bool IsAvailable {

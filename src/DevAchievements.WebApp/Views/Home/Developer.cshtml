@@ -1,0 +1,33 @@
+@model DevAchievements.Application.AchievementsViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript" src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <title>DevAchievements</title>
+</head>
+<body>
+    <article>
+    	<header>@Html.DevName(new Developer())  </header>
+    @foreach(var issuer in Model.Issuers)
+    {
+        <div class="alert alert-success">@issuer.Name</div>
+    	<ul>            
+        @foreach(var achievement in Model.GetAchievementsByIssuer(issuer))
+        {
+            <li>
+                <a href="@achievement.Link">@achievement.Name : <span class="badge">@achievement.Value</span></a>
+            </li>
+        }
+        </ul>
+    }
+
+    </article>
+</body>
+</html>

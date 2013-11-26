@@ -14,13 +14,14 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 				new AchievementIssuer("StackOverflow"),
 				new AchievementIssuer("Visual Studio Achievements"))
 		{
+			Enabled = false;
 		}
 		#endregion
 
 		#region Methods
 		public override void CheckAvailability()
 		{
-			IsAvailable = false;
+
 		}
 
 		public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)

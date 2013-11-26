@@ -15,12 +15,10 @@ namespace DevAchievements.Domain
 		public IList<Achievement> GetAchievementsByDeveloper(Developer developer)
 		{
 			var achievements = new List<Achievement> ();
-			var providersTypes = GetAchievementProviders ();
+			var providers = GetAchievementProviders ();
 
-			foreach (var t in providersTypes) {
-				var provider = Activator.CreateInstance (t) as IAchievementProvider;
-				             
-                provider.CheckAvailability ();
+			foreach (var provider in providers) {
+				provider.CheckAvailability ();
 
 				if (provider.IsAvailable) {
 
@@ -51,10 +49,9 @@ namespace DevAchievements.Domain
 		public IList<AchievementIssuer> GetAllIssuers()
 		{
 			var issuers = new List<AchievementIssuer>();
-			var providersTypes = GetAchievementProviders ();
+			var providers = GetAchievementProviders ();
 
-			foreach (var t in providersTypes) {
-				var provider = Activator.CreateInstance (t) as IAchievementProvider;
+			foreach (var provider in providers) {
 				issuers.AddRange (provider.SupportedIssuers);
 			}
 
@@ -63,8 +60,7 @@ namespace DevAchievements.Domain
 		#endregion
 
 		#region Fields
-		// TODO: remove when update HelperSharp.
-		private static IList<Type> GetAchievementProviders()
+		private static IList<IAchievementProvider> GetAchievementProviders()
 		{
 			var canditateAssemblies = AppDomain.CurrentDomain.GetAssemblies();
 			var types = new List<Type>();
@@ -81,7 +77,11 @@ namespace DevAchievements.Domain
 				}
 			}
 
-			return types.Where(t => FilterAchievementProviders(t)).ToList();
+			return types
+					.Where (t => FilterAchievementProviders (t))
+					.Select (t => Activator.CreateInstance (t) as IAchievementProvider)
+					.Where (p => p.Enabled)
+					.ToList ();
 		}
 
 		private static bool FilterAchievementProviders(Type type)

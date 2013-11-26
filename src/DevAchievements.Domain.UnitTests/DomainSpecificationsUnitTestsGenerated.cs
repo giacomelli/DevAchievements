@@ -73,8 +73,8 @@ namespace DevAchievements.Domain.UnitTests
 			Stubs.UnitOfWork.Commit ();
 			var target = new AchievementUniqueNameSpecification();
 			
-			Assert.IsFalse(target.IsSatisfiedBy(new Achievement() { Key = 1, Name = "Name" }));
-		
+			Assert.IsFalse(target.IsSatisfiedBy(new Achievement() { Key = 2, Name = "Name" }));
+		}
 		
 		[Test]
 		public void IsSatisfiedBy_TheSameAchievementAlreadySavedWithSameName_True()

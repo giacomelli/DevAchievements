@@ -11,6 +11,12 @@ namespace DevAchievements.Domain.UnitTests
 		{
 		}
 
+		public bool Enabled {
+			get {
+				return true;
+			}
+		}
+
 		public bool IsAvailable {
 			get {
 				return false;

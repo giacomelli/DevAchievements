@@ -16,12 +16,14 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 		protected AchievementProviderBase(params AchievementIssuer[] issuers)
         {
 			m_issuer = issuers[0];
+			Enabled = true;
             IsAvailable = true;
 			SupportedIssuers = issuers;
         }
         #endregion
 
         #region Properties
+		public bool Enabled { get; protected set; }
         public bool IsAvailable
         {
             get;

@@ -19,7 +19,7 @@ namespace DevAchievements.WebApp.Controllers
 			var dev = service.GetDeveloperByUsername (username);
 
 			if (dev == null) {
-				throw new InvalidOperationException ("Developer '{0}' not found!".With (username));
+				return View ("Index");
 			}
 
 			var achievementService = new AchievementService ();
@@ -27,7 +27,7 @@ namespace DevAchievements.WebApp.Controllers
 
             var viewModel = new AchievementsViewModel(achievements);
          
-			return View(viewModel);
+			return View("Developer", viewModel);
 		}
     }
 }

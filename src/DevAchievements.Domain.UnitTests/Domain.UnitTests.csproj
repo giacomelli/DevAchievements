@@ -48,18 +48,33 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Ionic.Utils.Zip">
+      <HintPath>..\packages\TestSharp.1.0.2\lib\net40\Ionic.Utils.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="TestSharp">
+      <HintPath>..\packages\TestSharp.1.0.2\lib\net40\TestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="KissSpecifications">
+      <HintPath>..\packages\KissSpecifications.1.1.4\lib\net35\KissSpecifications.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementServiceTest.cs" />
     <Compile Include="Stubs\OneAvailableAchievementProvider.cs" />
     <Compile Include="Stubs\TwoAvailableAchievementProvider.cs" />
     <Compile Include="Stubs\UnavailableAchievementProvider.cs" />
+    <Compile Include="DomainSpecificationsUnitTestsGenerated.cs" />
+    <Compile Include="DomainUnitTestsGenerated.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">
       <Project>{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevAchievements.Infrastructure.Repositories\Infrastructure.Repositories.csproj">
+      <Project>{E581B8D0-5A34-492E-8FFF-64A41394F222}</Project>
+      <Name>Infrastructure.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
