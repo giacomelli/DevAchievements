@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +7,12 @@ using System.Web.Routing;
 using DevAchievements.Infrastructure.AchievementProviders;
 using DevAchievements.Infrastructure.Web.Configuration;
 using Skahal.Infrastructure.Framework.Logging;
+using Skahal.Infrastructure.Framework.Commons;
+using DevAchievements.Infrastructure.Repositories.MongoDB;
+using DevAchievements.Domain;
+using Skahal.Infrastructure.Framework.Repositories;
+using MongoDB.Bson.Serialization;
+using DevAchievements.Infrastructure.Repositories;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile="Web.config", Watch = true)]
 
@@ -14,19 +20,6 @@ namespace DevAchievements.WebApp
 {
 	public class MvcApplication : System.Web.HttpApplication
 	{
-		public static void RegisterRoutes (RouteCollection routes)
-		{
-			routes.IgnoreRoute ("{resource}.axd/{*pathInfo}");
-
-
-			routes.MapRoute (
-				"Default",
-				"{controller}/{action}/{id}",
-				new { controller = "Home", action = "Index", id = "" }
-			);
-
-		}
-
 		public static void RegisterGlobalFilters (GlobalFilterCollection filters)
 		{
 			filters.Add (new HandleErrorAttribute ());
@@ -44,10 +37,13 @@ namespace DevAchievements.WebApp
 			RegisterGlobalFilters (GlobalFilters.Filters);
 
 			LogService.Debug ("Registering routes...");
-			RegisterRoutes (RouteTable.Routes);
+			RouteConfig.RegisterRoutes (RouteTable.Routes);
 
 			LogService.Debug ("Bootstrap setup...");
 			new WebBootstrap ().Setup ();
+		
+			LogService.Debug ("Domain setup...");
+			RepositoriesConfig.RegisterMongoDB ();
 
             LogService.Debug("Loading achievements provider assembly...");
             var dummy = typeof(AchievementProviderBase);

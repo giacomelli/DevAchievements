@@ -6,34 +6,28 @@ using System.Web.Mvc;
 using DevAchievements.Application;
 using DevAchievements.Domain;
 using Skahal.Infrastructure.Framework.Logging;
+using HelperSharp;
 
 namespace DevAchievements.WebApp.Controllers
 {
 	public class HomeController : Controller
     {
-        public ActionResult Index()
-        {
-			LogService.Debug ("Home.Index.Get access");
-			return Index("giacomelli", "giacomelli", "giacomelli");
-        }
+		[OutputCache(Duration = 3600)]
+		public ActionResult Index(string username)
+		{
+			var service = new DeveloperService ();
+			var dev = service.GetDeveloperByUsername (username);
 
-        [HttpPost]
-		public ActionResult Index(string gitHubUserName, string stackoverflowUserName, string vsaUserName)
-        {
-			LogService.Debug ("Home.Index.Post access");
+			if (dev == null) {
+				throw new InvalidOperationException ("Developer '{0}' not found!".With (username));
+			}
+
 			var achievementService = new AchievementService ();
-            var account = new DeveloperAccount();
-            account.AddAccountAtIssuer(new DeveloperAccountAtIssuer("github", gitHubUserName));
-            account.AddAccountAtIssuer(new DeveloperAccountAtIssuer("stackoverflow", stackoverflowUserName));
-			account.AddAccountAtIssuer(new DeveloperAccountAtIssuer("visual studio achievements", vsaUserName));
-            var achievements = achievementService.GetAchievementsByDeveloper(account);
+			var achievements = achievementService.GetAchievementsByDeveloper(dev);
 
             var viewModel = new AchievementsViewModel(achievements);
-            viewModel.GitHubUserName = gitHubUserName;
-            viewModel.StackOverflowUserName = stackoverflowUserName;
-			viewModel.VsaUserName = vsaUserName;
-
+         
 			return View(viewModel);
-        }
+		}
     }
 }

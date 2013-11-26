@@ -12,8 +12,8 @@ namespace DevAchievements.Domain.UnitTests
 		public void GetAchievementsByDeveloper_NoAchievementsForDeveloper_EmptyList ()
 		{
 			var target = new AchievementService ();
-            var account = new DeveloperAccount();
-            account.AddAccountAtIssuer(new DeveloperAccountAtIssuer("Test", "DeveloperWithoutAchievements"));
+            var account = new Developer();
+			account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithoutAchievements"));
             var actual = target.GetAchievementsByDeveloper(account);
 			Assert.AreEqual (0, actual.Count);
 		}
@@ -22,8 +22,8 @@ namespace DevAchievements.Domain.UnitTests
 		public void GetAchievementsByDeveloper_ThereAreAchievementsForDeveloper_AchievementsFromProviders()
 		{
 			var target = new AchievementService ();
-            var account = new DeveloperAccount();
-            account.AddAccountAtIssuer(new DeveloperAccountAtIssuer("Test", "DeveloperWithAchievements"));
+            var account = new Developer();
+            account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithAchievements"));
             var actual = target.GetAchievementsByDeveloper(account);
 			Assert.AreEqual (2, actual.Count);
 

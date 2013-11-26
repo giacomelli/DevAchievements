@@ -45,8 +45,9 @@ Roadmap
 		- Total published packages
 		- Total packages downloads
 		- Max single package downloads
- 		
- 		
+	- coderwall.com
+	- http://careers.stackoverflow.com
+	- Compare between two developers achievements
  		
  
 --------

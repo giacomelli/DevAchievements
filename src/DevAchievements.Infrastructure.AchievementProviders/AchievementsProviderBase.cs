@@ -13,11 +13,11 @@ namespace DevAchievements.Infrastructure.AchievementProviders
         #endregion
 
         #region Constructors
-        protected AchievementProviderBase(AchievementIssuer issuer)
+		protected AchievementProviderBase(params AchievementIssuer[] issuers)
         {
-            m_issuer = issuer;
+			m_issuer = issuers[0];
             IsAvailable = true;
-            SupportedIssuers = new AchievementIssuer[] { issuer };
+			SupportedIssuers = issuers;
         }
         #endregion
 
@@ -28,7 +28,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
             protected set;
         }
 
-        public AchievementIssuer[] SupportedIssuers { get; private set;  }
+		public AchievementIssuer[] SupportedIssuers { get; protected set;  }
         #endregion  
 
         #region Methods
@@ -36,14 +36,18 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 
         public abstract IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account);
         
-        protected void AddAchievement(IList<Achievement> achievements, string name, object value, string link)
+		protected void AddAchievement(IList<Achievement> achievements, string name, object value, string link, AchievementIssuer issuer = null)
         {
+			if (issuer == null) {
+				issuer = m_issuer;
+			}
+
             var followersAchievement = new Achievement()
             {
                 Name = name,
                 Value = value,
                 Link = link,
-                Issuer = m_issuer
+				Issuer = issuer
             };
 
             achievements.Add(followersAchievement);

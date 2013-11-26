@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using HelperSharp;
 using System.Reflection;
+using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.Domain;
+using Skahal.Infrastructure.Framework.Logging;
 
 namespace DevAchievements.Domain
 {
-	public class AchievementService
+	public partial class AchievementService
 	{
 		#region Methods
-		public IList<Achievement> GetAchievementsByDeveloper(DeveloperAccount developer)
+		public IList<Achievement> GetAchievementsByDeveloper(Developer developer)
 		{
 			var achievements = new List<Achievement> ();
 			var providersTypes = GetAchievementProviders ();
 
 			foreach (var t in providersTypes) {
 				var provider = Activator.CreateInstance (t) as IAchievementProvider;
-				
-                
+				             
                 provider.CheckAvailability ();
 
 				if (provider.IsAvailable) {
@@ -28,13 +30,35 @@ namespace DevAchievements.Domain
 
                         if (accountAtIssuer != null)
                         {
-                            achievements.AddRange(provider.GetAchievements(accountAtIssuer));
+							try
+							{
+                            	achievements.AddRange(provider.GetAchievements(accountAtIssuer));
+							}
+							catch(Exception ex) 
+							{
+								LogService.Error(
+									"Error trying get achievements of developer '{0}' from issuer '{1}': {2}",
+									developer.Username, issuer.Name, ex.Message);
+							}
                         }
                     }
 				}
 			}
 
 			return achievements;
+		}
+
+		public IList<AchievementIssuer> GetAllIssuers()
+		{
+			var issuers = new List<AchievementIssuer>();
+			var providersTypes = GetAchievementProviders ();
+
+			foreach (var t in providersTypes) {
+				var provider = Activator.CreateInstance (t) as IAchievementProvider;
+				issuers.AddRange (provider.SupportedIssuers);
+			}
+
+			return issuers;
 		}
 		#endregion
 

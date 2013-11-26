@@ -42,6 +42,9 @@
     <Reference Include="Skahal.Infrastructure.Framework">
       <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="KissSpecifications">
+      <HintPath>..\packages\KissSpecifications.1.1.0\lib\net35\KissSpecifications.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DeveloperAccountAtIssuer.cs" />
@@ -50,7 +53,11 @@
     <Compile Include="AchievementIssuer.cs" />
     <Compile Include="AchievementService.cs" />
     <Compile Include="IAchievementProvider.cs" />
-    <Compile Include="DeveloperAchievementProviderAccount.cs" />
+    <Compile Include="IAchievementRepository.cs" />
+    <Compile Include="Developer.cs" />
+    <Compile Include="DeveloperService.cs" />
+    <Compile Include="DomainGenerated.cs" />
+    <Compile Include="DomainSpecificationsGenerated.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

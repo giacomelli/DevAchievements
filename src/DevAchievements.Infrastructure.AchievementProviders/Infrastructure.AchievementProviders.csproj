@@ -52,6 +52,12 @@
       <HintPath>..\packages\RestSharp.104.3.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.IO.Abstractions">
+      <HintPath>..\packages\System.IO.Abstractions.1.4.0.68\lib\net35\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Skahal.Infrastructure.Framework">
+      <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementsProviderBase.cs" />
@@ -62,6 +68,8 @@
     <Compile Include="Vsa\VsaAchievementProvider.cs" />
     <Compile Include="Vsa\VsaResponse.cs" />
     <Compile Include="Vsa\VsaAchievementResponse.cs" />
+    <Compile Include="Memory\MemoryAchievementProvider.cs" />
+    <Compile Include="AchievementProvidersConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -77,5 +85,6 @@
   <ItemGroup>
     <Folder Include="GitHub\" />
     <Folder Include="Vsa\" />
+    <Folder Include="Memory\" />
   </ItemGroup>
 </Project>

@@ -42,6 +42,15 @@
     <Reference Include="GithubSharp.Core">
       <HintPath>..\references\GithubSharp.Core.dll</HintPath>
     </Reference>
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.3\lib\net35\HelperSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Abstractions">
+      <HintPath>..\packages\System.IO.Abstractions.1.4.0.68\lib\net35\System.IO.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Skahal.Infrastructure.Framework">
+      <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

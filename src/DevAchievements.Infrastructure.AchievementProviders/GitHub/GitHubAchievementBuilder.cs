@@ -26,7 +26,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 			m_achievement = new Achievement () {
 				Name = name,
 				Issuer = s_issuer,
-				Link = "http://github.com/{0}".With (m_account.UserName)
+				Link = "http://github.com/{0}".With (m_account.Username)
 			};
 		}
 		#endregion

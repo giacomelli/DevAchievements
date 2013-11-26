@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +8,18 @@ namespace DevAchievements.Domain
 {
     public class DeveloperAccountAtIssuer
     {
-        public DeveloperAccountAtIssuer(string issuerName, string userName)
+		public DeveloperAccountAtIssuer()
+		{
+
+		}
+
+        public DeveloperAccountAtIssuer(string issuerName, string username)
         {
             IssuerName = issuerName;
-            UserName = userName;
+            Username = username;
         }
 
         public string IssuerName { get; set; }
-        public string UserName { get; set; }
+        public string Username { get; set; }
     }
 }

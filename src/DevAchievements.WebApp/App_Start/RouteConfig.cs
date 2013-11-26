@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,11 +13,17 @@ namespace DevAchievements.WebApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+			routes.MapRoute (
+				name: "Default_Developer",
+				url: "Developer/{action}/{id}",
+				defaults: new { controller = "Developer", action = "Index", id = UrlParameter.Optional }
+			);
+
+			routes.MapRoute(
+				"Developer_Profile", 
+				"{username}", 
+				new { controller = "Home", action = "Index", username = "" }
+			);
         }
     }
 }

@@ -13,25 +13,8 @@
     <title>DevAchievements</title>
 </head>
 <body>
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { autocomplete = "off", @class = "form-inline", id = "form-achievements" }))
-    {  
-        <div class="form-group" style="margin:10px">
-	        <label>
-	            GitHub
-	        </label>
-	        @Html.TextBox("githubUserName")
-	        <label>
-	            StackOverflow
-	        </label>
-	        @Html.TextBox("stackoverflowUserName")	
-	    	<label>
-	            Visual Studio Achievements
-	        </label>
-	        @Html.TextBox("vsaUserName")
-	    	<input type='submit' id='saveButton' name='saveButton' class='btn btn-orange' value='Refresh' />   
-        </div>
-    }
-
+    <article>
+    	<header></header>
     @foreach(var issuer in Model.Issuers)
     {
         <div class="alert alert-success">@issuer.Name</div>
@@ -44,5 +27,7 @@
         }
         </ul>
     }
+
+    </article>
 </body>
 </html>

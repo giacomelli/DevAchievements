@@ -28,7 +28,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
         public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
 		{
 			var achievements = new List<Achievement> ();
-			var userName = account.UserName;
+			var userName = account.Username;
 			var request = new RequestProxy (new NullLogger (), new AnonymousAuthenticationProvider ());
 			var userRepository = new UserRepository(request);
 			var user = userRepository.Get (userName);

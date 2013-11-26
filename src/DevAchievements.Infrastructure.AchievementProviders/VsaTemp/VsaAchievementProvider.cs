@@ -26,7 +26,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 		{
 			var result = new List<Achievement> ();
 			var client = new RestClient ("http://channel9.msdn.com/niners");
-			var request = new RestRequest ("{0}/achievements/visualstudio".With (account.UserName));
+			var request = new RestRequest ("{0}/achievements/visualstudio".With (account.Username));
 			request.AddParameter ("json", true);
 
 			var response = client.Get<VsaResponse> (request);

@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DevAchievements.Domain;
+using HelperSharp;
 using StackExchange.StacMan;
 
 namespace DevAchievements.Infrastructure.AchievementProviders
@@ -18,7 +17,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 
         public override void CheckAvailability()
         {
-            
+
         }
 
         public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
@@ -26,7 +25,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
             var achievements = new List<Achievement>();
 
             var client = new StacManClient();
-            var user = client.Users.GetAll("stackoverflow", "!-.CabxAv7Udo", inname: account.UserName).Result.Data.Items.FirstOrDefault();
+            var user = client.Users.GetAll("stackoverflow", "!-.CabxAv7Udo", inname: account.Username).Result.Data.Items.FirstOrDefault();
 
             if (user != null)
             {
@@ -34,7 +33,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 
                 if (user != null)
                 {
-                    AddAchievement(achievements, "Reputation", user.Reputation, user.Link);
+                    AddAchievement(achievements, "Reputation", user.Reputation, "{0}?tab=reputation".With(user.Link));
 
                     var maxSingleAnswerScore = answers.OrderByDescending(a => a.Score).FirstOrDefault();
 

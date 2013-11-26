@@ -20,7 +20,7 @@ namespace DevAchievements.Domain.UnitTests
 
 		public IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account)
 		{
-			if (account.UserName.Equals ("DeveloperWithAchievements")) {
+			if (account.Username.Equals ("DeveloperWithAchievements")) {
 				return new List<Achievement> () {
 					new Achievement () {
 						Name = "Achievement One"
