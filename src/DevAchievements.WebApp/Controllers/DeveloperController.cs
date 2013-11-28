@@ -22,9 +22,10 @@ namespace DevAchievements.WebApp.Controllers
             return View ();
         }
 
-        public ActionResult Create()
+		public ActionResult Create(string username)
         {
 			var model = new Developer ();
+			model.Username = username;
 			var service = new AchievementService ();
 
 			var issuers = service.GetAllIssuers ();
@@ -42,7 +43,7 @@ namespace DevAchievements.WebApp.Controllers
 			var developerService = new DeveloperService();
 			developerService.SaveDeveloper(developer);
 
-            return RedirectToAction ("Index");
+			return Redirect ("/" + developer.Username);
         }
         
         public ActionResult Edit(int id)

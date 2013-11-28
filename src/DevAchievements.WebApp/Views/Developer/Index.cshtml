@@ -1,27 +1,14 @@
 @model IList<DevAchievements.Domain.Developer>
-@{
-    Layout = null;
-}
+<ol>
+@foreach(var d in Model)
+{
+	<li>@d.Key : @d.FullName : @d.Username</li>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Developers</title>
-    <ol>
-    @foreach(var d in Model)
+	foreach(var account in d.AccountsAtIssuers)
     {
-    	<li>@d.Key : @d.FullName : @d.Username</li>
-
-    	foreach(var account in d.AccountsAtIssuers)
-	    {
-	    	<div>
-	    	@account.IssuerName : @account.Username
-	    	</div>
-	    }
+    	<div>
+    	@account.IssuerName : @account.Username
+    	</div>
     }
-    </ol>
-</head>
-<body>
-</body>
-</html>
-
+}
+</ol>

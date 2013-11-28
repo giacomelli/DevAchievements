@@ -51,8 +51,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AchievementsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DeveloperHomeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">

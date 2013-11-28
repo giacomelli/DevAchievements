@@ -1,0 +1,5 @@
+@model string
+@using(Html.BeginForm("Create", "Developer", FormMethod.Get)) {
+@Html.Hidden("username", @Model)
+<button class="btn btn-primary">Create your account</button>
+}

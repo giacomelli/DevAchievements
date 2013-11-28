@@ -2,6 +2,7 @@ using System;
 using System.Web;
 using DevAchievements.Domain;
 using System.Web.Mvc.Html;
+using System.Linq.Expressions;
 using System.Web.Mvc;
 
 namespace DevAchievements.WebApp.Helpers
@@ -14,6 +15,10 @@ namespace DevAchievements.WebApp.Helpers
 
 			return MvcHtmlString.Empty;
 		}
+
+		public static UI<TModel> UI<TModel>(this HtmlHelper<TModel> helper)
+		{
+			return new UI<TModel>(helper);
+		}
 	}
 }
-

@@ -53,6 +53,10 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
@@ -121,7 +125,9 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Developer\" />
     <Folder Include="Views\Shared\" />
-    <Folder Include="Helper\" />
+    <Folder Include="Content\" />
+    <Folder Include="Scripts\Bootstrap\" />
+    <Folder Include="Helpers\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -131,25 +137,29 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
-    <Compile Include="Models\HtmlExtensions.cs" />
+    <Compile Include="Helpers\HtmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
     <Content Include="Global.asax" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Views\Developer\Create.cshtml" />
     <Content Include="Views\Developer\Index.cshtml" />
-    <Content Include="Views\Home\Developer.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_DevName.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap.css" />
+    <Content Include="Scripts\Bootstrap\css\bootstrap.min.css" />
+    <Content Include="Scripts\Bootstrap\js\bootstrap.js" />
+    <Content Include="Scripts\Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Views\Home\DeveloperHome.cshtml" />
+    <Content Include="Views\Home\DeveloperNotFound.cshtml" />
+    <Content Include="Views\Shared\_TextBoxFor.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

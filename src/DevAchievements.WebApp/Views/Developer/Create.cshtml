@@ -1,31 +1,19 @@
 @using HelperSharp;
+@using System.Web.Mvc;
 @model DevAchievements.Domain.Developer
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Create developer</title>
-</head>
-<body>
-    @using (Html.BeginForm()) {
-	    <div>
-	    Full name: @Html.TextBoxFor(m => m.FullName)
-	    Username: @Html.TextBoxFor(m => m.Username)
-
-	    @for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
-	    {
-	    	var account = Model.AccountsAtIssuers[i];
-	    	<div>
-	    	@Html.Label(account.IssuerName, account.IssuerName)
-	    	@Html.Hidden("AccountsAtIssuers[{0}].IssuerName".With(i), account.IssuerName)
-	    	@Html.TextBox("AccountsAtIssuers[{0}].Username".With(i))
-	    	</div>
-	    }
-	    <input type="submit" value="Submit" />
-	    </div>
+@using (Html.BeginForm("Create", "Developer", FormMethod.Post, new { @role="form" })) {
+	@Html.UI().TextBoxFor(m => m.Username)
+	@Html.UI().TextBoxFor(m => m.FullName)
+ 
+    for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
+    {
+    	var account = Model.AccountsAtIssuers[i];
+    	<div>
+    	@Html.Label(account.IssuerName, account.IssuerName)
+    	@Html.Hidden("AccountsAtIssuers[{0}].IssuerName".With(i), account.IssuerName)
+    	@Html.TextBox("AccountsAtIssuers[{0}].Username".With(i))
+    	</div>
     }
-</body>
-</html
+    <input type="submit" value="Submit" />
+}

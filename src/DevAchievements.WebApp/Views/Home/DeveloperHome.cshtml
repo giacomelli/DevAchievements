@@ -1,0 +1,18 @@
+@model DevAchievements.Application.DeveloperHomeViewModel
+
+<article>
+	<header>@Html.DevName(@Model.Developer)  </header>
+@foreach(var issuer in Model.Issuers)
+{
+    <div class="alert alert-success">@issuer.Name</div>
+	<ul>            
+    @foreach(var achievement in Model.GetAchievementsByIssuer(issuer))
+    {
+        <li>
+            <a href="@achievement.Link">@achievement.Name : <span class="badge">@achievement.Value</span></a>
+        </li>
+    }
+    </ul>
+}
+
+</article>
