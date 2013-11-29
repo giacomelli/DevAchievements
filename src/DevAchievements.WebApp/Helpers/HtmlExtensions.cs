@@ -15,10 +15,5 @@ namespace DevAchievements.WebApp.Helpers
 
 			return MvcHtmlString.Empty;
 		}
-
-		public static UI<TModel> UI<TModel>(this HtmlHelper<TModel> helper)
-		{
-			return new UI<TModel>(helper);
-		}
 	}
 }

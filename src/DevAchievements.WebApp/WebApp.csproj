@@ -120,6 +120,9 @@
     <Reference Include="Skahal.Infrastructure.Repositories.MongoDB">
       <HintPath>..\references\Skahal.Infrastructure.Repositories.MongoDB.dll</HintPath>
     </Reference>
+    <Reference Include="DevTrends.MvcDonutCaching">
+      <HintPath>..\packages\MvcDonutCaching.1.2.3\lib\net40\DevTrends.MvcDonutCaching.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />

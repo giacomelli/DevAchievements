@@ -67,7 +67,9 @@
     <Compile Include="Logging\Log4netLogStrategy.cs" />
     <Compile Include="Configuration\WebBootstrap.cs" />
     <Compile Include="UI\TextBoxExtensions.cs" />
-    <Compile Include="UI\UI.cs" />
+    <Compile Include="UI\ButtonExtensions.cs" />
+    <Compile Include="UI\UIExtender.cs" />
+    <Compile Include="UI\HtmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />

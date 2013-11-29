@@ -10,10 +10,9 @@
     {
     	var account = Model.AccountsAtIssuers[i];
     	<div>
-    	@Html.Label(account.IssuerName, account.IssuerName)
+    	@Html.UI().TextBox(account.IssuerName, "AccountsAtIssuers[{0}].Username", i) 
     	@Html.Hidden("AccountsAtIssuers[{0}].IssuerName".With(i), account.IssuerName)
-    	@Html.TextBox("AccountsAtIssuers[{0}].Username".With(i))
     	</div>
     }
-    <input type="submit" value="Submit" />
+    @Html.UI().PrimaryButton("Create");
 }

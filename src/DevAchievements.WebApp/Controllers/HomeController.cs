@@ -7,12 +7,13 @@ using DevAchievements.Application;
 using DevAchievements.Domain;
 using Skahal.Infrastructure.Framework.Logging;
 using HelperSharp;
+using DevTrends.MvcDonutCaching;
 
 namespace DevAchievements.WebApp.Controllers
 {
 	public class HomeController : Controller
     {
-		[OutputCache(Duration = 3600)]
+		[DonutOutputCache(CacheProfile = "HomeControllerIndex")]
 		public ActionResult Index(string username)
 		{
 			var service = new DeveloperService ();

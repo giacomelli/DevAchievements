@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DevAchievements.Domain;
+using DevTrends.MvcDonutCaching;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -42,6 +43,9 @@ namespace DevAchievements.WebApp.Controllers
         {
 			var developerService = new DeveloperService();
 			developerService.SaveDeveloper(developer);
+
+			var outputCacheManager = new OutputCacheManager ();
+			outputCacheManager.RemoveItem ("Home", "Index", new { username = developer.Username });
 
 			return Redirect ("/" + developer.Username);
         }
