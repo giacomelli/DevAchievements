@@ -8,6 +8,7 @@ using GithubSharp.Core.Services.Implementation;
 using System.Linq;
 using HelperSharp;
 using GithubSharp.Core.Models.Repositories;
+using System.Net.Http.Headers;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 {
@@ -25,7 +26,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 		{
 		}
 
-        public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
+		public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
 		{
 			var achievements = new List<Achievement> ();
 			var userName = account.Username;
@@ -43,10 +44,15 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 
 				a(c("Followers").User(user).Property(u => u.Followers).Link("/followers"));
 				a(c("Own repositories").Repos(ownRepos).Count().Link("?tab=repositories"));
+
 				a(c("Own repositories forks").Repos(ownRepos).Sum(r => r.Forks).Link("?tab=repositories"));
-				a(c("Max single own repository forks").Repos(ownRepos).Max(r => r.Forks).LinkMax("/{0}/network", r => r.Name));
-				a(c("Own repositories watchers").Repos(ownRepos).Sum(r => r.Watchers).Link("?tab=repositories"));
-				a(c("Max single own repository watchers").Repos(ownRepos).Max(r => r.Watchers).LinkMax("/{0}/watchers", r => r.Name));
+				a(c("Max single own repository forks").Repos(ownRepos).Max(r => r.ForksCount).LinkMax("/{0}/network/members", r => r.Name));
+
+				//a(c("Own repositories watchers").Repos(ownRepos).Sum(r => r.Watchers).Link("?tab=repositories"));
+				//a(c("Max single own repository watchers").Repos(ownRepos).Max(r => r.WatchersCount).LinkMax("/{0}/watchers", r => r.Name));
+
+				a(c("Own repositories stars").Repos(ownRepos).Sum(r => r.StargazersCount).Link("?tab=repositories"));
+				a(c("Max single own repository stars").Repos(ownRepos).Max(r => r.StargazersCount).LinkMax("/{0}/stargazers", r => r.Name));
 			}
 
 			return achievements;

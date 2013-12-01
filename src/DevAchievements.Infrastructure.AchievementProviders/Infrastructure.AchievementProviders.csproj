@@ -58,6 +58,7 @@
     <Reference Include="Skahal.Infrastructure.Framework">
       <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementsProviderBase.cs" />
