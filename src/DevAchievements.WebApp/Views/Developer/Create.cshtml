@@ -10,7 +10,7 @@
     {
     	var account = Model.AccountsAtIssuers[i];
     	<div>
-    	@Html.UI().TextBox(account.IssuerName, "AccountsAtIssuers[{0}].Username", i) 
+    	@Html.UI().TextBox(account.IssuerName, "{0} username".With(account.IssuerName), "AccountsAtIssuers[{0}].Username", i) 
     	@Html.Hidden("AccountsAtIssuers[{0}].IssuerName".With(i), account.IssuerName)
     	</div>
     }

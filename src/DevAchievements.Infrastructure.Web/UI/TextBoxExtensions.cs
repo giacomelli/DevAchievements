@@ -21,7 +21,7 @@ namespace System.Web.Mvc
 			);
 		}
 
-		public static MvcHtmlString TextBox<TModel> (this UIExtender<TModel> ui, string labelText, string nameFormat, params object[] nameArgs)
+		public static MvcHtmlString TextBox<TModel> (this UIExtender<TModel> ui, string labelText, string placeHolder, string nameFormat, params object[] nameArgs)
 		{
 			var name = nameFormat.With (nameArgs);
 
@@ -32,7 +32,7 @@ namespace System.Web.Mvc
 				</div>"
 				.With(
 					ui.Helper.Label(name, labelText).ToHtmlString(),
-					ui.Helper.TextBox(name, "", new { @class="form-control" }).ToHtmlString())
+					ui.Helper.TextBox(name, "", new { @class="form-control", @placeHolder=placeHolder }).ToHtmlString())
 			);
 		}
 	}

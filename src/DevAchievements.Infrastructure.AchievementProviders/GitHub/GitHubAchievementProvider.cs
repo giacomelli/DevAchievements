@@ -16,7 +16,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
     {
         #region Constructors
         public GitHubAchievementProvider()
-            : base(new AchievementIssuer("GitHub"))
+			: base(new AchievementIssuer("GitHub")
+			{
+				LogoUrl = "https://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Logo.png"
+			})
         {
         }
         #endregion
@@ -39,7 +42,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 				var repos = repoRepository.List (userName);
 				var ownRepos = repos.Where (r => r.Owner.Login.Equals (userName, StringComparison.OrdinalIgnoreCase));
 			
-				Func<string, GitHubAchievementBuilder> c = (name) => new GitHubAchievementBuilder (name, account);
+				Func<string, GitHubAchievementBuilder> c = (name) => new GitHubAchievementBuilder (name, account, Issuer);
 				Action<Achievement> a = (achievement) => achievements.Add (achievement);
 
 				a(c("Followers").User(user).Property(u => u.Followers).Link("/followers"));

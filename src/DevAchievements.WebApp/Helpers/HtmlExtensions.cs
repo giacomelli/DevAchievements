@@ -15,5 +15,19 @@ namespace DevAchievements.WebApp.Helpers
 
 			return MvcHtmlString.Empty;
 		}
+
+		public static MvcHtmlString Logo(this HtmlHelper helper)
+		{
+			helper.RenderPartial("_Logo");
+
+			return MvcHtmlString.Empty;
+		}
+
+		public static MvcHtmlString CreateAccountButton(this HtmlHelper helper, string username)
+		{
+			helper.RenderPartial("_CreateAccountButton", username);
+
+			return MvcHtmlString.Empty;
+		}
 	}
 }

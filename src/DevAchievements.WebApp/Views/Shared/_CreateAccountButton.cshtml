@@ -1,0 +1,8 @@
+@model string
+@using HelperSharp
+<div class="text-center">
+@using(Html.BeginForm("Create", "Developer", FormMethod.Get)) {
+	@Html.Hidden("username", @Model)
+	@Html.UI().PrimaryButton("Create your account{0}".With(String.IsNullOrWhiteSpace(@Model) ? "" : "<br>({0})".With(@Model)));
+}
+</div>

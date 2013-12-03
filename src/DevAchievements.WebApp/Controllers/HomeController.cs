@@ -20,15 +20,15 @@ namespace DevAchievements.WebApp.Controllers
 			var dev = service.GetDeveloperByUsername (username);
 
 			if (dev == null) {
-				return View ("DeveloperNotFound", (object) username);
+				return View ("SiteHome", (object)username);
 			}
 
 			var achievementService = new AchievementService ();
-			var achievements = achievementService.GetAchievementsByDeveloper(dev);
+			var achievements = achievementService.GetAchievementsByDeveloper (dev);
 
-			var viewModel = new DeveloperHomeViewModel(dev, achievements);
-         
-			return View("DeveloperHome", viewModel);
+			var viewModel = new DeveloperHomeViewModel (dev, achievements);
+     
+			return View ("DeveloperHome", viewModel);
 		}
     }
 }

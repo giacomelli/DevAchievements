@@ -163,6 +163,10 @@
     <Content Include="Views\Home\DeveloperHome.cshtml" />
     <Content Include="Views\Home\DeveloperNotFound.cshtml" />
     <Content Include="Views\Shared\_TextBoxFor.cshtml" />
+    <Content Include="Views\Shared\_Logo.cshtml" />
+    <Content Include="Views\Home\SiteHome.cshtml" />
+    <Content Include="Views\Shared\_CreateAccountButton.cshtml" />
+    <Content Include="Content\Site.css" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

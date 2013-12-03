@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using RestSharp;
 using HelperSharp;
 using System.Linq;
+using RestSharp.Contrib;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 { 
@@ -11,7 +12,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 	{
 		#region Constructors
 		public VsaAchievementProvider()
-			: base(new AchievementIssuer("Visual Studio Achievements"))
+			: base(new AchievementIssuer("Visual Studio Achievements") 
+			{
+				LogoUrl = "http://media.ch9.ms/vsachievements/VisualStudio_logo1.jpg"
+			})
 		{
 		}
 		#endregion
@@ -27,22 +31,25 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 			var result = new List<Achievement> ();
 			var client = new RestClient ("http://channel9.msdn.com/niners");
 			var request = new RestRequest ("{0}/achievements/visualstudio".With (account.Username));
+			var link = "{0}/{1}".With (client.BaseUrl, request.Resource);
+
 			request.AddParameter ("json", true);
 
 			var response = client.Get<VsaResponse> (request);
 
-			var issuer = new AchievementIssuer ("Visual Studio Achievements");
 			var scoreAchievement = new Achievement () {
 				Name = "Score",
-				Issuer = issuer,
-				Value = response.Data.TotalScore
+				Issuer = Issuer,
+				Value = response.Data.TotalScore,
+				Link = link
 			};
 			result.Add (scoreAchievement);
 
 			var achievementsEarnedAchievement = new Achievement () {
 				Name = "Achievements earned",
-				Issuer = issuer,
-				Value = response.Data.Achievements.Count(a => a.DateEarned.HasValue)
+				Issuer = Issuer,
+				Value = response.Data.Achievements.Count(a => a.DateEarned.HasValue),
+				Link = link
 			};
 			result.Add (achievementsEarnedAchievement);
 

@@ -11,7 +11,6 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 	public class GitHubAchievementBuilder
 	{
 		#region Methods
-		private static AchievementIssuer s_issuer = new AchievementIssuer("GitHub");
 		private Achievement m_achievement;
 		private DeveloperAccountAtIssuer m_account;
 		private IEnumerable<GithubSharp.Core.Models.Repositories.Repository> m_repos;
@@ -20,12 +19,12 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 		#endregion
 
 		#region Constructors
-		public GitHubAchievementBuilder(string name, DeveloperAccountAtIssuer account)
+		public GitHubAchievementBuilder(string name, DeveloperAccountAtIssuer account, AchievementIssuer issuer)
 		{
 			m_account = account; 
 			m_achievement = new Achievement () {
 				Name = name,
-				Issuer = s_issuer,
+				Issuer = issuer,
 				Link = "http://github.com/{0}".With (m_account.Username)
 			};
 		}

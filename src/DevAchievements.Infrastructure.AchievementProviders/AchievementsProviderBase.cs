@@ -8,14 +8,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 {
     public abstract class AchievementProviderBase : IAchievementProvider
     {
-        #region Fields
-        private AchievementIssuer m_issuer;
-        #endregion
-
         #region Constructors
 		protected AchievementProviderBase(params AchievementIssuer[] issuers)
         {
-			m_issuer = issuers[0];
+			Issuer = issuers[0];
 			Enabled = true;
             IsAvailable = true;
 			SupportedIssuers = issuers;
@@ -23,6 +19,8 @@ namespace DevAchievements.Infrastructure.AchievementProviders
         #endregion
 
         #region Properties
+		protected AchievementIssuer Issuer { get; private set; }
+
 		public bool Enabled { get; protected set; }
         public bool IsAvailable
         {
@@ -31,7 +29,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
         }
 
 		public AchievementIssuer[] SupportedIssuers { get; protected set;  }
-        #endregion  
+	    #endregion  
 
         #region Methods
         public abstract void CheckAvailability();
@@ -41,7 +39,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 		protected void AddAchievement(IList<Achievement> achievements, string name, object value, string link, AchievementIssuer issuer = null)
         {
 			if (issuer == null) {
-				issuer = m_issuer;
+				issuer = Issuer;
 			}
 
             var followersAchievement = new Achievement()

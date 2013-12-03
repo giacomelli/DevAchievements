@@ -4,7 +4,7 @@
 	<header>@Html.DevName(@Model.Developer)  </header>
 @foreach(var issuer in Model.Issuers)
 {
-    <div class="alert alert-success">@issuer.Name</div>
+    <div class="alert alert-success"><img src="@issuer.LogoUrl" class="issuer-logo"/><br><h6 class="text-muted">@issuer.Name</h6></div>
 	<ul>            
     @foreach(var achievement in Model.GetAchievementsByIssuer(issuer))
     {

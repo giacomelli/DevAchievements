@@ -10,7 +10,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders
     {
         #region Constructors
         public StackExchangeAchievementProvider()
-            : base(new AchievementIssuer("StackOverflow"))
+			: base(new AchievementIssuer("StackOverflow") 
+			{
+				LogoUrl = "http://cdn.sstatic.net/stackexchange/img/logos/so/so-logo-med.png"
+			})
         {
         }
         #endregion

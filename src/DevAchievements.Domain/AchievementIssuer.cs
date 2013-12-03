@@ -13,6 +13,7 @@ namespace DevAchievements.Domain
 
         #region Properties
         public string Name { get; private set; }
+		public string LogoUrl { get; set; }
 		#endregion
 	}
 }
