@@ -53,10 +53,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
-    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
-    <None Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
@@ -125,7 +121,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Views\Developer\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Content\" />
@@ -167,6 +162,10 @@
     <Content Include="Views\Home\SiteHome.cshtml" />
     <Content Include="Views\Shared\_CreateAccountButton.cshtml" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
