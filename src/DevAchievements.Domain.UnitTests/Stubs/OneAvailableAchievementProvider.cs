@@ -24,6 +24,11 @@ namespace DevAchievements.Domain.UnitTests
 			}
 		}
 
+		public bool Exists (DeveloperAccountAtIssuer account)
+		{
+			return true;
+		}
+
 		public IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account)
 		{
 			if (account.Username.Equals ("DeveloperWithAchievements")) {

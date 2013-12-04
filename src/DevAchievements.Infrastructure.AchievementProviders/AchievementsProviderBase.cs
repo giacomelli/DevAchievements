@@ -35,6 +35,8 @@ namespace DevAchievements.Infrastructure.AchievementProviders
         public abstract void CheckAvailability();
 
         public abstract IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account);
+
+		public abstract bool Exists(DeveloperAccountAtIssuer account);
         
 		protected void AddAchievement(IList<Achievement> achievements, string name, object value, string link, AchievementIssuer issuer = null)
         {

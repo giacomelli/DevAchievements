@@ -9,11 +9,17 @@ using System.Linq;
 using HelperSharp;
 using GithubSharp.Core.Models.Repositories;
 using System.Net.Http.Headers;
+using Skahal.Infrastructure.Framework.Logging;
+using System.Net;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 {
 	public class GitHubAchievementProvider : AchievementProviderBase
     {
+		#region Fields
+		private RequestProxy m_requestProxy;
+		#endregion
+
         #region Constructors
         public GitHubAchievementProvider()
 			: base(new AchievementIssuer("GitHub")
@@ -21,6 +27,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 				LogoUrl = "https://github.global.ssl.fastly.net/images/modules/logos_page/GitHub-Logo.png"
 			})
         {
+			m_requestProxy = new RequestProxy (new NullLogger (), new AnonymousAuthenticationProvider ());
         }
         #endregion
 
@@ -29,16 +36,19 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 		{
 		}
 
+		public override bool Exists (DeveloperAccountAtIssuer account)
+		{
+			return GetUser (account.Username) != null;
+		}
+
 		public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
 		{
 			var achievements = new List<Achievement> ();
 			var userName = account.Username;
-			var request = new RequestProxy (new NullLogger (), new AnonymousAuthenticationProvider ());
-			var userRepository = new UserRepository(request);
-			var user = userRepository.Get (userName);
+			var user = GetUser (userName);
 
 			if (user != null) {
-				var repoRepository = new RepositoryRepository (request);
+				var repoRepository = new RepositoryRepository (m_requestProxy);
 				var repos = repoRepository.List (userName);
 				var ownRepos = repos.Where (r => r.Owner.Login.Equals (userName, StringComparison.OrdinalIgnoreCase));
 			
@@ -60,6 +70,21 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 
 			return achievements;
 		}	
+
+		private GithubSharp.Core.Models.Users.User GetUser (string userName)
+		{
+			GithubSharp.Core.Models.Users.User user = null;
+
+			try {
+				var userRepository = new UserRepository (m_requestProxy);
+				user = userRepository.Get (userName);
+			}
+			catch(WebException ex) {
+				LogService.Debug ("User '{0}' not found on GitHub: {1}", userName, ex.Message);
+			}
+
+			return user;
+		}
 		#endregion
 	}
-}
+}	

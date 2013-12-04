@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using DevAchievements.Domain;
 using HelperSharp;
@@ -8,6 +8,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 {
     public class StackExchangeAchievementProvider : AchievementProviderBase
     {
+		#region Fields
+		private StacManClient m_client;
+		#endregion
+
         #region Constructors
         public StackExchangeAchievementProvider()
 			: base(new AchievementIssuer("StackOverflow") 
@@ -15,6 +19,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 				LogoUrl = "http://cdn.sstatic.net/stackexchange/img/logos/so/so-logo-med.png"
 			})
         {
+			m_client = new StacManClient();
         }
         #endregion
 
@@ -23,16 +28,21 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 
         }
 
+		public override bool Exists (DeveloperAccountAtIssuer account)
+		{
+			return GetUser (account) != null;
+		}
+	
+
         public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
         {
             var achievements = new List<Achievement>();
 
-            var client = new StacManClient();
-            var user = client.Users.GetAll("stackoverflow", "!-.CabxAv7Udo", inname: account.Username).Result.Data.Items.FirstOrDefault();
+			var user = GetUser (account);
 
             if (user != null)
             {
-                var answers = client.Users.GetAnswers("stackoverflow", new int[] { user.UserId }, "!9f8L7FuTn").Result.Data.Items;
+				var answers = m_client.Users.GetAnswers("stackoverflow", new int[] { user.UserId }, "!9f8L7FuTn").Result.Data.Items;
 
                 if (user != null)
                 {
@@ -53,5 +63,12 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 
             return achievements;
         }
+
+		private User GetUser (DeveloperAccountAtIssuer account)
+		{
+			var user = m_client.Users.GetAll ("stackoverflow", "!-.CabxAv7Udo", inname: account.Username).Result.Data.Items.FirstOrDefault ();
+
+			return user;
+		}
     }
 }

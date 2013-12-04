@@ -2,6 +2,10 @@
 @using System.Web.Mvc;
 @model DevAchievements.Domain.Developer
 
+@section Scripts{
+	<script type="text/javascript" src="~/Scripts/Views/Developer/Create.js"></script>
+}
+
 @using (Html.BeginForm("Create", "Developer", FormMethod.Post, new { @role="form" })) {
 	@Html.UI().TextBoxFor(m => m.Username)
 	@Html.UI().TextBoxFor(m => m.FullName)

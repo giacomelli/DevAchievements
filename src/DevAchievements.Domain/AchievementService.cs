@@ -11,11 +11,15 @@ namespace DevAchievements.Domain
 {
 	public partial class AchievementService
 	{
+		#region Fields
+		private AchievementProviderService m_providerService = new AchievementProviderService ();
+		#endregion
+
 		#region Methods
 		public IList<Achievement> GetAchievementsByDeveloper(Developer developer)
 		{
 			var achievements = new List<Achievement> ();
-			var providers = GetAchievementProviders ();
+			var providers = m_providerService.GetAchievementProviders ();
 
 			foreach (var provider in providers) {
 				provider.CheckAvailability ();
@@ -49,7 +53,7 @@ namespace DevAchievements.Domain
 		public IList<AchievementIssuer> GetAllIssuers()
 		{
 			var issuers = new List<AchievementIssuer>();
-			var providers = GetAchievementProviders ();
+			var providers = m_providerService.GetAchievementProviders ();
 
 			foreach (var provider in providers) {
 				issuers.AddRange (provider.SupportedIssuers);
@@ -60,42 +64,7 @@ namespace DevAchievements.Domain
 		#endregion
 
 		#region Fields
-		private static IList<IAchievementProvider> GetAchievementProviders()
-		{
-			var canditateAssemblies = AppDomain.CurrentDomain.GetAssemblies();
-			var types = new List<Type>();
 
-			foreach (var a in canditateAssemblies)
-			{
-				try
-				{
-					types.AddRange(a.GetTypes());
-				}
-				catch (ReflectionTypeLoadException)
-				{
-					continue;
-				}
-			}
-
-			return types
-					.Where (t => FilterAchievementProviders (t))
-					.Select (t => Activator.CreateInstance (t) as IAchievementProvider)
-					.Where (p => p.Enabled)
-					.ToList ();
-		}
-
-		private static bool FilterAchievementProviders(Type type)
-		{
-			var interfaceType = typeof(IAchievementProvider);
-
-			try {
-				return interfaceType.IsAssignableFrom(type) && !type.IsInterface && !type.IsAbstract;
-			}
-			catch(Exception)
-			{
-				return false;
-			}
-		}
 		#endregion
 	}
 }

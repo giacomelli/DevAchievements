@@ -14,6 +14,7 @@ namespace DevAchievements.Domain
 		#region Methods
 		void CheckAvailability();
 		IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account);
+		bool Exists(DeveloperAccountAtIssuer account);
 		#endregion
 	}
 }

@@ -79,5 +79,12 @@ namespace DevAchievements.WebApp.Controllers
                 return View ();
             }
         }
+
+		public JsonResult ExistsDeveloperAccountAtIssuer(string issuerName, string username)
+		{
+			var service = new AchievementProviderService ();
+	
+			return Json (service.ExistsDeveloperAccountAtIssuer(issuerName, username), JsonRequestBehavior.AllowGet);
+		} 
     }
 }

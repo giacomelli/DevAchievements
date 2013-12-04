@@ -5,6 +5,7 @@ using RestSharp;
 using HelperSharp;
 using System.Linq;
 using RestSharp.Contrib;
+using System.Net;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 { 
@@ -26,16 +27,17 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 
 		}
 
+		public override bool Exists (DeveloperAccountAtIssuer account)
+		{
+			return GetResponse (account).StatusCode == HttpStatusCode.OK;
+		}
+
 		public override IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account)
 		{
 			var result = new List<Achievement> ();
-			var client = new RestClient ("http://channel9.msdn.com/niners");
-			var request = new RestRequest ("{0}/achievements/visualstudio".With (account.Username));
-			var link = "{0}/{1}".With (client.BaseUrl, request.Resource);
+			var response = GetResponse (account);
+			var link = response.Request.Resource;
 
-			request.AddParameter ("json", true);
-
-			var response = client.Get<VsaResponse> (request);
 
 			var scoreAchievement = new Achievement () {
 				Name = "Score",
@@ -54,6 +56,17 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 			result.Add (achievementsEarnedAchievement);
 
 			return result;
+		}
+
+		private static IRestResponse<VsaResponse> GetResponse (DeveloperAccountAtIssuer account)
+		{
+			var client = new RestClient ("http://channel9.msdn.com/niners");
+			var request = new RestRequest ("{0}/achievements/visualstudio".With (account.Username));
+			request.AddParameter ("json", true);
+
+			var response = client.Get<VsaResponse> (request);
+
+			return response;
 		}
 
 		#endregion

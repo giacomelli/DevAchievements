@@ -58,6 +58,7 @@
     <Compile Include="DeveloperService.cs" />
     <Compile Include="DomainGenerated.cs" />
     <Compile Include="DomainSpecificationsGenerated.cs" />
+    <Compile Include="AchievementProviderService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

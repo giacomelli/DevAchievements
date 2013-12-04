@@ -24,6 +24,11 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 
 		}
 
+		public override bool Exists (DeveloperAccountAtIssuer account)
+		{
+			return true;
+		}
+
 		public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
 		{
 			var achievements = new List<Achievement> ();
