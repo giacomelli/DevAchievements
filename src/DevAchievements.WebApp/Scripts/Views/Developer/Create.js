@@ -17,7 +17,7 @@ $(function() {
 				field.next().remove();
 				field.after($('<div class="alert alert-warning">Checking user...</div>'));
 		
-				$.proxies.developer.existsdeveloperaccountatissuer($(issuers[i]).val(), $(this).val())
+				$.proxies.developer.existsDeveloperAccountAtIssuer($(issuers[i]).val(), $(this).val())
 					.done(function(exists) {
 						container.removeClass('has-warning');
 						field.next().remove();

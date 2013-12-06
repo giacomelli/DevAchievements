@@ -29,6 +29,7 @@ namespace DevAchievements.Domain
 					.Where (t => FilterAchievementProviders (t))
 					.Select (t => Activator.CreateInstance (t) as IAchievementProvider)
 					.Where (p => p.Enabled)
+					.OrderBy (p => p.SupportedIssuers.First().Name)
 					.ToList ();
 			}
 

@@ -61,7 +61,9 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 
 		public GitHubAchievementBuilder LinkMax(string linkPart, Func<GithubSharp.Core.Models.Repositories.Repository, object> predicate)
 		{   
-			m_achievement.Link += linkPart.With(predicate(m_aggreatedRepo));
+			if (m_aggreatedRepo != null) {
+				m_achievement.Link += linkPart.With (predicate (m_aggreatedRepo));
+			}
 
 			return this;
 		}
@@ -93,8 +95,12 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 
 		public GitHubAchievementBuilder Max(Func<GithubSharp.Core.Models.Repositories.Repository, int> predicate)
 		{
-			m_aggreatedRepo = m_repos.Aggregate((r, x) => (predicate(x) < predicate(r) ? r : x));
-			m_achievement.Value = predicate (m_aggreatedRepo);
+			if (m_repos.Count () > 0) {
+				m_aggreatedRepo = m_repos.Aggregate ((r, x) => (predicate (x) < predicate (r) ? r : x));
+				m_achievement.Value = predicate (m_aggreatedRepo);
+			} else {
+				m_achievement.Value = 0;
+			}
 
 			return this;
 		}

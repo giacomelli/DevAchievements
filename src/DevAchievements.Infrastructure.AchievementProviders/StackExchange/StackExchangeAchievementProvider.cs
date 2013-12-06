@@ -4,7 +4,7 @@ using DevAchievements.Domain;
 using HelperSharp;
 using StackExchange.StacMan;
 
-namespace DevAchievements.Infrastructure.AchievementProviders
+namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
 {
     public class StackExchangeAchievementProvider : AchievementProviderBase
     {

@@ -59,11 +59,19 @@
       <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="Microsoft.Web.XmlTransform">
+      <HintPath>..\packages\Microsoft.Web.Xdt.1.0.0\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core">
+      <HintPath>..\packages\NuGet.Core.2.7.2\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CsQuery">
+      <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AchievementsProviderBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StackExchangeAchievementProvider.cs" />
     <Compile Include="GitHub\GitHubAchievementProvider.cs" />
     <Compile Include="GitHub\GitHubAchievementBuilder.cs" />
     <Compile Include="Vsa\VsaAchievementProvider.cs" />
@@ -71,6 +79,8 @@
     <Compile Include="Vsa\VsaAchievementResponse.cs" />
     <Compile Include="Memory\MemoryAchievementProvider.cs" />
     <Compile Include="AchievementProvidersConfig.cs" />
+    <Compile Include="StackExchange\StackExchangeAchievementProvider.cs" />
+    <Compile Include="NuGet\NuGetAchievementProvider.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -87,5 +97,7 @@
     <Folder Include="GitHub\" />
     <Folder Include="Vsa\" />
     <Folder Include="Memory\" />
+    <Folder Include="StackExchange\" />
+    <Folder Include="NuGet\" />
   </ItemGroup>
 </Project>

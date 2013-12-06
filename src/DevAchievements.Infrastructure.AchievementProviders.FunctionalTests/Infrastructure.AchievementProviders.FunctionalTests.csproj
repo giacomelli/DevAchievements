@@ -51,11 +51,22 @@
     <Reference Include="Skahal.Infrastructure.Framework">
       <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.XmlTransform">
+      <HintPath>..\packages\Microsoft.Web.Xdt.1.0.0\lib\net40\Microsoft.Web.XmlTransform.dll</HintPath>
+    </Reference>
+    <Reference Include="NuGet.Core">
+      <HintPath>..\packages\NuGet.Core.2.7.2\lib\net40-Client\NuGet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CsQuery">
+      <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="GitHubAchievementsProviderTest.cs" />
-    <Compile Include="StackExchangeAchievementProviderTest.cs" />
+    <Compile Include="GitHub\GitHubAchievementProviderTest.cs" />
+    <Compile Include="Vsa\VsaAchievementProviderTest.cs" />
+    <Compile Include="StackExchange\StackExchangeAchievementProviderTest.cs" />
+    <Compile Include="NuGet\NuGetAchievementProviderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">
@@ -71,4 +82,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup>
+    <Folder Include="Vsa\" />
+    <Folder Include="GitHub\" />
+    <Folder Include="StackExchange\" />
+    <Folder Include="NuGet\" />
+  </ItemGroup>
 </Project>

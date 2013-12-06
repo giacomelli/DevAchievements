@@ -1,18 +1,22 @@
 @model DevAchievements.Application.DeveloperHomeViewModel
 
 <article>
-	<header>@Html.DevName(@Model.Developer)  </header>
+	<header>@Html.DevName(@Model.Developer)</header>
 @foreach(var issuer in Model.Issuers)
 {
-    <div class="alert alert-success"><img src="@issuer.LogoUrl" class="issuer-logo"/><br><h6 class="text-muted">@issuer.Name</h6></div>
-	<ul>            
-    @foreach(var achievement in Model.GetAchievementsByIssuer(issuer))
-    {
-        <li>
-            <a href="@achievement.Link">@achievement.Name : <span class="badge">@achievement.Value</span></a>
-        </li>
-    }
-    </ul>
+	<div class="panel panel-primary">
+  		<div class="panel-heading">@issuer.Name</div>
+  		<div class="panel-body">
+    		  	<ul>            
+			    @foreach(var achievement in Model.GetAchievementsByIssuer(issuer))
+			    {
+			        <li>
+			            <a href="@achievement.Link">@achievement.Name : <span class="badge">@achievement.Value</span></a>
+			        </li>
+			    }
+			    </ul>
+  		</div>
+	</div>
 }
 
 </article>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DevAchievements.Domain;
 using DevTrends.MvcDonutCaching;
+using ProxyApi;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -80,6 +81,7 @@ namespace DevAchievements.WebApp.Controllers
             }
         }
 
+		[ProxyName("existsDeveloperAccountAtIssuer")]
 		public JsonResult ExistsDeveloperAccountAtIssuer(string issuerName, string username)
 		{
 			var service = new AchievementProviderService ();
