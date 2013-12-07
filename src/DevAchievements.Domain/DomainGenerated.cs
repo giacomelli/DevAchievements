@@ -26,25 +26,28 @@ using KissSpecifications;
        
 namespace DevAchievements.Domain 
 {   
+	/// <summary>
+	/// Represents an interface for achievement repository.
+	/// </summary>
 	public partial interface IAchievementRepository : IRepository<Achievement>
 	{
 		}   
 	  
-	// <summary>
+	/// <summary>
 	/// Domain layer achievement service.
 	/// </summary>
 	public partial class AchievementService : ServiceBase<Achievement, IAchievementRepository, IUnitOfWork>
 	{ 
 		#region Constructors 
       	/// <summary>  
-		/// Initializes a new instance of the <see cref="DevAchievements.Domain.Achievements.AchievementService"/> class.
+		/// Initializes a new instance of the <see cref="DevAchievements.Domain.AchievementService"/> class.
 		/// </summary>
 		public  AchievementService()  
 		{
 		}  
 		 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="DevAchievements.Domain.Achievements.AchievementService"/> class.
+		/// Initializes a new instance of the <see cref="DevAchievements.Domain.AchievementService"/> class.
 		/// </summary>
 		/// <param name="achievementRepository"> Achievement repository.</param>    
 		/// <param name="unitOfWork">Unit of work.</param> 
@@ -151,25 +154,28 @@ namespace DevAchievements.Domain
        
 namespace DevAchievements.Domain 
 {   
+	/// <summary>
+	/// Represents an interface for developer repository.
+	/// </summary>
 	public partial interface IDeveloperRepository : IRepository<Developer>
 	{
 		}   
 	  
-	// <summary>
+	/// <summary>
 	/// Domain layer developer service.
 	/// </summary>
 	public partial class DeveloperService : ServiceBase<Developer, IDeveloperRepository, IUnitOfWork>
 	{ 
 		#region Constructors 
       	/// <summary>  
-		/// Initializes a new instance of the <see cref="DevAchievements.Domain.Developers.DeveloperService"/> class.
+		/// Initializes a new instance of the <see cref="DevAchievements.Domain.DeveloperService"/> class.
 		/// </summary>
 		public  DeveloperService()  
 		{
 		}  
 		 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="DevAchievements.Domain.Developers.DeveloperService"/> class.
+		/// Initializes a new instance of the <see cref="DevAchievements.Domain.DeveloperService"/> class.
 		/// </summary>
 		/// <param name="developerRepository"> Developer repository.</param>    
 		/// <param name="unitOfWork">Unit of work.</param> 

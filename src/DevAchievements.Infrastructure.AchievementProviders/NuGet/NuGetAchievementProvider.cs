@@ -1,12 +1,13 @@
 using System;
-using DevAchievements.Domain;
 using System.Collections.Generic;
-using NuGet;
-using RestSharp;
-using HelperSharp;
+using System.Linq;
 using System.Net;
 using CsQuery;
-using System.Linq;
+using DevAchievements.Domain;
+using HelperSharp;
+using NuGet;
+using RestSharp;
+using Skahal.Infrastructure.Framework.Logging;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.NuGet
 {
@@ -19,6 +20,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders.NuGet
 	public class NuGetAchievementProvider : AchievementProviderBase
     {
 		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="DevAchievements.Infrastructure.AchievementProviders.NuGet.NuGetAchievementProvider"/> class.
+		/// </summary>
 		public NuGetAchievementProvider()
 			: base(new AchievementIssuer("NuGet")
 				{
@@ -29,11 +34,18 @@ namespace DevAchievements.Infrastructure.AchievementProviders.NuGet
 		#endregion
 
 		#region implemented abstract members of AchievementProviderBase
-
+		/// <summary>
+		/// Checks the availability.
+		/// </summary>
 		public override void CheckAvailability ()
 		{
 		}
 
+		/// <summary>
+		/// Gets the achievements.
+		/// </summary>
+		/// <returns>The achievements.</returns>
+		/// <param name="account">The developer account at issuer.</param>
 		public override IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account)
 		{
 			var achievements = new List<Achievement> ();
@@ -61,11 +73,20 @@ namespace DevAchievements.Infrastructure.AchievementProviders.NuGet
 			return achievements;
 		}
 
+		/// <summary>
+		/// Check if developer account exists at issuer.
+		/// </summary>
+		/// <param name="account">The developer account at issuer.</param>
 		public override bool Exists (DeveloperAccountAtIssuer account)
 		{
 			return !String.IsNullOrEmpty (GetContent (account));
 		}
 
+		/// <summary>
+		/// Gets the content.
+		/// </summary>
+		/// <returns>The content.</returns>
+		/// <param name="account">Account.</param>
 		private static string GetContent(DeveloperAccountAtIssuer account)
 		{
 			var client = new WebClient ();
@@ -76,10 +97,16 @@ namespace DevAchievements.Infrastructure.AchievementProviders.NuGet
 			}
 			catch(WebException ex) 
 			{
+				LogService.Debug ("NuGetAchievementProvider: error getting URL '{0}' content: {1}.", GetBaseUrl (account), ex.Message);
 				return null;
 			}
 		}
 
+		/// <summary>
+		/// Gets the base URL.
+		/// </summary>
+		/// <returns>The base URL.</returns>
+		/// <param name="account">Account.</param>
 		private static string GetBaseUrl(DeveloperAccountAtIssuer account)
 		{
 			return "https://www.nuget.org/profiles/{0}".With (account.Username);

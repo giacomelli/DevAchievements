@@ -14,6 +14,9 @@ using Skahal.Infrastructure.Framework.Logging;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 {
+	/// <summary>
+	/// The GitHub's achievement provider.
+	/// </summary>
 	public class GitHubAchievementProvider : AchievementProviderBase
     {
 		#region Fields
@@ -21,6 +24,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 		#endregion
 
         #region Constructors
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="DevAchievements.Infrastructure.AchievementProviders.GitHub.GitHubAchievementProvider"/> class.
+		/// </summary>
         public GitHubAchievementProvider()
 			: base(new AchievementIssuer("GitHub")
 			{
@@ -32,15 +39,27 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
         #endregion
 
 		#region Methods
+		/// <summary>
+		/// Checks the availability.
+		/// </summary>
         public override void CheckAvailability()
 		{
 		}
 
+		/// <summary>
+		/// Check if developer account exists at issuer.
+		/// </summary>
+		/// <param name="account">The developer account at issuer.</param>
 		public override bool Exists (DeveloperAccountAtIssuer account)
 		{
 			return GetUser (account.Username) != null;
 		}
 
+		/// <summary>
+		/// Gets the achievements.
+		/// </summary>
+		/// <returns>The achievements.</returns>
+		/// <param name="account">The developer account at issuer.</param>
 		public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
 		{
 			var achievements = new List<Achievement> ();
@@ -68,6 +87,11 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 			return achievements;
 		}	
 
+		/// <summary>
+		/// Gets the user.
+		/// </summary>
+		/// <returns>The user.</returns>
+		/// <param name="userName">User name.</param>
 		private GithubSharp.Core.Models.Users.User GetUser (string userName)
 		{
 			GithubSharp.Core.Models.Users.User user = null;

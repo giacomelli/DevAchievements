@@ -10,8 +10,14 @@ using Skahal.Infrastructure.Framework.Logging;
 
 namespace DevAchievements.Infrastructure.Repositories
 {
+	/// <summary>
+	/// Repositories config.
+	/// </summary>
 	public static class RepositoriesConfig
 	{
+		/// <summary>
+		/// Registers the MongoDB repositories.
+		/// </summary>
 		public static void RegisterMongoDB ()
 		{
 			LogService.Debug ("Registering MongoDB...");

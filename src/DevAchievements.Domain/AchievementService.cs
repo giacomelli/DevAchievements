@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HelperSharp;
 using System.Reflection;
-using Skahal.Infrastructure.Framework.Repositories;
+using HelperSharp;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Logging;
+using Skahal.Infrastructure.Framework.Repositories;
 
 namespace DevAchievements.Domain
 {
@@ -16,6 +16,11 @@ namespace DevAchievements.Domain
 		#endregion
 
 		#region Methods
+		/// <summary>
+		/// Gets the achievements by developer.
+		/// </summary>
+		/// <returns>The achievements by developer.</returns>
+		/// <param name="developer">The developer.</param>
 		public IList<Achievement> GetAchievementsByDeveloper(Developer developer)
 		{
 			var achievements = new List<Achievement> ();
@@ -50,6 +55,10 @@ namespace DevAchievements.Domain
 			return achievements;
 		}
 
+		/// <summary>
+		/// Gets all achievements issuers.
+		/// </summary>
+		/// <returns>The all issuers.</returns>
 		public IList<AchievementIssuer> GetAllIssuers()
 		{
 			var issuers = new List<AchievementIssuer>();
@@ -61,10 +70,6 @@ namespace DevAchievements.Domain
 
 			return issuers;
 		}
-		#endregion
-
-		#region Fields
-
 		#endregion
 	}
 }

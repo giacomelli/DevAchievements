@@ -5,9 +5,17 @@ using System.Collections.Generic;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 {
+	/// <summary>
+	/// Memory achievement provider.
+	/// For test purposes.
+	/// </summary>
 	public class MemoryAchievementProvider : AchievementProviderBase
 	{
 		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="DevAchievements.Infrastructure.AchievementProviders.Memory.MemoryAchievementProvider"/> class.
+		/// </summary>
 		public MemoryAchievementProvider()
 			: base(
 				new AchievementIssuer("GitHub"),
@@ -19,16 +27,27 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 		#endregion
 
 		#region Methods
+		/// <summary>
+		/// Checks the availability.
+		/// </summary>
 		public override void CheckAvailability()
 		{
-
 		}
 
+		/// <summary>
+		/// Check if developer account exists at issuer.
+		/// </summary>
+		/// <param name="account">The developer account at issuer.</param>
 		public override bool Exists (DeveloperAccountAtIssuer account)
 		{
 			return true;
 		}
 
+		/// <summary>
+		/// Gets the achievements.
+		/// </summary>
+		/// <returns>The achievements.</returns>
+		/// <param name="account">The developer account at issuer.</param>
 		public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
 		{
 			var achievements = new List<Achievement> ();

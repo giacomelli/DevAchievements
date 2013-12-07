@@ -1,17 +1,24 @@
 using System;
-using DevAchievements.Domain;
 using System.Collections.Generic;
-using RestSharp;
-using HelperSharp;
 using System.Linq;
-using RestSharp.Contrib;
 using System.Net;
+using DevAchievements.Domain;
+using HelperSharp;
+using RestSharp;
+using RestSharp.Contrib;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 { 
+	/// <summary>
+	/// Visual Studio Achievements' achievement provider.
+	/// </summary>
 	public class VsaAchievementProvider : AchievementProviderBase
 	{
 		#region Constructors
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="DevAchievements.Infrastructure.AchievementProviders.Vsa.VsaAchievementProvider"/> class.
+		/// </summary>
 		public VsaAchievementProvider()
 			: base(new AchievementIssuer("Visual Studio Achievements") 
 			{
@@ -22,16 +29,28 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 		#endregion
 
 		#region Methods
+		/// <summary>
+		/// Checks the availability.
+		/// </summary>
 		public override void CheckAvailability ()
 		{
 
 		}
 
+		/// <summary>
+		/// Check if developer account exists at issuer.
+		/// </summary>
+		/// <param name="account">The developer account at issuer.</param>
 		public override bool Exists (DeveloperAccountAtIssuer account)
 		{
 			return GetResponse (account).StatusCode == HttpStatusCode.OK;
 		}
 
+		/// <summary>
+		/// Gets the achievements.
+		/// </summary>
+		/// <returns>The achievements.</returns>
+		/// <param name="account">The developer account at issuer.</param>
 		public override IList<Achievement> GetAchievements (DeveloperAccountAtIssuer account)
 		{
 			var result = new List<Achievement> ();
@@ -58,6 +77,11 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 			return result;
 		}
 
+		/// <summary>
+		/// Gets the response.
+		/// </summary>
+		/// <returns>The response.</returns>
+		/// <param name="account">Account.</param>
 		private static IRestResponse<VsaResponse> GetResponse (DeveloperAccountAtIssuer account)
 		{
 			var client = new RestClient ("http://channel9.msdn.com/niners");
@@ -68,7 +92,6 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Vsa
 
 			return response;
 		}
-
 		#endregion
 	}
 }

@@ -6,6 +6,12 @@ using StackExchange.StacMan;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
 {
+	/// <summary>
+	/// The Stack Exchange's achievement provider.
+	/// <remarks>>
+	/// Nowadays supports only Stack Overflow.
+	/// </remarks>
+	/// </summary>
     public class StackExchangeAchievementProvider : AchievementProviderBase
     {
 		#region Fields
@@ -13,6 +19,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
 		#endregion
 
         #region Constructors
+		/// <summary>
+		/// Initializes a new instance of the
+		/// <see cref="DevAchievements.Infrastructure.AchievementProviders.StackExchange.StackExchangeAchievementProvider"/> class.
+		/// </summary>
         public StackExchangeAchievementProvider()
 			: base(new AchievementIssuer("StackOverflow") 
 			{
@@ -23,17 +33,28 @@ namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
         }
         #endregion
 
+		#region Methods
+		/// <summary>
+		/// Checks the availability.
+		/// </summary>
         public override void CheckAvailability()
         {
-
         }
 
+		/// <summary>
+		/// Check if developer account exists at issuer.
+		/// </summary>
+		/// <param name="account">The developer account at issuer.</param>
 		public override bool Exists (DeveloperAccountAtIssuer account)
 		{
 			return GetUser (account) != null;
 		}
 	
-
+		/// <summary>
+		/// Gets the achievements.
+		/// </summary>
+		/// <returns>The achievements.</returns>
+		/// <param name="account">The developer account at issuer.</param>
         public override IList<Achievement> GetAchievements(DeveloperAccountAtIssuer account)
         {
             var achievements = new List<Achievement>();
@@ -64,11 +85,17 @@ namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
             return achievements;
         }
 
+		/// <summary>
+		/// Gets the user.
+		/// </summary>
+		/// <returns>The user.</returns>
+		/// <param name="account">Account.</param>
 		private User GetUser (DeveloperAccountAtIssuer account)
 		{
 			var user = m_client.Users.GetAll ("stackoverflow", "!-.CabxAv7Udo", inname: account.Username).Result.Data.Items.FirstOrDefault ();
 
 			return user;
 		}
+		#endregion
     }
 }

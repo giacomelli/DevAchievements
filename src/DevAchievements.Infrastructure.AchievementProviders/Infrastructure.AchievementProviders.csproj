@@ -22,14 +22,17 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\Debug\DevAchievements.Infrastructure.AchievementProviders.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <DocumentationFile>bin\Release\DevAchievements.Infrastructure.AchievementProviders.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -78,7 +81,6 @@
     <Compile Include="Vsa\VsaResponse.cs" />
     <Compile Include="Vsa\VsaAchievementResponse.cs" />
     <Compile Include="Memory\MemoryAchievementProvider.cs" />
-    <Compile Include="AchievementProvidersConfig.cs" />
     <Compile Include="StackExchange\StackExchangeAchievementProvider.cs" />
     <Compile Include="NuGet\NuGetAchievementProvider.cs" />
   </ItemGroup>

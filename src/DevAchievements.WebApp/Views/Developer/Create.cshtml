@@ -9,6 +9,7 @@
 @using (Html.BeginForm("Create", "Developer", FormMethod.Post, new { @role="form" })) {
 	@Html.UI().TextBoxFor(m => m.Username)
 	@Html.UI().TextBoxFor(m => m.FullName)
+	@Html.UI().TextBoxFor(m => m.Email)
  
     for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
     {
