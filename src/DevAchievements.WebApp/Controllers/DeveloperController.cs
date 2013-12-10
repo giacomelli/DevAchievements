@@ -61,6 +61,7 @@ namespace DevAchievements.WebApp.Controllers
 		[HttpPost]
 		public override ActionResult Create (Developer entity)
 		{
+			entity.Key = null;
 			var developerService = new DeveloperService();
 
 			return this.Call (() => {

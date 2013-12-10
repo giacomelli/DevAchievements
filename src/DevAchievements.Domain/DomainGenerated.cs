@@ -229,7 +229,9 @@ namespace DevAchievements.Domain
 			ExceptionHelper.ThrowIfNull ("developer", developer);
 
 			ExecuteSaveSpecification (developer);
-			
+
+			developer.AccountsAtIssuers = developer.AccountsAtIssuers.Where(i => !String.IsNullOrWhiteSpace(i.Username)).ToList();
+
 			MainRepository [developer.Key] = developer;
 			UnitOfWork.Commit ();  
 		} 

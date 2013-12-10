@@ -6,7 +6,7 @@
 	<script type="text/javascript" src="~/Scripts/Views/Developer/Create.js"></script>
 }
 
-@using (Html.BeginForm("", "", FormMethod.Post, new { @role="form" })) {
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @role="form" })) {
 	@(Html.FluentUI()
 		.Hidden()
 			.Name("Key")
