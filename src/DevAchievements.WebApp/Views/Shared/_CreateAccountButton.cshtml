@@ -2,7 +2,16 @@
 @using HelperSharp
 <div class="text-center">
 @using(Html.BeginForm("Create", "Developer", FormMethod.Get)) {
-	@Html.Hidden("username", @Model)
-	@Html.UI().PrimaryButton("Create your account{0}".With(String.IsNullOrWhiteSpace(@Model) ? "" : "<br>({0})".With(@Model)));
+	@(Html.FluentUI()
+		.Hidden()
+			.Name("username")
+			.Value(@Model)
+
+		.Button()
+			.Label("Create your account{0}", 
+						String.IsNullOrWhiteSpace(@Model) 
+						? "" 
+						: "<br>({0})".With(@Model))
+	)
 }
 </div>

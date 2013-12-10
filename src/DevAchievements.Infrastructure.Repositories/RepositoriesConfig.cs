@@ -7,6 +7,7 @@ using Skahal.Infrastructure.Framework.Repositories;
 using DevAchievements.Domain;
 using DevAchievements.Infrastructure.Repositories.MongoDB;
 using Skahal.Infrastructure.Framework.Logging;
+using Skahal.Infrastructure.Framework.People;
 
 namespace DevAchievements.Infrastructure.Repositories
 {
@@ -32,8 +33,11 @@ namespace DevAchievements.Infrastructure.Repositories
 			DependencyService.Register<IAchievementRepository>(new MongoDBAchievementRepository());
 			DependencyService.Register<IDeveloperRepository>(new MongoDBDeveloperRepository());
 
+			DependencyService.Register<IUserRepository> (new MemoryUserRepository ());
+
 			LogService.Debug ("MongoDB registered.");
 		}
+
 	}
 }
 

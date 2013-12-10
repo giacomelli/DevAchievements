@@ -6,11 +6,81 @@ using System.Web.Mvc;
 using DevAchievements.Domain;
 using DevTrends.MvcDonutCaching;
 using ProxyApi;
+using DevAchievements.Infrastructure.Web;
 
 namespace DevAchievements.WebApp.Controllers
 {
-    public class DeveloperController : Controller
+	public class DeveloperController : FuncControllerBase<Developer, Guid>
     {
+		public DeveloperController() 
+		{
+			var service = new DeveloperService ();
+
+			GetEntitiesFunc = () => service.GetAllDevelopers ();
+
+			CreateNewEntityFunc = () => new Developer ();
+			GetEntityIdFunc = (entity) => (Guid)entity.Key;
+			GetEntityByIdFunc = (id) => service.GetDeveloperByKey(id);
+			DeleteEntityByIdFunc = (id) => service.DeleteDeveloper (id);
+			GetEntitiesFunc = () => service.GetAllDevelopers ();
+			GetGridValuesFunc = (entity) => new object[] { entity.FullName, entity.Username, entity.Email, String.Join(", ", entity.AccountsAtIssuers.Select(r => r.IssuerName)) };
+			SaveEntityFunc = (entity) =>
+			{
+				// TODO: create a model binder.
+				if(entity.Key != null)
+				{
+					entity.Key = new Guid(((string[]) entity.Key)[0]);
+				}
+
+				service.SaveDeveloper(entity);
+
+				return entity;
+			};
+		}
+
+		public override ActionResult Create ()
+		{
+			return Create (String.Empty);
+		}
+
+		public ActionResult Create(string username)
+		{
+			var model = new Developer ();
+			model.Username = username;
+			var service = new AchievementService ();
+
+			var issuers = service.GetAllIssuers ();
+
+			foreach (var issuer in issuers) {
+				model.AccountsAtIssuers.Add (new DeveloperAccountAtIssuer (issuer.Name, ""));
+			}
+
+			return View ("CreateEdit", model);
+		} 
+
+		[HttpPost]
+		public override ActionResult Create (Developer entity)
+		{
+			var developerService = new DeveloperService();
+
+			return this.Call (() => {
+				developerService.SaveDeveloper (entity);
+
+				ClearUserCache (entity);
+
+				return Redirect ("/" + entity.Username);
+			});
+		}
+
+		public override ActionResult Edit (Developer entity)
+		{
+			var result = base.Edit (entity);
+			ClearUserCache (entity);
+
+			return result;
+		}
+
+		/*
         public ActionResult Index()
 		{
 			var developerService = new DeveloperService();
@@ -22,33 +92,6 @@ namespace DevAchievements.WebApp.Controllers
         public ActionResult Details(int id)
         {
             return View ();
-        }
-
-		public ActionResult Create(string username)
-        {
-			var model = new Developer ();
-			model.Username = username;
-			var service = new AchievementService ();
-
-			var issuers = service.GetAllIssuers ();
-
-			foreach (var issuer in issuers) {
-				model.AccountsAtIssuers.Add (new DeveloperAccountAtIssuer (issuer.Name, ""));
-			}
-
-			return View (model);
-        } 
-
-        [HttpPost]
-		public ActionResult Create(Developer developer)
-        {
-			var developerService = new DeveloperService();
-			developerService.SaveDeveloper(developer);
-
-			var outputCacheManager = new OutputCacheManager ();
-			outputCacheManager.RemoveItem ("Home", "Index", new { username = developer.Username });
-
-			return Redirect ("/" + developer.Username);
         }
         
         public ActionResult Edit(int id)
@@ -80,6 +123,7 @@ namespace DevAchievements.WebApp.Controllers
                 return View ();
             }
         }
+        */
 
 		[ProxyName("existsDeveloperAccountAtIssuer")]
 		public JsonResult ExistsDeveloperAccountAtIssuer(string issuerName, string username)
@@ -88,5 +132,13 @@ namespace DevAchievements.WebApp.Controllers
 	
 			return Json (service.ExistsDeveloperAccountAtIssuer(issuerName, username), JsonRequestBehavior.AllowGet);
 		} 
+
+		static void ClearUserCache (Developer entity)
+		{
+			var outputCacheManager = new OutputCacheManager ();
+			outputCacheManager.RemoveItem ("Home", "Index", new {
+				username = entity.Username
+			});
+		}
     }
 }

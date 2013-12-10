@@ -1,14 +1,7 @@
-@model IList<DevAchievements.Domain.Developer>
-<ol>
-@foreach(var d in Model)
-{
-	<li>@d.Key : @d.FullName : @d.Username</li>
-
-	foreach(var account in d.AccountsAtIssuers)
-    {
-    	<div>
-    	@account.IssuerName : @account.Username
-    	</div>
-    }
-}
-</ol>
+@(Html.FluentUI()
+	.Grid("grid", "grid", "Developer")
+		.Column("Fullname")
+		.Column("Username")
+		.Column("E-mail")
+		.Column("Issuers")
+)

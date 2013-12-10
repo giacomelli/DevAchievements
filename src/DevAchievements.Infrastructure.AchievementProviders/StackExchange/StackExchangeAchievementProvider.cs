@@ -92,7 +92,13 @@ namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
 		/// <param name="account">Account.</param>
 		private User GetUser (DeveloperAccountAtIssuer account)
 		{
-			var user = m_client.Users.GetAll ("stackoverflow", "!-.CabxAv7Udo", inname: account.Username).Result.Data.Items.FirstOrDefault ();
+			User user = null;
+
+			var result = m_client.Users.GetAll ("stackoverflow", "!-.CabxAv7Udo", inname: account.Username).Result;
+
+			if (result.Data != null) {
+				user = result.Data.Items.FirstOrDefault ();
+			}
 
 			return user;
 		}

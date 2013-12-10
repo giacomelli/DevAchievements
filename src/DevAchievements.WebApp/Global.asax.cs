@@ -8,7 +8,7 @@ using DevAchievements.Domain;
 using DevAchievements.Infrastructure.AchievementProviders;
 using DevAchievements.Infrastructure.Repositories;
 using DevAchievements.Infrastructure.Repositories.MongoDB;
-using DevAchievements.Infrastructure.Web.Configuration;
+using DevAchievements.Application.Configuration;
 using MongoDB.Bson.Serialization;
 using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Logging;
@@ -39,12 +39,12 @@ namespace DevAchievements.WebApp
 			LogService.Debug ("Registering routes...");
 			RouteConfig.RegisterRoutes (RouteTable.Routes);
 
-			LogService.Debug ("Bootstrap setup...");
-			new WebBootstrap ().Setup ();
-		
 			LogService.Debug ("Domain setup...");
 			RepositoriesConfig.RegisterMongoDB ();
 
+			LogService.Debug ("Bootstrap setup...");
+			new WebBootstrap ().Setup ();
+	
             LogService.Debug("Loading achievements provider assembly...");
             var dummy = typeof(AchievementProviderBase);
             LogService.Debug("{0} assembly loaded.", dummy.Assembly.GetName().Name);

@@ -33,4 +33,10 @@ $(function() {
 			}
 		});
 	});
+
+	$('#Email').keyup(function() {
+		$('#gravatar').empty().append($.gravatar($(this).val()));
+	});
+	$('#Email').keyup();
+
 });

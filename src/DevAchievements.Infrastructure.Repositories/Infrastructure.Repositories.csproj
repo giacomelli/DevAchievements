@@ -60,6 +60,7 @@
     <Compile Include="MemoryRepositoriesGenerated.cs" />
     <Compile Include="MongoRepositoriesGenerated.cs" />
     <Compile Include="RepositoriesConfig.cs" />
+    <Compile Include="MemoryUserRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

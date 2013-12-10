@@ -56,11 +56,16 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DeveloperHomeViewModel.cs" />
+    <Compile Include="Configuration\WebBootstrap.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">
       <Project>{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevAchievements.Infrastructure.Web\Infrastructure.Web.csproj">
+      <Project>{F88388FC-CF47-46D8-AD5A-1274A003079F}</Project>
+      <Name>Infrastructure.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

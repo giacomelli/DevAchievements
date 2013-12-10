@@ -1,0 +1,56 @@
+@using HelperSharp;
+@using System.Web.Mvc;
+@model DevAchievements.Domain.Developer
+
+@section Scripts{
+	<script type="text/javascript" src="~/Scripts/Views/Developer/Create.js"></script>
+}
+
+@using (Html.BeginForm("", "", FormMethod.Post, new { @role="form" })) {
+	@(Html.FluentUI()
+		.Hidden()
+			.Name("Key")
+			.Value(Model.Key)
+
+		.TextBox()
+			.Name("Username")
+			.Label("Username")
+			.Value(Model.Username)
+	
+		.TextBox()
+			.Name("FullName")
+			.Label("Full name")
+			.Value(Model.FullName)
+
+		.TextBox()
+			.Name("Email")
+			.Label("E-mail")
+			.Value(Model.Email)
+	 )
+
+	 <div id="gravatar" style='height:100px'></div>
+
+
+    for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
+    {
+    	var account = Model.AccountsAtIssuers[i];
+    	<div>
+    	@(Html.FluentUI()
+    		.TextBox()
+    			.Name("AccountsAtIssuers[{0}].Username", i)
+    			.Label(account.IssuerName)
+    			.Placeholder("{0} username", account.IssuerName)
+    			.Value(account.Username)
+    		
+    		.Hidden()
+    			.Name("AccountsAtIssuers[{0}].IssuerName", i)
+    			.Value(account.IssuerName)
+    	)
+    	</div>
+    }
+	
+	@(Html.FluentUI()
+		.Button()
+			.Label("Save")
+	)
+}

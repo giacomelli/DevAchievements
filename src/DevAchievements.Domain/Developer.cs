@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Skahal.Infrastructure.Framework.Domain;
+using Skahal.Infrastructure.Framework.People;
 
 namespace DevAchievements.Domain
 {
@@ -9,7 +10,7 @@ namespace DevAchievements.Domain
 	/// Represents a developer.
 	/// This is the main entity inside the domain. A guess, someday, will be the main entity inside the world :).
 	/// </summary>
-	public class Developer : EntityBase, IAggregateRoot
+	public class Developer : User
     {
         #region Constructors
 		/// <summary>
