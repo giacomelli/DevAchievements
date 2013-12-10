@@ -32,9 +32,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="HelperSharp">
-      <HintPath>..\packages\HelperSharp.0.0.3.3\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Abstractions">
       <HintPath>..\packages\System.IO.Abstractions.1.4.0.68\lib\net35\System.IO.Abstractions.dll</HintPath>
     </Reference>
@@ -59,6 +56,9 @@
     <Reference Include="System.Web" />
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.4\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +90,7 @@
     <Compile Include="FuncControllerBase.cs" />
     <Compile Include="GridResult.cs" />
     <Compile Include="HttpContextExtensions.cs" />
+    <Compile Include="UI\DeveloperUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />
@@ -113,6 +114,10 @@
     <ProjectReference Include="..\DevAchievements.Infrastructure.Repositories\Infrastructure.Repositories.csproj">
       <Project>{E581B8D0-5A34-492E-8FFF-64A41394F222}</Project>
       <Name>Infrastructure.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">
+      <Project>{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}</Project>
+      <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

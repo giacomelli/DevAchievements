@@ -7,6 +7,8 @@ using DevAchievements.Domain;
 using DevTrends.MvcDonutCaching;
 using ProxyApi;
 using DevAchievements.Infrastructure.Web;
+using System.Security.Cryptography;
+using DevAchievements.Infrastructure.Web.UI;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -23,7 +25,8 @@ namespace DevAchievements.WebApp.Controllers
 			GetEntityByIdFunc = (id) => service.GetDeveloperByKey(id);
 			DeleteEntityByIdFunc = (id) => service.DeleteDeveloper (id);
 			GetEntitiesFunc = () => service.GetAllDevelopers ();
-			GetGridValuesFunc = (entity) => new object[] { entity.FullName, entity.Username, entity.Email, String.Join(", ", entity.AccountsAtIssuers.Select(r => r.IssuerName)) };
+
+			GetGridValuesFunc = (entity) => new object[] { DeveloperUI.GetAvatarUrl(entity), entity.FullName, entity.Username, entity.Email, String.Join(", ", entity.AccountsAtIssuers.Select(r => r.IssuerName)) };
 			SaveEntityFunc = (entity) =>
 			{
 				// TODO: create a model binder.

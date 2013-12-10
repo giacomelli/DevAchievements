@@ -7,6 +7,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Properties
 		public string Title { get; set; }
 		public string Width { get; set; }
+		public string Template { get; set; }
 		#endregion
     }
 }

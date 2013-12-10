@@ -4,6 +4,7 @@ using HelperSharp;
 using Skahal.Infrastructure.Framework.Globalization;
 using System.Linq;
 using System.Web;
+using System.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
@@ -19,12 +20,13 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#endregion
 
 		#region Methods
-		public GridFluentUI Column(string title, string width = "*")
+		public GridFluentUI Column(string title, string width = "*", string template = null)
 		{
 			Data.Columns.Add (new GridFluentUIColumnData () 
 			{
 					Title = title,
-					Width = width 
+					Width = width,
+					Template = template
 			});
 
 			return this;
@@ -68,35 +70,44 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 
 		protected override string CreateHtml ()
 		{
-			return @"
-            <table           
-                {0}
-                {1}
-                class='grid'
-                {2}
-                data-controller='/{3}'
-                data-columns-title='{4}' 
-                data-columns-width='{5}'          
-                {6}
-                {7}
-                {8}
-                {9}
-                {10}
-                {11}
-            >
-            </table>".With(
-							GetIdMarkup(),
-							GetNameMarkup(),
-							GetEnableSource(),
-							GetControllerPath(),
-							String.Join(", ", Data.Columns.Select(c => c.Title)),
-							String.Join(", ", Data.Columns.Select(c => c.Width)),
-							GetDeletableMarkup(),
-							GetEditableMarkup(),
-							GetSearchableMarkup(),
-							GetPaginableMarkup(),
-							GetSortableMarkup(),
-							GetShowInfoMarkup());
+			var html = DynamicTextBuilder.Format (
+				@"
+	            <table           
+	                {Grid.Id}
+	                {Grid.Name}
+	                class='grid'
+	                {Grid.EnableSource}
+	                data-controller='/{Grid.Controller}'
+	                data-columns-title='{Grid.ColumnsTitle}' 
+	                data-columns-width='{Grid.ColumnsWidth}'
+					{Grid.ColumnsTemplate}          
+	                {Grid.Deletable}
+	                {Grid.Editable}
+	                {Grid.Searchable}
+	                {Grid.Paginable}
+	                {Grid.Sortable}
+	                {Grid.ShowInfo}
+	            >
+	            </table>", 
+				"Grid", 
+				new 
+				{ 
+					Id = GetIdMarkup(),
+					Name = GetNameMarkup(),
+					EnableSource = GetEnableSource(),
+					Controller = GetControllerPath(),
+					ColumnsTitle = String.Join(", ", Data.Columns.Select(c => c.Title)),
+					ColumnsWidth = String.Join(", ", Data.Columns.Select(c => c.Width)),
+					ColumnsTemplate = GetColumnsTemplateMarkup(),
+					Deletable = GetDeletableMarkup(),
+					Editable = GetEditableMarkup(),
+					Searchable = GetSearchableMarkup(),
+					Paginable = GetPaginableMarkup(),
+					Sortable = GetSortableMarkup(),
+					ShowInfo = GetShowInfoMarkup()
+				});
+
+			return html;
 		}
 
 		private string GetIdMarkup()
@@ -119,6 +130,18 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		private string GetControllerPath()
 		{
 			return Data.Controller;
+		}
+
+		private string GetColumnsTemplateMarkup()
+		{
+			var markup = new StringBuilder ();
+			var columnsTemplate = Data.Columns.Where (c => !String.IsNullOrWhiteSpace (c.Template));
+
+			foreach (var c in columnsTemplate) {
+				markup.AppendFormat ("data-column-{0}-template=\"{1}\"", c.Title.ToLowerInvariant(), c.Template);
+			}
+
+			return markup.ToString ();
 		}
 
 		private string GetPaginableMarkup()
