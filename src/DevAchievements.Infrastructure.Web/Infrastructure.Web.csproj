@@ -82,7 +82,6 @@
     <Compile Include="UI\FluentUI\Grid\GridFluentUI.cs" />
     <Compile Include="UI\FluentUI\Grid\GridExtensions.cs" />
     <Compile Include="UI\FluentUI\Grid\GridFluentUIData.cs" />
-    <Compile Include="UI\FluentUI\Grid\GridFluentUIColumnData.cs" />
     <Compile Include="Globalization\FileGlobalizationLabelRepository.cs" />
     <Compile Include="ControlerContextExtensions.cs" />
     <Compile Include="ControllerBase.cs" />
@@ -91,6 +90,11 @@
     <Compile Include="GridResult.cs" />
     <Compile Include="HttpContextExtensions.cs" />
     <Compile Include="UI\DeveloperUI.cs" />
+    <Compile Include="UI\FluentUI\Grid\GridColumnFluentUI.cs" />
+    <Compile Include="UI\FluentUI\Grid\GridColumnFluentUIData.cs" />
+    <Compile Include="UI\FluentUI\Image\ImageFluentUI.cs" />
+    <Compile Include="UI\FluentUI\Image\ImageExtensions.cs" />
+    <Compile Include="UI\FluentUI\Image\ImageFluentUIData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />
@@ -104,6 +108,7 @@
     <Folder Include="UI\FluentUI\Button\" />
     <Folder Include="UI\FluentUI\Grid\" />
     <Folder Include="Globalization\" />
+    <Folder Include="UI\FluentUI\Image\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -2,7 +2,7 @@ using System;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-    public class GridFluentUIColumnData
+	public class GridColumnFluentUIData : GridFluentUIData
     {
 		#region Properties
 		public string Title { get; set; }

@@ -1,11 +1,18 @@
 @model DevAchievements.Application.DeveloperHomeViewModel
 
 <article>
-	<header>@Html.DevName(@Model.Developer)</header>
+
+	<header>
+		@(Html.FluentUI()
+			.Image(DeveloperUI.GetAvatarUrl(Model.Developer))
+				.Width("128px")
+		)
+		@Html.DevName(@Model.Developer)
+	</header>
 @foreach(var issuer in Model.Issuers)
 {
 	<div class="panel panel-primary">
-  		<div class="panel-heading">@issuer.Name</div>
+  		<div class="panel-heading">@issuer.Name <span class="pull-right">@Model.Developer.GetAccountAtIssuer(issuer.Name).Username</span></div>
   		<div class="panel-body">
     		  	<ul>            
 			    @foreach(var achievement in Model.GetAchievementsByIssuer(issuer))

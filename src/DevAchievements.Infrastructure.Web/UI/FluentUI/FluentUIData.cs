@@ -29,6 +29,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		public string Label { get; set; }
 		public string Placeholder { get; set; }
 		public object Value { get; set; }
+		public string Width { get; set; }
 		#endregion
     }
 }

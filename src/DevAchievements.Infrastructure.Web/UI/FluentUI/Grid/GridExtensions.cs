@@ -5,16 +5,14 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
 	public static class GridExtensions
     {
-		public static GridFluentUI Grid(this IFluentUI ui, string id = "grid", string name = "grid", string controller = "")
+		public static GridFluentUI Grid(this IFluentUI ui, string id, string name, string controller)
 		{
 			return ui.CreateChild (new GridFluentUI (id, name, controller));
 		}
 
-		public static GridFluentUI ImageColumn(this GridFluentUI grid, string title, string width = "*")
+		public static GridFluentUI Grid(this IFluentUI ui, string controller)
 		{
-			grid.Column (title, "*", "<img src='{{data}}' style='width:{0}' />".With (width));
-
-			return grid;
+			return ui.CreateChild (new GridFluentUI (controller));
 		}
     }
 }

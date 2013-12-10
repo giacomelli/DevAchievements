@@ -19,7 +19,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Properties
 		IFluentUI IFluentUI.Parent { get; set; }
 		IList<IFluentUI> IFluentUI.Children { get; set; }
-		protected TData Data { get; private set; }
+		internal TData Data { get; private set; }
 		#endregion
 
 		#region Methods

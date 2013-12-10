@@ -8,7 +8,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Constructors
 		public GridFluentUIData()
 		{
-			Columns = new List<GridFluentUIColumnData> ();
+			Columns = new List<GridColumnFluentUI> ();
 			IsDeletable = true;
 			IsEditable = true;
 			IsSearchable = true;
@@ -21,7 +21,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Properties
 		public string Controller { get; set; }
 		public bool EnabledSource { get; set; }
-		public IList<GridFluentUIColumnData> Columns { get; private set; }
+		public IList<GridColumnFluentUI> Columns { get; private set; }
 		public bool IsDeletable { get; set; }
 		public bool IsEditable { get; set; }
 		public bool IsSearchable { get; set; }
