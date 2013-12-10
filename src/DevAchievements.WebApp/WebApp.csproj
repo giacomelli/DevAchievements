@@ -52,9 +52,6 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="Scripts\Framework\Globalization\dataTables.en.txt" />
-    <None Include="Scripts\Framework\Globalization\dataTables.es.txt" />
-    <None Include="Scripts\Framework\Globalization\dataTables.pt.txt" />
     <None Include="Scripts\DataTables\images\Sorting icons.psd" />
     <None Include="Scripts\DataTables\images\favicon.ico" />
     <None Include="Scripts\jQuery-Gravatar\README.md" />
@@ -428,6 +425,9 @@
     <Content Include="Scripts\select2\select2.png" />
     <Content Include="Scripts\select2\select2x2.png" />
     <Content Include="Views\Developer\CreateEdit.cshtml" />
+    <Content Include="Scripts\Framework\Globalization\dataTables.en.js" />
+    <Content Include="Scripts\Framework\Globalization\dataTables.es.js" />
+    <Content Include="Scripts\Framework\Globalization\dataTables.pt.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

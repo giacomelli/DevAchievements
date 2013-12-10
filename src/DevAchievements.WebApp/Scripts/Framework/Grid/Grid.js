@@ -118,7 +118,7 @@
                         aoColumnDefs: [{ "bVisible": false, "aTargets": [0] },
                                         { "bSortable": false, "aTargets": [-1] }],
                         oLanguage: {
-                            "sUrl": "/Scripts/Framework/Globalization/dataTables." + app.cultureCode + ".txt"
+                            "sUrl": "/Scripts/Framework/Globalization/dataTables." + app.cultureCode + ".js"
                         },
                         bProcessing: false,
                         fnServerData: function (sSource, aoData, fnCallback, oSettings) {
