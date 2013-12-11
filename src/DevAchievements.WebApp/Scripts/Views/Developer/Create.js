@@ -34,9 +34,9 @@ $(function() {
 		});
 	});
 
-	$('#Email').keyup(function() {
+	$('#Email').blur(function() {
 		$('#gravatar').empty().append($.gravatar($(this).val()));
 	});
-	$('#Email').keyup();
+	$('#Email').blur();
 
 });

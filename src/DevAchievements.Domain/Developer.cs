@@ -53,6 +53,16 @@ namespace DevAchievements.Domain
 
 		#region Methods
 		/// <summary>
+		/// Adds the account at issuer to accounts at issuer list if there none of the same issuer already.
+		/// </summary>
+		/// <param name="accountAtIssuer">The account at issuer.</param>
+		public void AddAccountAtIssuer(DeveloperAccountAtIssuer accountAtIssuer)
+		{
+			if(!AccountsAtIssuers.Any(a => a.IssuerName.Equals(accountAtIssuer.IssuerName, StringComparison.OrdinalIgnoreCase))) {
+				AccountsAtIssuers.Add (accountAtIssuer);
+			}
+		}
+		/// <summary>
 		/// Gets the account at issuer.
 		/// </summary>
 		/// <returns>The account at issuer.</returns>

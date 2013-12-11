@@ -14,15 +14,16 @@ namespace DevAchievements.WebApp.Controllers
 {
 	public class DeveloperController : FuncControllerBase<Developer, Guid>
     {
+		#region Constructors
 		public DeveloperController() 
 		{
 			var service = new DeveloperService ();
 
 			GetEntitiesFunc = () => service.GetAllDevelopers ();
 
-			CreateNewEntityFunc = () => new Developer ();
+			CreateNewEntityFunc = () => FillModel(new Developer ());
 			GetEntityIdFunc = (entity) => (Guid)entity.Key;
-			GetEntityByIdFunc = (id) => service.GetDeveloperByKey(id);
+			GetEntityByIdFunc = (id) => FillModel(service.GetDeveloperByKey (id));
 			DeleteEntityByIdFunc = (id) => service.DeleteDeveloper (id);
 			GetEntitiesFunc = () => service.GetAllDevelopers ();
 
@@ -40,7 +41,9 @@ namespace DevAchievements.WebApp.Controllers
 				return entity;
 			};
 		}
+		#endregion
 
+		#region Actions
 		public override ActionResult Create ()
 		{
 			return Create (String.Empty);
@@ -48,16 +51,9 @@ namespace DevAchievements.WebApp.Controllers
 
 		public ActionResult Create(string username)
 		{
-			var model = new Developer ();
+			var model = CreateNewEntity ();
 			model.Username = username;
-			var service = new AchievementService ();
-
-			var issuers = service.GetAllIssuers ();
-
-			foreach (var issuer in issuers) {
-				model.AccountsAtIssuers.Add (new DeveloperAccountAtIssuer (issuer.Name, ""));
-			}
-
+		
 			return View ("CreateEdit", model);
 		} 
 
@@ -84,51 +80,6 @@ namespace DevAchievements.WebApp.Controllers
 			return result;
 		}
 
-		/*
-        public ActionResult Index()
-		{
-			var developerService = new DeveloperService();
-			var model = developerService.GetAllDevelopers ();
-
-			return View (model);
-        }
-
-        public ActionResult Details(int id)
-        {
-            return View ();
-        }
-        
-        public ActionResult Edit(int id)
-        {
-            return View ();
-        }
-
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try {
-                return RedirectToAction ("Index");
-            } catch {
-                return View ();
-            }
-        }
-
-        public ActionResult Delete(int id)
-        {
-            return View ();
-        }
-
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try {
-                return RedirectToAction ("Index");
-            } catch {
-                return View ();
-            }
-        }
-        */
-
 		[ProxyName("existsDeveloperAccountAtIssuer")]
 		public JsonResult ExistsDeveloperAccountAtIssuer(string issuerName, string username)
 		{
@@ -136,13 +87,30 @@ namespace DevAchievements.WebApp.Controllers
 	
 			return Json (service.ExistsDeveloperAccountAtIssuer(issuerName, username), JsonRequestBehavior.AllowGet);
 		} 
+		#endregion
 
-		static void ClearUserCache (Developer entity)
+		#region Helpers
+		private static void ClearUserCache (Developer entity)
 		{
 			var outputCacheManager = new OutputCacheManager ();
 			outputCacheManager.RemoveItem ("Home", "Index", new {
 				username = entity.Username
 			});
 		}
+
+		private static Developer FillModel (Developer model)
+		{
+			var service = new AchievementService ();
+			var issuers = service.GetAllIssuers ();
+
+			foreach (var issuer in issuers) {
+				model.AddAccountAtIssuer (new DeveloperAccountAtIssuer (issuer.Name, ""));
+			}
+
+			model.AccountsAtIssuers = model.AccountsAtIssuers.OrderBy (a => a.IssuerName).ToList();
+
+			return model;
+		}
+		#endregion
     }
 }
