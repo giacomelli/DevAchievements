@@ -95,6 +95,13 @@
     <Compile Include="UI\FluentUI\Image\ImageFluentUI.cs" />
     <Compile Include="UI\FluentUI\Image\ImageExtensions.cs" />
     <Compile Include="UI\FluentUI\Image\ImageFluentUIData.cs" />
+    <Compile Include="UI\FluentUI\Gravatar\GravatarExtensions.cs" />
+    <Compile Include="UI\FluentUI\Gravatar\GravatarFluentUI.cs" />
+    <Compile Include="UI\FluentUI\Event\EventExtensions.cs" />
+    <Compile Include="UI\FluentUI\Event\EventFluentUI.cs" />
+    <Compile Include="UI\FluentUI\IHtmlCreator.cs" />
+    <Compile Include="UI\FluentUI\Script\ScriptExtensions.cs" />
+    <Compile Include="UI\FluentUI\Script\ScriptFluentUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />
@@ -103,12 +110,14 @@
     <Folder Include="UI\FluentUI\Renderers\" />
     <Folder Include="UI\FluentUI\TextBox\" />
     <Folder Include="UI\FluentUI\Renderers\Mvc\" />
-    <Folder Include="UI\FluentUI\Themes\" />
     <Folder Include="UI\FluentUI\Hidden\" />
     <Folder Include="UI\FluentUI\Button\" />
     <Folder Include="UI\FluentUI\Grid\" />
     <Folder Include="Globalization\" />
     <Folder Include="UI\FluentUI\Image\" />
+    <Folder Include="UI\FluentUI\Gravatar\" />
+    <Folder Include="UI\FluentUI\Event\" />
+    <Folder Include="UI\FluentUI\Script\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

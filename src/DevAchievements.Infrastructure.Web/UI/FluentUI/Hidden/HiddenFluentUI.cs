@@ -7,6 +7,12 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
 	public class HiddenFluentUI: FluentUIBase<FluentUIData>
 	{
+		#region Constructors
+		public HiddenFluentUI(string id) : base(id) 
+		{
+		}
+		#endregion
+
 		#region Methods
 		public HiddenFluentUI Name(string value, params object[] args)
 		{
@@ -22,7 +28,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 	
-		protected override string CreateHtml ()
+		public override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"<input id='{Hidden.Id}' name='{Hidden.Name}' type='hidden' value='{Hidden.Value}'>", 

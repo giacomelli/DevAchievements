@@ -6,8 +6,11 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
     {
 		internal static TChild CreateChild<TChild> (this IFluentUI parent, TChild child) where TChild : IFluentUI
 		{
-			parent.Children.Add (child);
-			child.Parent = parent;
+			var creatorParent = parent as IHtmlCreator;
+			var creatorChild = child as IHtmlCreator;
+
+			creatorParent.Children.Add (creatorChild);
+			creatorChild.Parent = creatorParent;
 
 			return child;
 		}

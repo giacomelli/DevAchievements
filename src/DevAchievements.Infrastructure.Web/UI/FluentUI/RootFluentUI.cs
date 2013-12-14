@@ -5,8 +5,14 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
 	public class RootFluentUI : FluentUIBase<FluentUIData>
 	{
+		#region Constructors
+		public RootFluentUI() : base("root") 
+		{
+		}
+		#endregion
+
 		#region implemented abstract members of FluentUIBase
-		protected override string CreateHtml ()
+		public override string CreateHtml ()
 		{
 			return String.Empty;
 		}

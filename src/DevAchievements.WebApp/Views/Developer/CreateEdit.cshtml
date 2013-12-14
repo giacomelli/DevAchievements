@@ -8,27 +8,26 @@
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @role="form" })) {
 	@(Html.FluentUI()
-		.Hidden()
-			.Name("Key")
+		.Hidden("Key")
 			.Value(Model.Key)
 
-		.TextBox()
-			.Name("Username")
+		.TextBox("Username")
 			.Label("Username")
 			.Value(Model.Username)
 	
-		.TextBox()
-			.Name("FullName")
+		.TextBox("FullName")
 			.Label("Full name")
 			.Value(Model.FullName)
 
-		.TextBox()
-			.Name("Email")
+		.TextBox("Email")
 			.Label("E-mail")
 			.Value(Model.Email)
+			.Gravatar()
+				.OnBlur()
+				.OnReady()
 	 )
 
-	 <div id="gravatar" style='height:100px'></div>
+	 <div id="gravatasr" style='height:100px'></div>
 
 
     for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
@@ -36,21 +35,19 @@
     	var account = Model.AccountsAtIssuers[i];
     	<div>
     	@(Html.FluentUI()
-    		.TextBox()
-    			.Name("AccountsAtIssuers[{0}].Username", i)
+    		.TextBox("AccountsAtIssuers[{0}].Username", i)
     			.Label(account.IssuerName)
     			.Placeholder("{0} username", account.IssuerName)
     			.Value(account.Username)
     		
-    		.Hidden()
-    			.Name("AccountsAtIssuers[{0}].IssuerName", i)
+    		.Hidden("AccountsAtIssuers[{0}].IssuerName", i)
     			.Value(account.IssuerName)
     	)
     	</div>
     }
 	
 	@(Html.FluentUI()
-		.Button()
+		.Button("save-button")
 			.Label("Save")
 	)
 }

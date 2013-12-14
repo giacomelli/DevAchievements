@@ -11,7 +11,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 	public class GridFluentUI: FluentUIBase<GridFluentUIData>
 	{
 		#region Constructors
-		public GridFluentUI(string id, string name, string controller)
+		public GridFluentUI(string id, string name, string controller) : base(id)
 		{
 			Data.Id = id;
 			Data.Name = name;
@@ -70,7 +70,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 
-		protected override string CreateHtml ()
+		public override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"

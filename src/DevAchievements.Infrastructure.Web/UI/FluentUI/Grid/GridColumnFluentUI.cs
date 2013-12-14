@@ -7,7 +7,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
     {
 		private GridFluentUI m_grid;
 
-		public GridColumnFluentUI(GridFluentUI grid, string title)
+		public GridColumnFluentUI(GridFluentUI grid, string title) : base(Guid.NewGuid().ToString())
 		{
 			m_grid = grid;
 			Data.Title = title;
@@ -37,7 +37,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return m_grid.Column (title);
 		}
 
-		protected override string CreateHtml ()
+		public override string CreateHtml ()
 		{
 			return string.Empty;
 		}

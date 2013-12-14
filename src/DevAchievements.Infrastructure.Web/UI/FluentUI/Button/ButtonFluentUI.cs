@@ -9,6 +9,12 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
 	public class ButtonFluentUI: FluentUIBase<FluentUIData>
     {
+		#region Constructors
+		public ButtonFluentUI(string id) : base(id) 
+		{
+		}
+		#endregion
+
 		#region Methods
 		public ButtonFluentUI Label (string value, params object[] args)
 		{
@@ -17,7 +23,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 
-		protected override string CreateHtml ()
+		public override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"<button class='btn btn-primary'>{Button.Label}</button>", 

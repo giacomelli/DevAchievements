@@ -9,6 +9,12 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
 	public class TextBoxFluentUI: FluentUIBase<FluentUIData>
     {
+		#region Constructors
+		public TextBoxFluentUI(string id) : base(id) 
+		{
+		}
+		#endregion
+
 		#region Methods
 		public TextBoxFluentUI Name(string value, params object[] args)
 		{
@@ -38,7 +44,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 
-		protected override string CreateHtml ()
+		public override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				 @"<div class='form-group'>

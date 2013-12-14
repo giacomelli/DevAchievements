@@ -7,28 +7,31 @@ using Skahal.Infrastructure.Framework.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class ImageFluentUI: FluentUIBase<FluentUIData>
+	public class ScriptFluentUI: FluentUIBase<FluentUIData>
     {
+		#region Constructors
+		public ScriptFluentUI(string code) : base(String.Empty) 
+		{
+			Data.Value = code;
+		}
+		#endregion
+
 		#region Methods
-		public ImageFluentUI (string url) : base(Guid.NewGuid().ToString())
-		{
-			Data.Value = url;
-		}
-
-		public ImageFluentUI Width(string width)
-		{
-			Data.Width = width;
-
-			return this;
-		}
-
 		public override string CreateHtml ()
 		{
+			var builder = new DynamicTextBuilder ();
+		
 			var html = DynamicTextBuilder.Format (
-				@"<img src='{Image.Value}' />", 
-				"Image", 
-				Data);
-			
+			@"
+			<script>
+				{Script.Code}
+			</script>", 
+			"Script", 
+			new 
+			{
+				Code = Data.Value
+			});
+
 			return html;
 		}
 		#endregion

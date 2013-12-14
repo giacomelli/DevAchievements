@@ -5,9 +5,9 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
 	public static class ButtonExtensions
     {
-		public static ButtonFluentUI Button(this IFluentUI ui)
+		public static ButtonFluentUI Button(this IFluentUI ui, string id)
         {
-			return ui.CreateChild (new ButtonFluentUI ());
+			return ui.CreateChild (new ButtonFluentUI (id));
         }
     }
 }

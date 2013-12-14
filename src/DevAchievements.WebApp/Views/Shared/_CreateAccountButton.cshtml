@@ -3,11 +3,10 @@
 <div class="text-center">
 @using(Html.BeginForm("Create", "Developer", FormMethod.Get)) {
 	@(Html.FluentUI()
-		.Hidden()
-			.Name("username")
+		.Hidden("username")
 			.Value(@Model)
 
-		.Button()
+		.Button("create-account")
 			.Label("Create your account{0}", 
 						String.IsNullOrWhiteSpace(@Model) 
 						? "" 
