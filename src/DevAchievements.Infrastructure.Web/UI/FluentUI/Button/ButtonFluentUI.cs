@@ -7,7 +7,7 @@ using Skahal.Infrastructure.Framework.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class ButtonFluentUI: FluentUIBase<FluentUIData>
+	public class ButtonFluentUI: FluentUIBase<ButtonFluentUI, FluentUIData>
     {
 		#region Constructors
 		public ButtonFluentUI(string id) : base(id) 
@@ -30,7 +30,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 				"Button", 
 				Data);
 			
-			return new MvcHtmlString (html).ToHtmlString ();
+			return html;
 		}
 		#endregion
     }

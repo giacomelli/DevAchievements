@@ -60,6 +60,7 @@
     <Reference Include="HelperSharp">
       <HintPath>..\packages\HelperSharp.0.0.3.4\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
+    <Reference Include="nunit.framework" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +103,8 @@
     <Compile Include="UI\FluentUI\IHtmlCreator.cs" />
     <Compile Include="UI\FluentUI\Script\ScriptExtensions.cs" />
     <Compile Include="UI\FluentUI\Script\ScriptFluentUI.cs" />
+    <Compile Include="UI\FluentUI\Table\TableExtensions.cs" />
+    <Compile Include="UI\FluentUI\Table\TableFluentUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />
@@ -118,6 +121,7 @@
     <Folder Include="UI\FluentUI\Gravatar\" />
     <Folder Include="UI\FluentUI\Event\" />
     <Folder Include="UI\FluentUI\Script\" />
+    <Folder Include="UI\FluentUI\Table\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

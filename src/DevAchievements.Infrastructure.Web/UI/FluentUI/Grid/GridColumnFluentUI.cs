@@ -3,7 +3,7 @@ using HelperSharp;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class GridColumnFluentUI : FluentUIBase<GridColumnFluentUIData>
+	public class GridColumnFluentUI : FluentUIBase<GridColumnFluentUI, GridColumnFluentUIData>
     {
 		private GridFluentUI m_grid;
 

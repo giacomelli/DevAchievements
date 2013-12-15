@@ -71,10 +71,10 @@ namespace DevAchievements.Domain.UnitTests
 		public void InitializeTest()
 		{
 			Stubs.Initialize ();
-			Stubs.AchievementRepository.Add (new Achievement() { Key = 1 } );
-			Stubs.AchievementRepository.Add (new Achievement() { Key = 2 } );
-			Stubs.AchievementRepository.Add (new Achievement() { Key = 3 } );
-			Stubs.AchievementRepository.Add (new Achievement() { Key = 4 } );
+			Stubs.AchievementRepository.Add (new Achievement() { Key = "1" } );
+			Stubs.AchievementRepository.Add (new Achievement() { Key = "2" } );
+			Stubs.AchievementRepository.Add (new Achievement() { Key = "3" } );
+			Stubs.AchievementRepository.Add (new Achievement() { Key = "4" } );
 			Stubs.UnitOfWork.Commit ();
 
 			m_target = new AchievementService ();
@@ -84,7 +84,7 @@ namespace DevAchievements.Domain.UnitTests
 
 		#region Tests
 		[Test]
-		public void CountAllAchievements_NoArguments_AllAchievementsCounted()
+ 		public void CountAllAchievements_NoArguments_AllAchievementsCounted()
 		{
 			var actual = m_target.CountAllAchievements ();
 			Assert.AreEqual (4, actual);
@@ -99,20 +99,20 @@ namespace DevAchievements.Domain.UnitTests
 		}
    
 		[Test]
-		public void DeleteAchievement_AchievementExistis_Exception()
+		public void DeleteAchievement_AchievementExists_Exception()
 		{
 			Assert.AreEqual (4, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement(1);
+			m_target.DeleteAchievement("1");
 			Assert.AreEqual (3, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement(2);
+			m_target.DeleteAchievement("2");
 			Assert.AreEqual (2, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement(3);
+			m_target.DeleteAchievement("3");
 			Assert.AreEqual (1, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement(4);
+			m_target.DeleteAchievement("4");
 			Assert.AreEqual (0, m_target.CountAllAchievements ());
 		}
 
@@ -133,11 +133,11 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]
 		public void GetAchievementByKey_KeyAchievementExists_Achievement ()
 		{
-			var actual = m_target.GetAchievementByKey (2);
-			Assert.AreEqual (2, actual.Key);
+			var actual = m_target.GetAchievementByKey ("2");
+			Assert.AreEqual ("2", actual.Key);
 
-			actual = m_target.GetAchievementByKey (3);
-			Assert.AreEqual (3, actual.Key);
+			actual = m_target.GetAchievementByKey ("3");
+			Assert.AreEqual ("3", actual.Key);
 		}	
 	 
 		[Test]
@@ -151,25 +151,25 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]  
 		public void SaveAchievement_AchievementDoesNotExists_Created()
 		{
-			var achievement = new Achievement () { Key = 5 };
+			var achievement = new Achievement () { Key = "5" };
  
 			m_target.SaveAchievement (achievement); 
 
 			Assert.AreEqual(5, m_target.CountAllAchievements());
-			Assert.AreEqual (5, m_target.GetAchievementByKey (achievement.Key).Key);
+			Assert.AreEqual ("5", m_target.GetAchievementByKey (achievement.Key).Key);
 		}
  
 		[Test]
 		public void SaveAchievement_AchievementDoesExists_Updated()
 		{
 			var achievement = new Achievement () { 
-				Key = 1 
+				Key = "1" 
 			};
 
 			m_target.SaveAchievement (achievement);
 
 			Assert.AreEqual(4, m_target.CountAllAchievements());
-			Assert.AreEqual (1, m_target.GetAchievementByKey (achievement.Key).Key);
+			Assert.AreEqual ("1", m_target.GetAchievementByKey (achievement.Key).Key);
 		}
  
 		#endregion
@@ -195,10 +195,10 @@ namespace DevAchievements.Domain.UnitTests
 		public void InitializeTest()
 		{
 			Stubs.Initialize ();
-			Stubs.DeveloperRepository.Add (new Developer() { Key = 1 } );
-			Stubs.DeveloperRepository.Add (new Developer() { Key = 2 } );
-			Stubs.DeveloperRepository.Add (new Developer() { Key = 3 } );
-			Stubs.DeveloperRepository.Add (new Developer() { Key = 4 } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "1" } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "2" } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "3" } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "4" } );
 			Stubs.UnitOfWork.Commit ();
 
 			m_target = new DeveloperService ();
@@ -208,7 +208,7 @@ namespace DevAchievements.Domain.UnitTests
 
 		#region Tests
 		[Test]
-		public void CountAllDevelopers_NoArguments_AllDevelopersCounted()
+ 		public void CountAllDevelopers_NoArguments_AllDevelopersCounted()
 		{
 			var actual = m_target.CountAllDevelopers ();
 			Assert.AreEqual (4, actual);
@@ -223,20 +223,20 @@ namespace DevAchievements.Domain.UnitTests
 		}
    
 		[Test]
-		public void DeleteDeveloper_DeveloperExistis_Exception()
+		public void DeleteDeveloper_DeveloperExists_Exception()
 		{
 			Assert.AreEqual (4, m_target.CountAllDevelopers ());
 
-			m_target.DeleteDeveloper(1);
+			m_target.DeleteDeveloper("1");
 			Assert.AreEqual (3, m_target.CountAllDevelopers ());
 
-			m_target.DeleteDeveloper(2);
+			m_target.DeleteDeveloper("2");
 			Assert.AreEqual (2, m_target.CountAllDevelopers ());
 
-			m_target.DeleteDeveloper(3);
+			m_target.DeleteDeveloper("3");
 			Assert.AreEqual (1, m_target.CountAllDevelopers ());
 
-			m_target.DeleteDeveloper(4);
+			m_target.DeleteDeveloper("4");
 			Assert.AreEqual (0, m_target.CountAllDevelopers ());
 		}
 
@@ -257,11 +257,11 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]
 		public void GetDeveloperByKey_KeyDeveloperExists_Developer ()
 		{
-			var actual = m_target.GetDeveloperByKey (2);
-			Assert.AreEqual (2, actual.Key);
+			var actual = m_target.GetDeveloperByKey ("2");
+			Assert.AreEqual ("2", actual.Key);
 
-			actual = m_target.GetDeveloperByKey (3);
-			Assert.AreEqual (3, actual.Key);
+			actual = m_target.GetDeveloperByKey ("3");
+			Assert.AreEqual ("3", actual.Key);
 		}	
 	 
 		[Test]
@@ -275,25 +275,25 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]  
 		public void SaveDeveloper_DeveloperDoesNotExists_Created()
 		{
-			var developer = new Developer () { Key = 5 };
+			var developer = new Developer () { Key = "5" };
  
 			m_target.SaveDeveloper (developer); 
 
 			Assert.AreEqual(5, m_target.CountAllDevelopers());
-			Assert.AreEqual (5, m_target.GetDeveloperByKey (developer.Key).Key);
+			Assert.AreEqual ("5", m_target.GetDeveloperByKey (developer.Key).Key);
 		}
  
 		[Test]
 		public void SaveDeveloper_DeveloperDoesExists_Updated()
 		{
 			var developer = new Developer () { 
-				Key = 1 
+				Key = "1" 
 			};
 
 			m_target.SaveDeveloper (developer);
 
 			Assert.AreEqual(4, m_target.CountAllDevelopers());
-			Assert.AreEqual (1, m_target.GetDeveloperByKey (developer.Key).Key);
+			Assert.AreEqual ("1", m_target.GetDeveloperByKey (developer.Key).Key);
 		}
  
 		#endregion

@@ -3,3 +3,13 @@
 	max-width: 128px;
 	max-height: 64px;
 }
+
+.dev-avatar 
+{
+	margin:20px;
+}
+
+.achievement-stat-chart
+{
+	min-height: 100px;
+}

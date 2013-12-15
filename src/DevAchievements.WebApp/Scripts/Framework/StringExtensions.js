@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 if (!String.prototype.format) {
     String.prototype.format = function () {
@@ -133,4 +133,10 @@ if (!String.prototype.decode) {
     String.prototype.decode = function () {
         return $("<div/>").html(this).text();
     };
+}
+
+if (!String.prototype.fromJsonDateTimeToDate) {
+	String.prototype.fromJsonDateTimeToDate = function() {
+		return new Date(parseInt(this.replace("/Date(", "").replace(")/",""), 10));
+	};
 }

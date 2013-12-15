@@ -127,7 +127,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.GitHub
 		/// Define the achievement value by property value.
 		/// </summary>
 		/// <param name="predicate">Predicate.</param>
-		public GitHubAchievementBuilder Property(Func<User, object> predicate)
+		public GitHubAchievementBuilder Property(Func<User, int> predicate)
 		{
 			m_achievement.Value = predicate (m_user);
 

@@ -1,11 +1,13 @@
 using System;
+using Skahal.Infrastructure.Framework.Domain;
+using HelperSharp;
 
 namespace DevAchievements.Domain
 {
 	/// <summary>
 	/// Represents an achievements's issuer, like GitHub or Stack Overflow.
 	/// </summary>
-	public class AchievementIssuer
+	public class AchievementIssuer : EntityBase
     {
         #region Constructors
 		/// <summary>
@@ -14,6 +16,9 @@ namespace DevAchievements.Domain
 		/// <param name="name">The name.</param>
         public AchievementIssuer(string name)
         {
+			ExceptionHelper.ThrowIfNullOrEmpty ("name", name);
+
+			Key = name;
             Name = name;
         }
         #endregion

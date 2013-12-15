@@ -197,6 +197,25 @@ namespace DevAchievements.Domain
 			return MainRepository.FindBy (key);
 		}
 		
+				/// <summary>
+		/// Gets the developer by name.
+		/// </summary>
+		/// <returns>The developer</returns>
+		/// <param name="name">The name.</param>
+		public Developer GetDeveloperByName(string name)
+		{
+			Expression<Func<Developer, bool>> filter; 
+			
+			if(String.IsNullOrWhiteSpace(name))
+			{
+				filter = (e) => String.IsNullOrWhiteSpace(e.Name);
+			}
+			else {
+				filter = (e) => !String.IsNullOrWhiteSpace(e.Name) && e.Name.Equals(name, StringComparison.OrdinalIgnoreCase);
+			}
+			
+			return MainRepository.FindAll (filter).FirstOrDefault ();
+		}
 				
 		/// <summary>
 		/// Gets all Developers. 
@@ -229,9 +248,7 @@ namespace DevAchievements.Domain
 			ExceptionHelper.ThrowIfNull ("developer", developer);
 
 			ExecuteSaveSpecification (developer);
-
-			developer.AccountsAtIssuers = developer.AccountsAtIssuers.Where(i => !String.IsNullOrWhiteSpace(i.Username)).ToList();
-
+			
 			MainRepository [developer.Key] = developer;
 			UnitOfWork.Commit ();  
 		} 

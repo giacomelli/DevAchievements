@@ -23,6 +23,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 			Enabled = true;
             IsAvailable = true;
 			SupportedIssuers = issuers;
+
+			#if IGNORE_PROVIDERS
+			Enabled = false;
+			#endif
         }
         #endregion
 
@@ -94,7 +98,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders
             var followersAchievement = new Achievement()
             {
                 Name = name,
-                Value = value,
+				Value = Convert.ToInt32(value.ToString().Replace(".", "").Replace(",", "")),
                 Link = link,
 				Issuer = issuer
             };

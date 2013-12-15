@@ -6,7 +6,9 @@ using System.Web.Mvc;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public abstract class FluentUIBase<TData> : IFluentUI, IHtmlCreator where TData : FluentUIData, new()
+	public abstract class FluentUIBase<TFluent, TData> : IFluentUI, IHtmlCreator 
+		where TData : FluentUIData, new()
+		where TFluent : FluentUIBase<TFluent, TData>
     {
 		#region Constructors
 		protected FluentUIBase(string id)
@@ -28,13 +30,30 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#endregion
 
 		#region Methods
+		public TFluent Class(string name) 
+		{
+			Data.Class = name;
+
+			return (TFluent) this;
+		}
+
+		public TFluent Width(string width)
+		{
+			Data.Width = width;
+
+			return (TFluent) this;
+		}
+
 		string IHtmlString.ToHtmlString ()
 		{
 			HtmlCreated = true;
-			var html = new StringBuilder ();
 			var parent = this.Parent;
 
-			if (parent != null) {
+			if (parent == null) {
+				return CreateHtml ();
+			}
+			else {
+				var html = new StringBuilder ();
 				html.Append(parent.ToHtmlString ());
 
 				foreach (var c in parent.Children) {
@@ -42,11 +61,11 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 						html.Append(c.CreateHtml());
 					}
 				}
-			}
 
-			html.Append (CreateHtml ());
+				html.Append (CreateHtml ());
 
-			return html.ToString ();
+				return html.ToString();
+			}	
 		}
 
 		public abstract string CreateHtml ();

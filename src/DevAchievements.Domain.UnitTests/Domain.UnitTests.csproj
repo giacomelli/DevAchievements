@@ -65,6 +65,7 @@
     <Compile Include="Stubs\UnavailableAchievementProvider.cs" />
     <Compile Include="DomainSpecificationsUnitTestsGenerated.cs" />
     <Compile Include="DomainUnitTestsGenerated.cs" />
+    <Compile Include="AchievementTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

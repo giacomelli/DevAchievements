@@ -72,6 +72,8 @@
     <None Include="Scripts\select2\release.sh" />
     <None Include="Scripts\select2\select2.jquery.json" />
     <None Include="Globalization\Texts.en-US.txt" />
+    <None Include="Scripts\gvChart\README.md" />
+    <None Include="Scripts\gvChart\changes.txt" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <ItemGroup>
@@ -144,6 +146,7 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Developer\" />
@@ -161,6 +164,8 @@
     <Folder Include="Scripts\jquery-validation\" />
     <Folder Include="Scripts\select2\" />
     <Folder Include="Globalization\" />
+    <Folder Include="Scripts\Views\Home\" />
+    <Folder Include="Scripts\gvChart\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
@@ -428,6 +433,11 @@
     <Content Include="Scripts\Framework\Globalization\dataTables.en.js" />
     <Content Include="Scripts\Framework\Globalization\dataTables.es.js" />
     <Content Include="Scripts\Framework\Globalization\dataTables.pt.js" />
+    <Content Include="Scripts\Views\Home\DeveloperHome.js" />
+    <Content Include="Scripts\gvChart\index.html" />
+    <Content Include="Scripts\gvChart\jquery-1.4.4.min.js" />
+    <Content Include="Scripts\gvChart\jquery.gvChart-1.1.min.js" />
+    <Content Include="Scripts\gvChart\src\jquery.gvChart-1.1.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

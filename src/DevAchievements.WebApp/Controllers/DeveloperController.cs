@@ -9,6 +9,8 @@ using ProxyApi;
 using DevAchievements.Infrastructure.Web;
 using System.Security.Cryptography;
 using DevAchievements.Infrastructure.Web.UI;
+using DevAchievements.Infrastructure.Repositories.MongoDB;
+using MongoDB.Driver;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -80,6 +82,16 @@ namespace DevAchievements.WebApp.Controllers
 			return result;
 		}
 
+		// TODO: remover, apenas para teste.
+		// TODO: ver se devo adicionar no Skahal.Infrastructure.Repositories.MongoDB
+		public void RemoveAll() {
+			var url = new MongoUrl(System.Configuration.ConfigurationManager.AppSettings.Get("MONGOLAB_URI"));
+			var client = new MongoClient(url);
+			var server = client.GetServer();
+			var database = server.GetDatabase(String.IsNullOrEmpty(url.DatabaseName) ? "test" : url.DatabaseName);
+			database.GetCollection ("Developers").RemoveAll ();
+		}
+
 		[ProxyName("existsDeveloperAccountAtIssuer")]
 		public JsonResult ExistsDeveloperAccountAtIssuer(string issuerName, string username)
 		{
@@ -87,6 +99,15 @@ namespace DevAchievements.WebApp.Controllers
 	
 			return Json (service.ExistsDeveloperAccountAtIssuer(issuerName, username), JsonRequestBehavior.AllowGet);
 		} 
+
+		[ProxyName("getAchievementHistory")]
+		public JsonResult GetAchievementHistory(string developerKey, string achievementKey)
+		{
+			var developer = GetEntityById (new Guid(developerKey));
+			var achievement = developer.GetAchievementByKey (achievementKey);
+
+			return Json (achievement.History, JsonRequestBehavior.AllowGet);
+		}
 		#endregion
 
 		#region Helpers

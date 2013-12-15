@@ -34,7 +34,8 @@ namespace DevAchievements.Domain.UnitTests
 			if (account.Username.Equals ("DeveloperWithAchievements")) {
 				return new List<Achievement> () {
 					new Achievement () {
-						Name = "Achievement One"
+						Name = "Achievement One",
+						Issuer = new AchievementIssuer("Issuer One")
 					}
 				};
 			}

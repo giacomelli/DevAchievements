@@ -19,11 +19,9 @@ namespace DevAchievements.Domain
 		/// <summary>
 		/// Gets the achievements by developer.
 		/// </summary>
-		/// <returns>The achievements by developer.</returns>
 		/// <param name="developer">The developer.</param>
-		public IList<Achievement> GetAchievementsByDeveloper(Developer developer)
+		public void UpdateDeveloperAchievements(Developer developer)
 		{
-			var achievements = new List<Achievement> ();
 			var providers = m_providerService.GetAchievementProviders ();
 
 			foreach (var provider in providers) {
@@ -34,12 +32,34 @@ namespace DevAchievements.Domain
                     foreach (var issuer in provider.SupportedIssuers)
                     {
                         var accountAtIssuer = developer.GetAccountAtIssuer(issuer.Name);
+						var oldAchievements = developer.GetAchievementsAtIssuer (issuer.Name);
 
                         if (accountAtIssuer != null)
                         {
 							try
 							{
-                            	achievements.AddRange(provider.GetAchievements(accountAtIssuer));
+								var updatedAchievements = provider.GetAchievements(accountAtIssuer);
+
+								foreach(var updatedAchievement in updatedAchievements)
+								{
+									var oldAchievement = oldAchievements.FirstOrDefault(o => o.Name.Equals(updatedAchievement.Name, StringComparison.OrdinalIgnoreCase));
+
+									if(oldAchievement == null)
+									{
+										updatedAchievement.History.Add(new AchievementHistory(updatedAchievement));
+										developer.Achievements.Add(updatedAchievement);
+									}
+									else 
+									{
+										if(!oldAchievement.Value.Equals(updatedAchievement.Value))
+										{
+											developer.Achievements.Remove(oldAchievement);
+											updatedAchievement.History = oldAchievement.History;
+											updatedAchievement.History.Add(new AchievementHistory(updatedAchievement));
+											developer.Achievements.Add(updatedAchievement);
+										}
+									}
+								}
 							}
 							catch(Exception ex) 
 							{
@@ -52,7 +72,8 @@ namespace DevAchievements.Domain
 				}
 			}
 
-			return achievements;
+			var devService = new DeveloperService ();
+			devService.SaveDeveloper(developer);
 		}
 
 		/// <summary>

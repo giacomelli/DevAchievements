@@ -23,14 +23,12 @@
 			.Label("E-mail")
 			.Value(Model.Email)
 			.Gravatar()
+				.Class("dev-avatar")
 				.OnBlur()
 				.OnReady()
 	 )
 
-	 <div id="gravatasr" style='height:100px'></div>
-
-
-    for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
+	for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
     {
     	var account = Model.AccountsAtIssuers[i];
     	<div>

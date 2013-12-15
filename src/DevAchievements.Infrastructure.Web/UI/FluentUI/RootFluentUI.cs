@@ -3,7 +3,7 @@ using System.Web;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class RootFluentUI : FluentUIBase<FluentUIData>
+	public class RootFluentUI : FluentUIBase<RootFluentUI, FluentUIData>
 	{
 		#region Constructors
 		public RootFluentUI() : base("root") 

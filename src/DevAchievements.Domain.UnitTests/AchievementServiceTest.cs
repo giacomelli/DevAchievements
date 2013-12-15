@@ -11,7 +11,7 @@ namespace DevAchievements.Domain.UnitTests
 	{
 	
 		[Test ()]
-		public void GetAchievementsByDeveloper_NoAchievementsForDeveloper_EmptyList ()
+		public void UpdateDeveloperAchievements_NoAchievementsForDeveloper_EmptyList ()
 		{
 			DependencyService.Register<IUnitOfWork>(new MemoryUnitOfWork());
 			DependencyService.Register<IAchievementRepository>(new MemoryAchievementRepository());
@@ -19,12 +19,12 @@ namespace DevAchievements.Domain.UnitTests
 			var target = new AchievementService ();
             var account = new Developer();
 			account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithoutAchievements"));
-            var actual = target.GetAchievementsByDeveloper(account);
-			Assert.AreEqual (0, actual.Count);
+            target.UpdateDeveloperAchievements(account);
+			Assert.AreEqual (0, account.Achievements.Count);
 		}
 
 		[Test ()]
-		public void GetAchievementsByDeveloper_ThereAreAchievementsForDeveloper_AchievementsFromProviders()
+		public void UpdateDeveloperAchievements_ThereAreAchievementsForDeveloper_AchievementsFromProviders()
 		{
 			DependencyService.Register<IUnitOfWork>(new MemoryUnitOfWork());
 			DependencyService.Register<IAchievementRepository>(new MemoryAchievementRepository());
@@ -32,11 +32,11 @@ namespace DevAchievements.Domain.UnitTests
 			var target = new AchievementService ();
             var account = new Developer();
             account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithAchievements"));
-            var actual = target.GetAchievementsByDeveloper(account);
-			Assert.AreEqual (2, actual.Count);
+            target.UpdateDeveloperAchievements(account);
+			Assert.AreEqual (2, account.Achievements.Count);
 
-			Assert.AreEqual ("Achievement One", actual [1].Name);
-			Assert.AreEqual ("Achievement Two", actual [0].Name);
+			Assert.AreEqual ("Achievement One", account.Achievements [1].Name);
+			Assert.AreEqual ("Achievement Two", account.Achievements [0].Name);
 		}
 	}
 }

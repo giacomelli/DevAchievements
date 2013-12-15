@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class HiddenFluentUI: FluentUIBase<FluentUIData>
+	public class HiddenFluentUI: FluentUIBase<RootFluentUI, FluentUIData>
 	{
 		#region Constructors
 		public HiddenFluentUI(string id) : base(id) 

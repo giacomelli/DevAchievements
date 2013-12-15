@@ -6,29 +6,26 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
     public class FluentUIData
     {
 		#region Fields
-		private string m_name;
+		private string m_id;
 		#endregion
 
 		#region Properties
-		public string Id { get; set; }
-		public string Name 
-		{
+		public string Id { 
 			get {
-				return m_name;
+				return m_id;
 			}
 
 			set {
-				if(String.IsNullOrEmpty(Id)) {
-					Id = HtmlHelper.GenerateIdFromName (value);
-				}
-
-				m_name = value;
+				m_id = HtmlHelper.GenerateIdFromName (value);
 			}
 		}
+
+		public string Name { get; set; }
 
 		public string Label { get; set; }
 		public string Placeholder { get; set; }
 		public object Value { get; set; }
+		public string Class { get; set; }
 		public string Width { get; set; }
 		#endregion
     }

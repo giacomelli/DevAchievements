@@ -7,7 +7,7 @@ using Skahal.Infrastructure.Framework.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class ScriptFluentUI: FluentUIBase<FluentUIData>
+	public class ScriptFluentUI: FluentUIBase<ScriptFluentUI, FluentUIData>
     {
 		#region Constructors
 		public ScriptFluentUI(string code) : base(String.Empty) 
@@ -19,8 +19,6 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Methods
 		public override string CreateHtml ()
 		{
-			var builder = new DynamicTextBuilder ();
-		
 			var html = DynamicTextBuilder.Format (
 			@"
 			<script>

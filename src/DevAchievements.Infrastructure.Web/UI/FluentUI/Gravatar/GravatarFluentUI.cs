@@ -7,7 +7,7 @@ using Skahal.Infrastructure.Framework.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class GravatarFluentUI: FluentUIBase<FluentUIData>
+	public class GravatarFluentUI: FluentUIBase<GravatarFluentUI, FluentUIData>
     {
 		#region Constructors
 		public GravatarFluentUI() : base("Gravatar_" + Guid.NewGuid().ToString()) 
@@ -33,10 +33,8 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 
 		public override string CreateHtml ()
 		{
-			var builder = new DynamicTextBuilder ();
-			builder.AddBindable ("Gravatar", Data);
 			var html = DynamicTextBuilder.Format (
-				@"<div id='{Gravatar.Id}' style='width:{Gravatar.Width}'></div>", 
+				@"<div id='{Gravatar.Id}' style='width:{Gravatar.Width}' class='{Gravatar.Class}'></div>", 
 				"Gravatar", 
 				Data);
 

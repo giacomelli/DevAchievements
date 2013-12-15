@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>12.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B567CB4A-0772-4F6D-8507-83ED7B32B7C7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>DevAchievements.Infrastructure.Web.UnitTests</RootNamespace>
+    <AssemblyName>DevAchievements.Infrastructure.Web.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.4\lib\net35\HelperSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="UI\" />
+    <Folder Include="UI\FluentUI\" />
+    <Folder Include="UI\FluentUI\Gravatar\" />
+    <Folder Include="UI\FluentUI\Stubs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="UI\FluentUI\GravatarFluentUITest.cs" />
+    <Compile Include="UI\FluentUI\TableFluentUITest.cs" />
+    <Compile Include="UI\FluentUI\Stubs\RowStub.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevAchievements.Infrastructure.Web\Infrastructure.Web.csproj">
+      <Project>{F88388FC-CF47-46D8-AD5A-1274A003079F}</Project>
+      <Name>Infrastructure.Web</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+</Project>

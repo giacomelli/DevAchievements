@@ -150,6 +150,15 @@ namespace DevAchievements.WebApi.Controllers
 			return m_service.GetDeveloperByKey (key);
         }
 
+				/// <summary> 
+		/// Gets the developer by name.
+		/// </summary>
+		/// <returns>The developer</returns>
+		/// <param name="name">The name.</param>
+		public Developer GetDeveloperByName(string name)
+		{
+			return m_service.GetDeveloperByName (name);
+		}
 		 
 		
 		/// <summary>

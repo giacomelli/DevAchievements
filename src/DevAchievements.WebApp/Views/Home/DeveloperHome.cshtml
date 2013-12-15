@@ -1,9 +1,19 @@
 @model DevAchievements.Application.DeveloperHomeViewModel
 
+@section Scripts{
+	<script type="text/javascript" src="~/Scripts/Google.jsapi.js"></script>
+  	<script type="text/javascript" src="~/Scripts/Views/Home/DeveloperHome.js"></script>
+	<script>
+		google.load('visualization', '1.0', {'packages':['corechart']});
+	</script>
+ }
+
 <article>
 
 	<header>
 		@(Html.FluentUI()
+			.Hidden("developerKey")
+				.Value(Model.Developer.Key)
 			.Image(DeveloperUI.GetAvatarUrl(Model.Developer))
 				.Width("128px")
 		)
@@ -12,18 +22,25 @@
 @foreach(var issuer in Model.Issuers)
 {
 	<div class="panel panel-primary">
-  		<div class="panel-heading">@issuer.Name <span class="pull-right">@Model.Developer.GetAccountAtIssuer(issuer.Name).Username</span></div>
+  		<div class="panel-heading">@issuer <span class="pull-right">@Model.Developer.GetAccountAtIssuer(issuer).Username</span></div>
   		<div class="panel-body">
-    		  	<ul>            
-			    @foreach(var achievement in Model.GetAchievementsByIssuer(issuer))
-			    {
-			        <li>
-			            <a href="@achievement.Link">@achievement.Name : <span class="badge">@achievement.Value</span></a>
-			        </li>
-			    }
-			    </ul>
+  				<div class="container">
+  					<div class="row">
+  						<div class="col-md-7">
+			    		  	<ul>            
+						    @foreach(var achievement in Model.Developer.GetAchievementsAtIssuer(issuer))
+						    {
+						        <li>
+						            <a id="@achievement.Key" data-issuer="@issuer" class="achievement" href="@achievement.Link">@achievement.Name : <span class="badge">@achievement.Value</span></a>
+						        </li>
+						    }
+						    </ul>
+						</div>
+						<div id='@Html.Raw(issuer + "_chart")' class="col-md-5 achievement-stat-chart">
+			    		</div>
+				</div>
+	 		</div>
   		</div>
 	</div>
 }
-
 </article>

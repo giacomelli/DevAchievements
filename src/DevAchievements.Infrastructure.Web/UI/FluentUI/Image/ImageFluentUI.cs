@@ -7,19 +7,12 @@ using Skahal.Infrastructure.Framework.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class ImageFluentUI: FluentUIBase<FluentUIData>
+	public class ImageFluentUI: FluentUIBase<ImageFluentUI, FluentUIData>
     {
 		#region Methods
 		public ImageFluentUI (string url) : base(Guid.NewGuid().ToString())
 		{
 			Data.Value = url;
-		}
-
-		public ImageFluentUI Width(string width)
-		{
-			Data.Width = width;
-
-			return this;
 		}
 
 		public override string CreateHtml ()

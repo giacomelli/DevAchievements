@@ -19,6 +19,7 @@ namespace DevAchievements.Domain
         public Developer()
 		{
 			AccountsAtIssuers = new List<DeveloperAccountAtIssuer>();
+			Achievements = new List<Achievement> ();
 		}
 		#endregion
 
@@ -49,6 +50,12 @@ namespace DevAchievements.Domain
 		/// </summary>
 		/// <value>The accounts at issuers.</value>
 		public IList<DeveloperAccountAtIssuer> AccountsAtIssuers { get; set; }
+
+		/// <summary>
+		/// Gets or sets the achievements.
+		/// </summary>
+		/// <value>The achievements.</value>
+		public IList<Achievement> Achievements { get; set; }
 		#endregion
 
 		#region Methods
@@ -71,6 +78,37 @@ namespace DevAchievements.Domain
         {
 			return AccountsAtIssuers.FirstOrDefault(a => a.IssuerName.Equals(issuerName, StringComparison.OrdinalIgnoreCase));
         }
+
+		/// <summary>
+		/// Gets the achievements at issuer.
+		/// </summary>
+		/// <returns>The achievements at issuer.</returns>
+		/// <param name="issuerName">Issuer name.</param>
+		public IList<Achievement> GetAchievementsAtIssuer(string issuerName)
+		{
+			return Achievements
+					.Where(a => a.Issuer.Name.Equals(issuerName, StringComparison.OrdinalIgnoreCase))
+					.OrderBy(a => a.Name)
+					.ToList();
+		}
+
+		/// <summary>
+		/// Gets an achievement by key.
+		/// </summary>
+		/// <param name="key">The achievement name.</param>
+		public Achievement GetAchievementByKey (object key)
+		{
+			return Achievements.FirstOrDefault (a => a.Key.Equals (key));
+		}
+
+		/// <summary>
+		/// Gets an achievement by name.
+		/// </summary>
+		/// <param name="achievementName">The achievement name.</param>
+		public Achievement GetAchievementByName (string achievementName)
+		{
+			return Achievements.FirstOrDefault (a => a.Name.Equals (achievementName, StringComparison.OrdinalIgnoreCase));
+		}
 		#endregion
 	}
 }

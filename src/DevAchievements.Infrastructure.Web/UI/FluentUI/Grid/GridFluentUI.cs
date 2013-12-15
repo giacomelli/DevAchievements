@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class GridFluentUI: FluentUIBase<GridFluentUIData>
+	public class GridFluentUI: FluentUIBase<GridFluentUI, GridFluentUIData>
 	{
 		#region Constructors
 		public GridFluentUI(string id, string name, string controller) : base(id)

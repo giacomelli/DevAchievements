@@ -11,6 +11,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 	/// </summary>
 	public class MemoryAchievementProvider : AchievementProviderBase
 	{
+		#region Fields
+		private static int s_calls;
+		#endregion
+
 		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the
@@ -18,11 +22,11 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 		/// </summary>
 		public MemoryAchievementProvider()
 			: base(
-				new AchievementIssuer("GitHub"),
-				new AchievementIssuer("StackOverflow"),
-				new AchievementIssuer("Visual Studio Achievements"))
+				new AchievementIssuer("Test"))
 		{
-			Enabled = false;
+			#if IGNORE_PROVIDERS
+			Enabled = true;
+			#endif
 		}
 		#endregion
 
@@ -53,10 +57,12 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 			var achievements = new List<Achievement> ();
 
 			var issuer = SupportedIssuers.First (i => i.Name.Equals (account.IssuerName));
-			AddAchievement (achievements, "Test 1", 1, "http://localhost", issuer);
-			AddAchievement (achievements, "Test 2", 2, "http://localhost", issuer);
+			AddAchievement (achievements, "Test 1", 1 + s_calls, "http://localhost", issuer);
+			AddAchievement (achievements, "Test 2", 2 + s_calls + 2, "http://localhost", issuer);
 			AddAchievement (achievements, "Test 3", 3, "http://localhost", issuer);
 	
+			s_calls++;
+
 			return achievements;
 		}
 		#endregion

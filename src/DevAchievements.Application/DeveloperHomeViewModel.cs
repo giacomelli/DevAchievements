@@ -15,12 +15,10 @@ namespace DevAchievements.Application
 		/// Initializes a new instance of the <see cref="DevAchievements.Application.DeveloperHomeViewModel"/> class.
 		/// </summary>
 		/// <param name="developer">Developer.</param>
-		/// <param name="achievements">Achievements.</param>
-		public DeveloperHomeViewModel (Developer developer, IList<Achievement> achievements)
+		public DeveloperHomeViewModel (Developer developer)
 		{
 			Developer = developer;
-			Achievements = achievements;
-			Issuers = achievements.Select (a => a.Issuer).Distinct ().OrderBy (a => a.Name).ToList ();
+			Issuers = Developer.Achievements.Select (a => a.Issuer.Name).Distinct ().OrderBy (a => a).ToList ();
 		}
 		#endregion
 
@@ -33,25 +31,9 @@ namespace DevAchievements.Application
 		/// <summary>
 		/// Gets the issuers.
 		/// </summary>
-		public IList<AchievementIssuer> Issuers { get; private set; }
-
-		/// <summary>
-		/// Gets the achievements.
-		/// </summary>
-		public IList<Achievement> Achievements { get; private set; }
+		public IList<string> Issuers { get; private set; }
 		#endregion
 
-		#region Methods
-		/// <summary>
-		/// Gets the achievements by issuer.
-		/// </summary>
-		/// <returns>The achievements by issuer.</returns>
-		/// <param name="issuer">The issuer.</param>
-		public IList<Achievement> GetAchievementsByIssuer (AchievementIssuer issuer)
-		{
-			return Achievements.Where (a => a.Issuer.Equals (issuer)).ToList ();
-		}
-		#endregion
 	}
 }
 

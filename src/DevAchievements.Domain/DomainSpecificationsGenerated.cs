@@ -115,5 +115,31 @@ namespace DevAchievements.Domain.Specifications
 		#endregion
 	}
 	 
+		/// <summary>
+	/// Developer unique name specification.
+	/// </summary>
+	public class DeveloperUniqueNameSpecification : SpecificationBase<Developer>
+	{
+		#region implemented abstract members of SpecificationBase
+		/// <summary> 
+		/// Determines whether the target object satisfiy the specification.
+		/// </summary>
+		/// <param name="target">The target object to be validated.</param>
+		/// <returns><c>true</c> if this instance is satisfied by the specified target; otherwise, <c>false</c>.</returns>
+		public override bool IsSatisfiedBy (Developer target)
+		{
+			var developerService = new DeveloperService ();
+			var otherDeveloperWithSameName = developerService.GetDeveloperByName (target.Name);
+
+			if (otherDeveloperWithSameName != null && otherDeveloperWithSameName != target) {
+				NotSatisfiedReason = "There is another Developer with the name '{0}'. Developers should have unique name.".With (target.Name);
+				return false;
+			} 
+
+			return true;
+		}
+
+		#endregion
+	}
 	}
 

@@ -7,7 +7,7 @@ using Skahal.Infrastructure.Framework.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class TextBoxFluentUI: FluentUIBase<FluentUIData>
+	public class TextBoxFluentUI: FluentUIBase<TextBoxFluentUI, FluentUIData>
     {
 		#region Constructors
 		public TextBoxFluentUI(string id) : base(id) 

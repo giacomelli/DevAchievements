@@ -7,7 +7,7 @@ using Skahal.Infrastructure.Framework.Text;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public class EventFluentUI: FluentUIBase<FluentUIData>
+	public class EventFluentUI: FluentUIBase<EventFluentUI, FluentUIData>
     {
 		#region Constructors
 		public EventFluentUI(string name) : base(String.Empty) 
