@@ -7,7 +7,6 @@ namespace DevAchievements.Infrastructure.Web.UnitTests.UI.FluentUI.Stubs
     {
 		public string Text { get; set; }
 		public int Number { get; set; }
-		public DateTime Date { get; set; }
     }
 }
 
