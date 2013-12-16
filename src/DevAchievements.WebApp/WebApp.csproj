@@ -438,6 +438,7 @@
     <Content Include="Scripts\gvChart\jquery-1.4.4.min.js" />
     <Content Include="Scripts\gvChart\jquery.gvChart-1.1.min.js" />
     <Content Include="Scripts\gvChart\src\jquery.gvChart-1.1.js" />
+    <Content Include="Scripts\Google.jsapi.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
