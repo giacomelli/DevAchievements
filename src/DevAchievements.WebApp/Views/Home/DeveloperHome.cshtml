@@ -33,20 +33,29 @@
   				<div class="container">
   					<div class="row">
   						<div class="col-md-7">
-			    		  	<ul>            
-						    @foreach(var achievement in Model.Developer.GetAchievementsAtIssuer(issuer))
+			    		    @foreach(var achievement in Model.Developer.GetAchievementsAtIssuer(issuer))
 						    {
-						        <li>
-						            <a id="@achievement.Key" data-issuer="@issuer" class="achievement" href="@achievement.Link">@achievement.Name : 
-						            	<span class="badge">@achievement.Value</span> 
-						            </a>
-					            	<span class="badge achievement-value" title="Last day change">@achievement.GetValueChangeFrom(yesterday)</span>
-					            	<span class="badge achievement-value" title="Last week change">@achievement.GetValueChangeFrom(lastWeek)</span>
-					            	<span class="badge achievement-value" title="Last month change">@achievement.GetValueChangeFrom(lastMonth)</span>
-						            
-						        </li>
+						        
+					        	<div class="container">
+									<div class="row">
+										<div class="col-md-1">
+					        			    <a id="@achievement.Key" data-issuer="@issuer" class="achievement" href="@achievement.Link">@achievement.Name</a>
+					        			</div>
+										<div class="col-md-1">
+											<span class="badge">@achievement.Value</span> 
+										</div>
+										<div class="col-md-1">
+				            				<span class="badge achievement-value" title="Last day change">@achievement.GetValueChangeFrom(yesterday)</span>
+				            			</div>
+										<div class="col-md-1">
+				            				<span class="badge achievement-value" title="Last week change">@achievement.GetValueChangeFrom(lastWeek)</span>
+				            			</div>
+										<div class="col-md-1">
+				            				<span class="badge achievement-value" title="Last month change">@achievement.GetValueChangeFrom(lastMonth)</span>
+					            		</div>
+									</div>	
+								</div>
 						    }
-						    </ul>
 						</div>
 						<div id='@Html.Raw(issuer + "_chart")' class="col-md-5 achievement-stat-chart">
 			    		</div>
