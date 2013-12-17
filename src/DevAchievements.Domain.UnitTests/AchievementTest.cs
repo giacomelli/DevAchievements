@@ -7,7 +7,6 @@ namespace DevAchievements.Domain.UnitTests
     public class AchievementTest
     {
         [Test ()]
-		[Ignore]
 		public void GetValueChangeFrom_FutureDate_Zero ()
         {
 			var target = new Achievement () 
@@ -17,12 +16,12 @@ namespace DevAchievements.Domain.UnitTests
 			};
 
 			target.History.Add (new AchievementHistory () { DateTime = DateTime.Now.AddDays (-1), Value = 1 });
+			target.History.Add (new AchievementHistory (target));
 
 			Assert.AreEqual(0, target.GetValueChangeFrom(DateTime.Now.AddDays(1)));
         }
 
 		[Test ()]
-		[Ignore]
 		public void GetValueChangeFrom_OldDateWithNoChange_Zero ()
 		{
 			var target = new Achievement () 
@@ -37,7 +36,6 @@ namespace DevAchievements.Domain.UnitTests
 		}
 
 		[Test ()]
-		[Ignore]
 		public void GetValueChangeFrom_OldDateWithChange_ChangeValue ()
 		{
 			var now = DateTime.Now.Date;
@@ -51,6 +49,7 @@ namespace DevAchievements.Domain.UnitTests
 			target.History.Add (new AchievementHistory () { DateTime = now.AddDays (-6), Value = 1 });
 			target.History.Add (new AchievementHistory () { DateTime = now.AddDays (-4), Value = 2 });
 			target.History.Add (new AchievementHistory () { DateTime = now.AddDays (-2), Value = 3 });
+			target.History.Add (new AchievementHistory (target));
 
 			Assert.AreEqual(4, target.GetValueChangeFrom(now.AddDays(-6)));
 			Assert.AreEqual(4, target.GetValueChangeFrom(now.AddDays(-5)));

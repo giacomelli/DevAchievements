@@ -47,5 +47,29 @@ $(function() {
 });
 
 $(function() {
-	developerHome.init();      
+	developerHome.init();    
+
+	$('.achievement-value').each(function(i, e) {
+		var element = $(e);
+		var change = parseInt(element.text());
+
+		if(change == 0)
+		{
+			element.addClass('achievement-value-stable');
+		} 
+		else if(change > 0)
+		{
+			element.addClass('achievement-value-up');
+		} 
+		else if(change < 0)
+		{
+			element.addClass('achievement-value-down');
+		} 
+
+		element.popover({
+			title: element.prop('title'),
+			trigger: 'hover',
+			placement: 'top'
+		});
+	});  
 });

@@ -13,3 +13,18 @@
 {
 	min-height: 100px;
 }
+	
+.achievement-value-down 
+{
+	background-color: red;
+}
+
+.achievement-value-up 
+{
+	background-color: green;
+}
+
+.achievement-value-stable 
+{
+	background-color: BurlyWood;
+}

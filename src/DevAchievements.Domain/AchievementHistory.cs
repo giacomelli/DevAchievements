@@ -1,11 +1,13 @@
 using System;
+using System.Diagnostics;
 
 namespace DevAchievements.Domain
 {
 	/// <summary>
 	/// Achievement history.
 	/// </summary>
-    public class AchievementHistory
+	[DebuggerDisplay("{DateTime}: {Value}")]
+	public class AchievementHistory
     {
 		#region Constructors
 		/// <summary>
@@ -37,7 +39,7 @@ namespace DevAchievements.Domain
 		/// Gets or sets the value.
 		/// </summary>
 		/// <value>The value.</value>
-		public object Value { get; set; }
+		public int Value { get; set; }
 		#endregion
     }
 }

@@ -29,5 +29,18 @@ namespace DevAchievements.WebApp.Helpers
 
 			return MvcHtmlString.Empty;
 		}
+
+		public string GetValueChangeClassName(int change)
+		{
+			var className = "achievement-value-stable";
+
+			if (change > 0) {
+				className = "achievement-value-stable-up";
+			} else if (change < 0) {
+				className = "achievement-value-stable-down";
+			}
+
+			return className;
+		}
 	}
 }

@@ -19,6 +19,12 @@
 		)
 		@Html.DevName(@Model.Developer)
 	</header>
+@{
+	var yesterday = DateTime.Now.Date.AddMinutes(-1);
+	var lastWeek = DateTime.Now.Date.AddDays(-7);
+	var lastMonth = DateTime.Now.Date.AddDays(-30);
+}
+
 @foreach(var issuer in Model.Issuers)
 {
 	<div class="panel panel-primary">
@@ -31,7 +37,13 @@
 						    @foreach(var achievement in Model.Developer.GetAchievementsAtIssuer(issuer))
 						    {
 						        <li>
-						            <a id="@achievement.Key" data-issuer="@issuer" class="achievement" href="@achievement.Link">@achievement.Name : <span class="badge">@achievement.Value</span></a>
+						            <a id="@achievement.Key" data-issuer="@issuer" class="achievement" href="@achievement.Link">@achievement.Name : 
+						            	<span class="badge">@achievement.Value</span> 
+						            </a>
+					            	<span class="badge achievement-value" title="Last day change">@achievement.GetValueChangeFrom(yesterday)</span>
+					            	<span class="badge achievement-value" title="Last week change">@achievement.GetValueChangeFrom(lastWeek)</span>
+					            	<span class="badge achievement-value" title="Last month change">@achievement.GetValueChangeFrom(lastMonth)</span>
+						            
 						        </li>
 						    }
 						    </ul>

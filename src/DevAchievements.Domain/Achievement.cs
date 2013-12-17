@@ -1,12 +1,15 @@
 using System;
 using Skahal.Infrastructure.Framework.Domain;
 using System.Collections.Generic;
+using System.Linq;
+using System.Diagnostics;
 
 namespace DevAchievements.Domain
 {
     /// <summary>
     /// Represents an achievement earned by a developer.
     /// </summary>
+	[DebuggerDisplay("{Name} - {DateTime}: {Value}")]
 	public class Achievement : EntityBase, IAggregateRoot
 	{
 		#region Fields
@@ -94,7 +97,19 @@ namespace DevAchievements.Domain
 		/// <param name="day">The day.</param>
 		public int GetValueChangeFrom(DateTime day)
 		{
-			throw new NotImplementedException ();
+			var change = 0;
+			var orderedHistory = History.OrderByDescending (h => h.DateTime);
+			var nearest = orderedHistory.FirstOrDefault (h => h.DateTime <= day);
+
+			if (nearest == null) {
+				nearest = orderedHistory.LastOrDefault (h => h.DateTime > day);
+			}
+
+			if (nearest != null) {
+				change = Value - nearest.Value;
+			}
+
+			return change;
 		}
 
 		#endregion
