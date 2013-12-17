@@ -9,19 +9,43 @@
 	margin:20px;
 }
 
+.achievement 
+{
+}
+
+.achievement div
+{
+	text-align:right;
+}
+
+.achievement-highlight div
+{
+	background-color:beige;
+}
+
 .achievement-stat-chart
 {
 	min-height: 100px;
 }
-	
+
 .achievement-value-down 
 {
 	background-color: red;
 }
 
+.achievement-value-down:before
+{
+    content: "-";
+}
+
 .achievement-value-up 
 {
 	background-color: green;
+}
+
+.achievement-value-up:before
+{
+    content: "+";
 }
 
 .achievement-value-stable 

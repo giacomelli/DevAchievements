@@ -1,8 +1,5 @@
 $(function() {
 	developerHome = {	
-		init: function() {
-			this.initChartsEvents();
-		},
 		initChartsEvents: function() {
 			$('.achievement').mouseover(function() {
 				developerHome.getAchievementStatChart($(this));
@@ -39,34 +36,47 @@ $(function() {
 			      	var chart = new google.visualization.LineChart(container);
 			        chart.draw(data, options);
 				});
+		},
+		applyValueChangesStyles: function() {
+			$('.achievement-value').each(function(i, e) {
+				var element = $(e);
+				var change = parseInt(element.text().trim());
+			
+				if(change == 0)
+				{
+					element.addClass('achievement-value-stable');
+				} 
+				else if(change > 0)
+				{
+					element.addClass('achievement-value-up');
+				} 
+				else if(change < 0)
+				{
+					element.addClass('achievement-value-down');
+				} 
+
+				element.popover({
+					title: element.prop('title'),
+					trigger: 'hover',
+					placement: 'top',
+					container: 'body'
+				});
+			});  
+		},
+		applyAchievementHighlight: function() {
+			$('.achievement').mouseover(function() {
+				$(this).addClass('achievement-highlight');
+			});
+
+			$('.achievement').mouseout(function() {
+				$(this).removeClass('achievement-highlight');
+			});
 		}
 	};
 });
 
 $(function() {
-	developerHome.init();    
-
-	$('.achievement-value').each(function(i, e) {
-		var element = $(e);
-		var change = parseInt(element.text());
-
-		if(change == 0)
-		{
-			element.addClass('achievement-value-stable');
-		} 
-		else if(change > 0)
-		{
-			element.addClass('achievement-value-up');
-		} 
-		else if(change < 0)
-		{
-			element.addClass('achievement-value-down');
-		} 
-
-		element.popover({
-			title: element.prop('title'),
-			trigger: 'hover',
-			placement: 'top'
-		});
-	});  
+	developerHome.initChartsEvents();    
+	developerHome.applyValueChangesStyles(); 
+	developerHome.applyAchievementHighlight();
 });
