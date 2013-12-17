@@ -21,14 +21,14 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Methods
 		public TableFluentUI<TRow> Caption(string caption)
 		{
-			Data.Label = caption;
+			UIData.Label = caption;
 
 			return this;
 		}
 
 		public TableFluentUI<TRow> Rows(IEnumerable<TRow> rows)
 		{
-			Data.Value = rows;
+			UIData.Value = rows;
 
 			return this;
 		}
@@ -40,18 +40,18 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 				"Table", 
 				new 
 				{
-					Id = Data.Id,
-					Caption = Data.Label
+					Id = UIData.Id,
+					Caption = UIData.Label
 				});
 
 			builder.Append ("<table id='{Table.Id}'>"); 
 
-			if (!String.IsNullOrEmpty (Data.Label)) {
+			if (!String.IsNullOrEmpty (UIData.Label)) {
 				builder.Append ("<caption>{Table.Caption}</caption>"); 
 			}
 
 
-			var rows = Data.Value as IEnumerable<TRow>;
+			var rows = UIData.Value as IEnumerable<TRow>;
 			var rowsCont = rows.Count();
 
 			if (rowsCont > 0) {

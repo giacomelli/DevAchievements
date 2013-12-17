@@ -18,7 +18,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Methods
 		public ButtonFluentUI Label (string value, params object[] args)
 		{
-			Data.Label = args.Length == 0  ? value : value.With(args);
+			UIData.Label = args.Length == 0  ? value : value.With(args);
 
 			return this;
 		}
@@ -28,7 +28,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			var html = DynamicTextBuilder.Format (
 				@"<button class='btn btn-primary'>{Button.Label}</button>", 
 				"Button", 
-				Data);
+				UIData);
 			
 			return html;
 		}

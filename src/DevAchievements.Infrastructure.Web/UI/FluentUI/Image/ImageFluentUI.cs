@@ -12,7 +12,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Methods
 		public ImageFluentUI (string url) : base(Guid.NewGuid().ToString())
 		{
-			Data.Value = url;
+			UIData.Value = url;
 		}
 
 		public override string CreateHtml ()
@@ -20,7 +20,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			var html = DynamicTextBuilder.Format (
 				@"<img src='{Image.Value}' />", 
 				"Image", 
-				Data);
+				UIData);
 			
 			return html;
 		}

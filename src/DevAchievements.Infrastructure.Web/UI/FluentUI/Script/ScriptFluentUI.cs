@@ -12,7 +12,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Constructors
 		public ScriptFluentUI(string code) : base(String.Empty) 
 		{
-			Data.Value = code;
+			UIData.Value = code;
 		}
 		#endregion
 
@@ -27,7 +27,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			"Script", 
 			new 
 			{
-				Code = Data.Value
+				Code = UIData.Value
 			});
 
 			return html;

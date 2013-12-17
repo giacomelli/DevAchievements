@@ -43,13 +43,13 @@
   <ItemGroup>
     <Folder Include="UI\" />
     <Folder Include="UI\FluentUI\" />
-    <Folder Include="UI\FluentUI\Gravatar\" />
     <Folder Include="UI\FluentUI\Stubs\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="UI\FluentUI\GravatarFluentUITest.cs" />
     <Compile Include="UI\FluentUI\TableFluentUITest.cs" />
     <Compile Include="UI\FluentUI\Stubs\RowStub.cs" />
+    <Compile Include="UI\FluentUI\TextBoxFluentUITest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DevAchievements.Infrastructure.Web\Infrastructure.Web.csproj">

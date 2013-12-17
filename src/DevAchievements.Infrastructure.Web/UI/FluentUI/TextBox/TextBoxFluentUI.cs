@@ -18,28 +18,28 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Methods
 		public TextBoxFluentUI Name(string value, params object[] args)
 		{
-			Data.Name = args.Length == 0 ? value : value.With(args);
+			UIData.Name = args.Length == 0 ? value : value.With(args);
 
 			return this;
 		}
 
 		public TextBoxFluentUI Label (string value, params object[] args)
 		{
-			Data.Label = args.Length == 0  ? value : value.With(args);
+			UIData.Label = args.Length == 0  ? value : value.With(args);
 
 			return this;
 		}
 
 		public TextBoxFluentUI Placeholder(string value, params object[] args)
 		{
-			Data.Placeholder = args.Length == 0  ? value : value.With(args);
+			UIData.Placeholder = args.Length == 0  ? value : value.With(args);
 
 			return this;
 		}
 
 		public TextBoxFluentUI Value(object value)
 		{
-			Data.Value = value;
+			UIData.Value = value;
 
 			return this;
 		}
@@ -47,12 +47,17 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		public override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
-				 @"<div class='form-group'>
-					<label>{TextBox.Label}</label>
-					<input type='text' id='{TextBox.Id}' name='{TextBox.Name}' class='form-control' placeholder='{TextBox.Placeholder}' value='{TextBox.Value}' />
-				 </div>", 
+				@"<div class='form-group'><label>{TextBox.Label}</label><input type='text' id='{TextBox.Id}' name='{TextBox.Name}' class='{TextBox.Class}' placeholder='{TextBox.Placeholder}' value='{TextBox.Value}' {TextBox.Attributes} /></div>", 
 				"TextBox", 
-				Data);
+				new { 
+					Id = UIData.Id,
+					Name = UIData.Name,
+					Label = UIData.Label,
+					Class = UIData.Class,
+					Placeholder = UIData.Placeholder,
+					Value = UIData.Value,
+					Attributes = UIData.CreateAttributesHtml()
+				});
 			
 			return html;
 		}

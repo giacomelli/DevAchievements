@@ -10,26 +10,26 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		public GridColumnFluentUI(GridFluentUI grid, string title) : base(Guid.NewGuid().ToString())
 		{
 			m_grid = grid;
-			Data.Title = title;
+			UIData.Title = title;
 		}
 
 		public GridColumnFluentUI Width(string width)
 		{
-			Data.Width = width;
+			UIData.Width = width;
 
 			return this;
 		}
 
 		public GridFluentUI AsTemplate(string template)
 		{
-			Data.Template = template;
+			UIData.Template = template;
 
 			return m_grid;
 		}
 
 		public GridFluentUI AsImage() 
 		{
-			return AsTemplate("<img src='{{data}}' style='width:{0}' />".With (Data.Width));
+			return AsTemplate("<img src='{{data}}' style='width:{0}' />".With (UIData.Width));
 		}
 
 		public GridColumnFluentUI Column(string title = "")

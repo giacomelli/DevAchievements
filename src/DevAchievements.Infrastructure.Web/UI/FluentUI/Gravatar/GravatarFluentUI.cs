@@ -12,7 +12,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Constructors
 		public GravatarFluentUI() : base("Gravatar_" + Guid.NewGuid().ToString()) 
 		{
-			Data.Width = "64px";
+			UIData.Width = "64px";
 		}
 		#endregion
 
@@ -36,7 +36,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			var html = DynamicTextBuilder.Format (
 				@"<div id='{Gravatar.Id}' style='width:{Gravatar.Width}' class='{Gravatar.Class}'></div>", 
 				"Gravatar", 
-				Data);
+				UIData);
 
 			return html;
 		}

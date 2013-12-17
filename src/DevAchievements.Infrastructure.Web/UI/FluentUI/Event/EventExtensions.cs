@@ -9,7 +9,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		public static EventFluentUI Blur(this IFluentUI ui, string callbackFormat, params object[] args)
         {
 			var child = ui.CreateChild (new EventFluentUI ("blur"));
-			child.Data.Value = callbackFormat.With (args);
+			child.UIData.Value = callbackFormat.With (args);
 
 			return (EventFluentUI) child;
         }

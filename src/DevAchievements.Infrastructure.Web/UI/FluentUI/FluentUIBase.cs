@@ -15,9 +15,9 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		{
 			Id = id;
 			Children = new List<IHtmlCreator> ();
-			Data = new TData ();
-			Data.Id = id;
-			Data.Name = id;
+			UIData = new TData ();
+			UIData.Id = id;
+			UIData.Name = id;
 		}
 		#endregion
 	
@@ -26,23 +26,45 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		public IHtmlCreator Parent { get; set; }
 		public IList<IHtmlCreator> Children { get; set; }
 		public bool HtmlCreated { get; private set; }
-		internal TData Data { get; private set; }
+		internal TData UIData { get; private set; }
 		#endregion
 
 		#region Methods
 		public TFluent Class(string name) 
 		{
-			Data.Class = name;
+			UIData.Class = name;
 
 			return (TFluent) this;
 		}
 
 		public TFluent Width(string width)
 		{
-			Data.Width = width;
+			UIData.Width = width;
 
 			return (TFluent) this;
 		}
+
+		public TFluent Attr(string name, string value)
+		{
+			UIData.Attributes.Add (name, value);
+
+			return (TFluent) this;
+		}
+
+		public TFluent Attr(string name)
+		{
+			UIData.Attributes.Add (name, FluentUIData.AttributeWithoutValueMark);
+
+			return (TFluent) this;
+		}
+
+		public TFluent Data(string name, string value)
+		{
+			UIData.Attributes.Add ("data-" + name, value);
+
+			return (TFluent) this;
+		}
+
 
 		string IHtmlString.ToHtmlString ()
 		{

@@ -13,9 +13,9 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Constructors
 		public GridFluentUI(string id, string name, string controller) : base(id)
 		{
-			Data.Id = id;
-			Data.Name = name;
-			Data.Controller = controller;
+			UIData.Id = id;
+			UIData.Name = name;
+			UIData.Controller = controller;
 		}
 
 		public GridFluentUI(string controller) : this("grid", "grid", controller)
@@ -28,7 +28,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		public GridColumnFluentUI Column(string title = "")
 		{
 			var column = new GridColumnFluentUI (this, title);
-			Data.Columns.Add (column);
+			UIData.Columns.Add (column);
 			this.CreateChild (column);
 
 			return column;
@@ -36,36 +36,36 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 
 		public GridFluentUI Deletable(bool isDeletable = true)
 		{
-			Data.IsDeletable = isDeletable;
+			UIData.IsDeletable = isDeletable;
 
 			return this;
 		}
 
 		public GridFluentUI Editable(bool isEditable = true)
 		{
-			Data.IsEditable = isEditable;
+			UIData.IsEditable = isEditable;
 
 			return this;
 		}
 
 		public GridFluentUI Searchable(bool isSearchable = true)
 		{
-			Data.IsSearchable = isSearchable;
+			UIData.IsSearchable = isSearchable;
 
 			return this;
 		}
 
 		public GridFluentUI Paginable(bool isPaginable = true, bool showInfo = true)
 		{
-			Data.IsPaginable = isPaginable;
-			Data.EnabledPaginationInfo = showInfo;
+			UIData.IsPaginable = isPaginable;
+			UIData.EnabledPaginationInfo = showInfo;
 
 			return this;
 		}
 
 		public GridFluentUI Sortable(bool isSortable = true)
 		{
-			Data.IsSortable = isSortable;
+			UIData.IsSortable = isSortable;
 
 			return this;
 		}
@@ -98,8 +98,8 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 					Name = GetNameMarkup(),
 					EnableSource = GetEnableSource(),
 					Controller = GetControllerPath(),
-					ColumnsTitle = String.Join(", ", Data.Columns.Select(c => c.Data.Title)),
-					ColumnsWidth = String.Join(", ", Data.Columns.Select(c => c.Data.Width)),
+					ColumnsTitle = String.Join(", ", UIData.Columns.Select(c => c.UIData.Title)),
+					ColumnsWidth = String.Join(", ", UIData.Columns.Select(c => c.UIData.Width)),
 					ColumnsTemplate = GetColumnsTemplateMarkup(),
 					Deletable = GetDeletableMarkup(),
 					Editable = GetEditableMarkup(),
@@ -114,33 +114,33 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 
 		private string GetIdMarkup()
 		{
-			var idMarkup = string.IsNullOrWhiteSpace(Data.Id) ? string.Empty : string.Format("id='{0}'", Data.Id);
+			var idMarkup = string.IsNullOrWhiteSpace(UIData.Id) ? string.Empty : string.Format("id='{0}'", UIData.Id);
 			return idMarkup;
 		}
 
 		private string GetNameMarkup()
 		{
-			var nameMarkup = string.IsNullOrWhiteSpace(Data.Name) ? string.Empty : string.Format("name='{0}'", Data.Name);
+			var nameMarkup = string.IsNullOrWhiteSpace(UIData.Name) ? string.Empty : string.Format("name='{0}'", UIData.Name);
 			return nameMarkup;
 		}
 
 		private string GetEnableSource()
 		{
-			return Data.EnabledSource ? "data-source-enabled='true'" : "data-source-enabled='false'";
+			return UIData.EnabledSource ? "data-source-enabled='true'" : "data-source-enabled='false'";
 		}
 
 		private string GetControllerPath()
 		{
-			return Data.Controller;
+			return UIData.Controller;
 		}
 
 		private string GetColumnsTemplateMarkup()
 		{
 			var markup = new StringBuilder ();
-			var columnsTemplate = Data.Columns.Where (c => !String.IsNullOrWhiteSpace (c.Data.Template));
+			var columnsTemplate = UIData.Columns.Where (c => !String.IsNullOrWhiteSpace (c.UIData.Template));
 
 			foreach (var c in columnsTemplate) {
-				markup.AppendFormat ("data-column-{0}-template=\"{1}\"", c.Data.Title.ToLowerInvariant(), c.Data.Template);
+				markup.AppendFormat ("data-column-{0}-template=\"{1}\"", c.UIData.Title.ToLowerInvariant(), c.UIData.Template);
 			}
 
 			return markup.ToString ();
@@ -148,37 +148,37 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 
 		private string GetPaginableMarkup()
 		{
-			var paginableMarkup = Data.IsPaginable ? "data-paginate-enabled='true'" : "data-paginate-enabled='false'";
+			var paginableMarkup = UIData.IsPaginable ? "data-paginate-enabled='true'" : "data-paginate-enabled='false'";
 			return paginableMarkup;
 		}
 
 		private string GetSearchableMarkup()
 		{
-			var searchableMarkup = Data.IsSearchable ? "data-search-enabled='true'" : "data-search-enabled='false'";
+			var searchableMarkup = UIData.IsSearchable ? "data-search-enabled='true'" : "data-search-enabled='false'";
 			return searchableMarkup;
 		}
 
 		private string GetSortableMarkup()
 		{
-			var sortableMarkup = Data.IsSortable ? "data-sort-enabled='true'" : "data-sort-enabled='false'";
+			var sortableMarkup = UIData.IsSortable ? "data-sort-enabled='true'" : "data-sort-enabled='false'";
 			return sortableMarkup;
 		}
 
 		private string GetShowInfoMarkup()
 		{
-			var showInfoMarkup = Data.EnabledPaginationInfo ? "data-info-enabled='true'" : "data-info-enabled='false'";
+			var showInfoMarkup = UIData.EnabledPaginationInfo ? "data-info-enabled='true'" : "data-info-enabled='false'";
 			return showInfoMarkup;
 		}
 
 		private string GetEditableMarkup()
 		{
-			var editableMarkup = Data.IsEditable ? "data-edit-enabled='true'" : "data-edit-enabled='false'";
+			var editableMarkup = UIData.IsEditable ? "data-edit-enabled='true'" : "data-edit-enabled='false'";
 			return editableMarkup;
 		}
 
 		private string GetDeletableMarkup()
 		{
-			return Data.IsDeletable ? "data-delete-msg='{0}'".With("ConfirmDelete".Translate()) : string.Empty;
+			return UIData.IsDeletable ? "data-delete-msg='{0}'".With("ConfirmDelete".Translate()) : string.Empty;
 		}
 		#endregion
 	}

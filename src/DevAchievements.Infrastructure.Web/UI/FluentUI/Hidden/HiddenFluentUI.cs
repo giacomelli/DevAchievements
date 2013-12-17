@@ -16,14 +16,14 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Methods
 		public HiddenFluentUI Name(string value, params object[] args)
 		{
-			Data.Name = args.Length == 0 ? value : value.With(args);
+			UIData.Name = args.Length == 0 ? value : value.With(args);
 
 			return this;
 		}
 
 		public HiddenFluentUI Value(object value)
 		{
-			Data.Value = value;
+			UIData.Value = value;
 
 			return this;
 		}
@@ -33,7 +33,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			var html = DynamicTextBuilder.Format (
 				@"<input id='{Hidden.Id}' name='{Hidden.Name}' type='hidden' value='{Hidden.Value}'>", 
 				"Hidden", 
-				Data);
+				UIData);
 
 			return html;
 		}

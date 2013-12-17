@@ -12,7 +12,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Constructors
 		public EventFluentUI(string name) : base(String.Empty) 
 		{
-			Data.Name = name;
+			UIData.Name = name;
 		}
 		#endregion
 
@@ -31,9 +31,9 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 				          "Event", 
 				           new 
 				{ 
-					Callback = Data.Value,
+					Callback = UIData.Value,
 					ParentId = Parent.Id,
-					Name = Data.Name
+					Name = UIData.Name
 				});
 			
 			return html;
