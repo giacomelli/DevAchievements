@@ -10,6 +10,9 @@
 	@(Html.FluentUI()
 		.Hidden("Key")
 			.Value(Model.Key)
+		
+		.Hidden("Token")
+			.Value(TempData["token"])
 
 		.TextBox("Username")
 			.Label("Username")

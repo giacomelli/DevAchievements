@@ -23,7 +23,8 @@ namespace DevAchievements.WebApp.Controllers
 		[HttpGet]
 		public ActionResult Twitter(string oauth_token) 
 		{
-			return RedirectToAction("Create", "Developer", new { token = oauth_token });
+			TempData ["token"] = oauth_token;
+			return RedirectToAction("Create", "Developer");
 		}
     }
 }
