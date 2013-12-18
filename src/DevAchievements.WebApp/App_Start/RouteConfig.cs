@@ -19,6 +19,13 @@ namespace DevAchievements.WebApp
 				defaults: new { controller = "Developer", action = "Index", id = UrlParameter.Optional }
 			);
 
+			routes.MapRoute (
+				name: "Default_OAuth",
+				url: "OAuth/{action}/{id}",
+				defaults: new { controller = "OAuth", action = "Index", id = UrlParameter.Optional }
+			);
+
+
 			routes.MapRoute(
 				"Developer_Profile", 
 				"{username}", 

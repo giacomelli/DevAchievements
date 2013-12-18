@@ -13,7 +13,7 @@ namespace DevAchievements.Infrastructure.Web.UnitTests.UI.FluentUI
 		public void CreateHtml_Fluent_Html ()
 		{
 			var target = 
-				new RootFluentUI ()
+				new RootFluentUI ("test")
 					.Table<RowStub> ("test")
 					.Rows (new List<RowStub> () 
 					{ 

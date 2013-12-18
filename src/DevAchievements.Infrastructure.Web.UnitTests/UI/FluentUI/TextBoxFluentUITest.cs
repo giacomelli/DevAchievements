@@ -11,7 +11,7 @@ namespace DevAchievements.Infrastructure.Web.UnitTests.UI.FluentUI
 		public void CreateHtml_Fluent_Html ()
 		{
 			var target = 
-				new RootFluentUI ()
+				new RootFluentUI ("test")
 					.TextBox ("test_{0}", 1)
 					.Name ("name 1")
 					.Label("label 1")

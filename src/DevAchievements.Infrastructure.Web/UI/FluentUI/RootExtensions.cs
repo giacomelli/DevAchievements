@@ -1,6 +1,7 @@
 using System;
 using System.Web.Mvc;
 using System.Web;
+using DevAchievements.Infrastructure.Web.UI.FluentUI.Configurations;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
@@ -8,7 +9,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
     {
 		public static RootFluentUI FluentUI (this HtmlHelper helper)
         {
-			return new RootFluentUI();
+			return GlobalConfiguration.Factory.Create<RootFluentUI> ("root");
         }
     }
 }

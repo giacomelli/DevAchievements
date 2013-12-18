@@ -13,6 +13,7 @@ using MongoDB.Bson.Serialization;
 using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Logging;
 using Skahal.Infrastructure.Framework.Repositories;
+using DevAchievements.WebApp.App_Start;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile="Web.config", Watch = true)]
 
@@ -49,6 +50,13 @@ namespace DevAchievements.WebApp
             var dummy = typeof(AchievementProviderBase);
             LogService.Debug("{0} assembly loaded.", dummy.Assembly.GetName().Name);
             
+			LogService.Debug ("Registering OAuth providers...");
+			AuthConfig.RegisterAuth ();
+
+			LogService.Debug ("Registering FluentUI...");
+			FluentUIConfig.Register ();
+
+
 			LogService.Debug ("Application started.");
 		}
 

@@ -6,7 +6,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 	public class RootFluentUI : FluentUIBase<RootFluentUI, FluentUIData>
 	{
 		#region Constructors
-		public RootFluentUI() : base("root") 
+		public RootFluentUI(string id) : base(id) 
 		{
 		}
 		#endregion

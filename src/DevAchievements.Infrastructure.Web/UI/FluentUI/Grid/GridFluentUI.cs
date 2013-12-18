@@ -27,7 +27,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#region Methods
 		public GridColumnFluentUI Column(string title = "")
 		{
-			var column = new GridColumnFluentUI (this, title);
+			var column = new GridColumnFluentUI (Guid.NewGuid().ToString(), this, title);
 			UIData.Columns.Add (column);
 			this.CreateChild (column);
 

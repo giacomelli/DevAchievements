@@ -105,6 +105,9 @@
     <Compile Include="UI\FluentUI\Script\ScriptFluentUI.cs" />
     <Compile Include="UI\FluentUI\Table\TableExtensions.cs" />
     <Compile Include="UI\FluentUI\Table\TableFluentUI.cs" />
+    <Compile Include="UI\FluentUI\IFluentUIFactory.cs" />
+    <Compile Include="UI\FluentUI\DefaultFluentUIFactory.cs" />
+    <Compile Include="UI\FluentUI\Configurations\GlobalConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logging\" />
@@ -122,6 +125,7 @@
     <Folder Include="UI\FluentUI\Event\" />
     <Folder Include="UI\FluentUI\Script\" />
     <Folder Include="UI\FluentUI\Table\" />
+    <Folder Include="UI\FluentUI\Configurations\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

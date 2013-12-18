@@ -32,12 +32,7 @@
 {
 	background-color: red;
 }
-
-.achievement-value-down:before
-{
-    content: "-";
-}
-
+	
 .achievement-value-up 
 {
 	background-color: green;

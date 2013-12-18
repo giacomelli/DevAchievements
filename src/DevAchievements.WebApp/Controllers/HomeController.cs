@@ -8,6 +8,7 @@ using DevAchievements.Domain;
 using Skahal.Infrastructure.Framework.Logging;
 using HelperSharp;
 using DevTrends.MvcDonutCaching;
+using Microsoft.Web.WebPages.OAuth;
 
 namespace DevAchievements.WebApp.Controllers
 {

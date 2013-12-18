@@ -7,7 +7,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
     {
 		private GridFluentUI m_grid;
 
-		public GridColumnFluentUI(GridFluentUI grid, string title) : base(Guid.NewGuid().ToString())
+		public GridColumnFluentUI(string id, GridFluentUI grid, string title) : base(id)
 		{
 			m_grid = grid;
 			UIData.Title = title;

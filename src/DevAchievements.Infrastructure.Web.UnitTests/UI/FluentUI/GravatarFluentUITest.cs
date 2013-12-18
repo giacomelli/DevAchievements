@@ -12,7 +12,7 @@ namespace DevAchievements.Infrastructure.Web.UnitTests.UI.FluentUI.Gravatar
 		public void CreateHtml_Fluent_Html ()
         {
 			var target = 
-			new RootFluentUI()
+				new RootFluentUI("test")
 				.TextBox("test")
 					.Gravatar()	
 						.Class ("dev-avatar")

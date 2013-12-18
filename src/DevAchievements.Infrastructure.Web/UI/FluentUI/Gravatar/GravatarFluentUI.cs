@@ -10,7 +10,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 	public class GravatarFluentUI: FluentUIBase<GravatarFluentUI, FluentUIData>
     {
 		#region Constructors
-		public GravatarFluentUI() : base("Gravatar_" + Guid.NewGuid().ToString()) 
+		public GravatarFluentUI(string id) : base(id) 
 		{
 			UIData.Width = "64px";
 		}
