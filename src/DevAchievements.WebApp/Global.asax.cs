@@ -50,8 +50,8 @@ namespace DevAchievements.WebApp
             var dummy = typeof(AchievementProviderBase);
             LogService.Debug("{0} assembly loaded.", dummy.Assembly.GetName().Name);
             
-			LogService.Debug ("Registering OAuth providers...");
-			AuthConfig.RegisterAuth ();
+			//LogService.Debug ("Registering OAuth providers...");
+			//AuthConfig.RegisterAuth ();
 
 			LogService.Debug ("Registering FluentUI...");
 			FluentUIConfig.Register ();
