@@ -178,9 +178,6 @@
     <Reference Include="WebMatrix.WebData">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.3.0.0\lib\net45\WebMatrix.WebData.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Web.WebPages.OAuth">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.3.0.0\lib\net45\Microsoft.Web.WebPages.OAuth.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Developer\" />
