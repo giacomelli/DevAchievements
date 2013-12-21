@@ -3,6 +3,7 @@ using System.Linq;
 using DevAchievements.Domain;
 using HelperSharp;
 using StackExchange.StacMan;
+using StackExchange.StacMan.Answers;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
 {
@@ -63,9 +64,9 @@ namespace DevAchievements.Infrastructure.AchievementProviders.StackExchange
 
             if (user != null)
             {
-				var answers = m_client.Users.GetAnswers("stackoverflow", new int[] { user.UserId }, "!9f8L7FuTn").Result.Data.Items;
+				var answers = m_client.Users.GetAnswers("stackoverflow", new int[] { user.UserId }, "!9f8L7FuTn", pagesize:1, sort: Sort.Votes).Result.Data.Items;
 
-                if (user != null)
+				if (answers != null)
                 {
                     AddAchievement(achievements, "Reputation", user.Reputation, "{0}?tab=reputation".With(user.Link));
 

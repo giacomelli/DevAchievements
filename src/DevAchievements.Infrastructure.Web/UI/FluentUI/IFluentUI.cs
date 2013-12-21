@@ -4,7 +4,7 @@ using System.Web;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public interface IFluentUI : IHtmlString
+	public interface IFluentUI
     {
     }
 }

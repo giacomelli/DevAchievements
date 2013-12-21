@@ -44,7 +44,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"<div class='form-group'><label>{TextBox.Label}</label><input type='text' id='{TextBox.Id}' name='{TextBox.Name}' class='{TextBox.Class}' placeholder='{TextBox.Placeholder}' value='{TextBox.Value}' {TextBox.Attributes} /></div>", 

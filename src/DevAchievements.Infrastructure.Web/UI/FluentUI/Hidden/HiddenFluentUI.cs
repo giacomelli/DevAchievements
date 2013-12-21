@@ -28,7 +28,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 	
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"<input id='{Hidden.Id}' name='{Hidden.Name}' type='hidden' value='{Hidden.Value}'>", 

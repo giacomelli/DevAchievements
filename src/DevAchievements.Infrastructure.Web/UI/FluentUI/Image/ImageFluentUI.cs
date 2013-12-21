@@ -15,7 +15,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			UIData.Value = url;
 		}
 
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"<img src='{Image.Value}' />", 

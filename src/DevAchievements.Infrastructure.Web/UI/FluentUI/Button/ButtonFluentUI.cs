@@ -23,7 +23,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"<button class='btn btn-primary'>{Button.Label}</button>", 

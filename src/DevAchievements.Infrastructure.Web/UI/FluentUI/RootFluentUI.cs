@@ -12,7 +12,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#endregion
 
 		#region implemented abstract members of FluentUIBase
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			return String.Empty;
 		}

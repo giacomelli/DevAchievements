@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -108,24 +108,10 @@
     <Compile Include="UI\FluentUI\IFluentUIFactory.cs" />
     <Compile Include="UI\FluentUI\DefaultFluentUIFactory.cs" />
     <Compile Include="UI\FluentUI\Configurations\GlobalConfiguration.cs" />
+    <Compile Include="UI\FluentUI\TextBox\TextBoxOptions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logging\" />
-    <Folder Include="UI\" />
-    <Folder Include="UI\FluentUI\" />
-    <Folder Include="UI\FluentUI\Renderers\" />
-    <Folder Include="UI\FluentUI\TextBox\" />
-    <Folder Include="UI\FluentUI\Renderers\Mvc\" />
-    <Folder Include="UI\FluentUI\Hidden\" />
-    <Folder Include="UI\FluentUI\Button\" />
-    <Folder Include="UI\FluentUI\Grid\" />
-    <Folder Include="Globalization\" />
-    <Folder Include="UI\FluentUI\Image\" />
-    <Folder Include="UI\FluentUI\Gravatar\" />
-    <Folder Include="UI\FluentUI\Event\" />
-    <Folder Include="UI\FluentUI\Script\" />
-    <Folder Include="UI\FluentUI\Table\" />
-    <Folder Include="UI\FluentUI\Configurations\" />
+    <Content Include="UI\FluentUI\TextBox\TextBox.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

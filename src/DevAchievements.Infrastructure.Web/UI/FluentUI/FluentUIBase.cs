@@ -6,7 +6,17 @@ using System.Web.Mvc;
 
 namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 {
-	public abstract class FluentUIBase<TFluent, TData> : IFluentUI, IHtmlCreator 
+    public abstract class FluentUIBase : IFluentUI
+	{
+		internal string Id { get; set; }
+		internal FluentUIBase Parent { get; set; }
+		internal IList<FluentUIBase> Children { get; set; }
+		internal bool HtmlCreated { get; set; }
+		internal abstract string CreateHtml();
+	
+	}
+
+    public abstract class FluentUIBase<TFluent, TData> : FluentUIBase, IHtmlString
 		where TData : FluentUIData, new()
 		where TFluent : FluentUIBase<TFluent, TData>
     {
@@ -14,7 +24,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		protected FluentUIBase(string id)
 		{
 			Id = id;
-			Children = new List<IHtmlCreator> ();
+			Children = new List<FluentUIBase> ();
 			UIData = new TData ();
 			UIData.Id = id;
 			UIData.Name = id;
@@ -22,10 +32,6 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 		#endregion
 	
 		#region Properties
-		public string Id { get; set; }
-		public IHtmlCreator Parent { get; set; }
-		public IList<IHtmlCreator> Children { get; set; }
-		public bool HtmlCreated { get; private set; }
 		internal TData UIData { get; private set; }
 		#endregion
 
@@ -76,7 +82,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			}
 			else {
 				var html = new StringBuilder ();
-				html.Append(parent.ToHtmlString ());
+				html.Append(((IHtmlString) parent).ToHtmlString ());
 
 				foreach (var c in parent.Children) {
 					if (!c.HtmlCreated) {
@@ -89,8 +95,6 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 				return html.ToString();
 			}	
 		}
-
-		public abstract string CreateHtml ();
 		#endregion
     }
 }

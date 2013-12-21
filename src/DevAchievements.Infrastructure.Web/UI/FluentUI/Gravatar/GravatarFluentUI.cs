@@ -31,7 +31,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 				@"<div id='{Gravatar.Id}' style='width:{Gravatar.Width}' class='{Gravatar.Class}'></div>", 

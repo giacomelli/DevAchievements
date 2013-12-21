@@ -37,7 +37,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return m_grid.Column (title);
 		}
 
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			return string.Empty;
 		}

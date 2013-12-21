@@ -33,7 +33,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			return this;
 		}
 
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			var builder = new DynamicTextBuilder ();
 			builder.AddBindable (

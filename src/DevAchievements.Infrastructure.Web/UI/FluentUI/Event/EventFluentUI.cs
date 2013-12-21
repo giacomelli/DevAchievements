@@ -18,7 +18,7 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 
 		#region Methods
 
-		public override string CreateHtml ()
+		internal override string CreateHtml ()
 		{
 			var html = DynamicTextBuilder.Format (
 			@"<script>
