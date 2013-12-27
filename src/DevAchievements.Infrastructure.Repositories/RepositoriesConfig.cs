@@ -8,6 +8,7 @@ using DevAchievements.Domain;
 using DevAchievements.Infrastructure.Repositories.MongoDB;
 using Skahal.Infrastructure.Framework.Logging;
 using Skahal.Infrastructure.Framework.People;
+using DevAchievements.Infrastructure.Web.Security;
 
 namespace DevAchievements.Infrastructure.Repositories
 {
@@ -32,6 +33,7 @@ namespace DevAchievements.Infrastructure.Repositories
 			DependencyService.Register<IUnitOfWork>(new MemoryUnitOfWork());
 			DependencyService.Register<IAchievementRepository>(new MongoDBAchievementRepository());
 			DependencyService.Register<IDeveloperRepository>(new MongoDBDeveloperRepository());
+            DependencyService.Register<IAuthenticationProviderUserRepository>(new MongoDBAuthenticationProviderUserRepository());
 
 			DependencyService.Register<IUserRepository> (new MemoryUserRepository ());
 

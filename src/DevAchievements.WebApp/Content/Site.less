@@ -1,0 +1,176 @@
+/* Color Pallete */
+@orange: #F96c14;
+@grey: #9E968D;
+@cyan: #00afd5;
+@white: #444;
+@black: #000;
+
+@green: #49BF67;
+@light-blue: #00AFD5;
+
+@grey-0: #eee;
+@grey-1: #ccc;
+@grey-2: #999;
+@grey-3: #666;
+@grey-4: #333;
+
+@red: #D9534F;
+
+
+/* MIXINS */
+.font-size(@size)
+{
+	font-size: 0px + @size;
+    line-height: 1em;
+}
+
+.transition(@value)
+{
+  -moz-transition: @value;
+  -webkit-transition: @value;
+  -ms-transition: @value;
+  -o-transition: @value;
+  transition: @value;
+}
+
+.box-shadow (@string) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow: @string;
+	-ms-box-shadow: @string;
+	-o-box-shadow: @string;
+	box-shadow: @string;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  color: #222222; }
+
+h1 {
+  font-size: 28px; }
+
+h2 {
+  font-size: 20px;
+  color: @grey-2; }
+
+h3 {
+  font-size: 21px; }
+
+h4 {
+  font-size: 17.5px; }
+
+h5 {
+  font-size: 14px; }
+
+h6 {
+  font-size: 10.5px; }
+
+.default-font {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+
+
+#top-menu
+{
+	background: @white;
+	height: 65px;
+	border-bottom: 2px solid lighten(@grey, 35%);
+	margin: 0;
+}
+
+
+#top-menu .navbar-brand
+{
+	width: 133px;
+	height: 26px;
+	padding: 0;
+	margin-top: 15px;
+}
+
+// main menu
+#top-menu .nav.navbar-nav > li.dropdown > a
+{
+	.font-size(21);
+	color: darken(@grey, 15%);
+	padding: 21px 10px;
+}
+
+
+// content
+#content
+{
+	padding-top: 80px;
+}
+
+#content .page-header
+{
+	margin: 0 0 20px 0;
+	padding: 0;
+	border-bottom: none;
+}
+
+#content .page-header h1
+{
+	margin: 0;
+	color: @cyan;
+}
+
+#content .page-header .breadcrumb
+{
+	margin: 10px 0 0 0;
+}
+
+#content .panel
+{
+	border: none;
+	.box-shadow(none);
+}
+
+
+.issuer-logo 
+{
+	max-width: 128px;
+	max-height: 64px;
+}
+
+.dev-avatar 
+{
+	margin:20px;
+}
+
+.achievement 
+{
+}
+
+.achievement div
+{
+	text-align:right;
+}
+
+.achievement-highlight div
+{
+	background-color:beige;
+}
+
+.achievement-stat-chart
+{
+	min-height: 100px;
+}
+
+.achievement-value-down 
+{
+	background-color: red;
+}
+	
+.achievement-value-up 
+{
+	background-color: green;
+}
+
+.achievement-value-up:before
+{
+    content: "+";
+}
+
+.achievement-value-stable 
+{
+	background-color: BurlyWood;
+}

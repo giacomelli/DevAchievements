@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="~/Scripts/Bootstrap/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Scripts/DataTables/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="~/Scripts/DataTables/css/dataTables.bootstrap.css" />
-    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet/less" type="text/css" href="~/Content/Site.less" />
+    <link rel="stylesheet" href="~/Scripts/openid-selector/css/openid.css" />
+    <link rel="stylesheet" href="~/Scripts/openid-selector/css/openid-shadow.css" />
 
     <script type="text/javascript" src="~/api/proxies"></script>
 
@@ -30,13 +32,20 @@
     <script type="text/javascript" src="~/Scripts/Framework/Ajax.js"></script>
     <script type="text/javascript" src="~/Scripts/jQuery-Gravatar/md5.js"></script>
     <script type="text/javascript" src="~/Scripts/jQuery-Gravatar/jquery.gravatar.js"></script>
-
+    <script type="text/javascript" src="~/Scripts/openid-selector/js/openid-jquery.js"></script>
+    <script type="text/javascript" src="~/Scripts/openid-selector/js/openid-en.js"></script>
+ 
     @RenderSection("Scripts", false)
+
+     <script type="text/javascript" src="~/Scripts/less-1.5.0.min.js"></script>
     <title>DevAchievements</title>
 </head>
 <body>
-    <div class="container">
-		@RenderBody()
-	</div>
+    @{ Html.RenderPartial("_Header"); }
+    <div id="wrapper">       
+        <div id="content" class="container">
+             @RenderBody()
+        </div>
+    </div>
 </body>
 </html>

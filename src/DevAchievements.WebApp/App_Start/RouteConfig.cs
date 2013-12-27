@@ -20,9 +20,9 @@ namespace DevAchievements.WebApp
 			);
 
 			routes.MapRoute (
-				name: "Default_OAuth",
-				url: "OAuth/{action}/{id}",
-				defaults: new { controller = "OAuth", action = "Index", id = UrlParameter.Optional }
+				name: "Default_Auth",
+				url: "Auth/{action}",
+				defaults: new { controller = "Auth", action = "Index" }
 			);
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using HelperSharp;
+using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Domain;
 using Skahal.Infrastructure.Framework.Logging;
 using Skahal.Infrastructure.Framework.Repositories;
@@ -74,6 +75,7 @@ namespace DevAchievements.Domain
 
 			var devService = new DeveloperService ();
 			devService.SaveDeveloper(developer);
+            DependencyService.Create<IUnitOfWork>().Commit();
 		}
 
 		/// <summary>

@@ -11,6 +11,9 @@ using System.Security.Cryptography;
 using DevAchievements.Infrastructure.Web.UI;
 using DevAchievements.Infrastructure.Repositories.MongoDB;
 using MongoDB.Driver;
+using DevAchievements.Infrastructure.Web.Security;
+using DevAchievements.WebApp.Helpers;
+using System.Web.Security;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -48,7 +51,21 @@ namespace DevAchievements.WebApp.Controllers
 		#region Actions
 		public override ActionResult Create ()
 		{
-			return Create (String.Empty);
+            var authenticationResult = TempData["authenticationResult"] as AuthenticationResult;
+
+			if (authenticationResult == null) {
+				return Create (String.Empty);
+			} else {
+				var model = CreateNewEntity ();
+                var dev = authenticationResult.Developer;
+                model.Username = dev.Username;
+                model.Email = dev.Email;
+                model.FullName = dev.FullName;
+                ViewData["provider"] = authenticationResult.Provider;
+                ViewData["providerUserKey"] = authenticationResult.ProviderUserKey;
+
+				return View ("CreateEdit", model);
+			}
 		}
 
 		public ActionResult Create(string username)
@@ -62,16 +79,29 @@ namespace DevAchievements.WebApp.Controllers
 		[HttpPost]
 		public override ActionResult Create (Developer entity)
 		{
-			entity.Key = null;
+			entity.Key = Guid.NewGuid();
+            var provider  = (AuthenticationProvider) Enum.Parse(typeof(AuthenticationProvider), Request["provider"]);
+            var providerUserKey = Request["providerUserKey"];
+
 			var developerService = new DeveloperService();
 
-			return this.Call (() => {
+			return this.Call (() => {                
 				developerService.SaveDeveloper (entity);
+                AuthenticationService.SaveAuthenticationProviderUser(entity, provider, providerUserKey);
 
 				ClearUserCache (entity);
 
-				return Redirect ("/" + entity.Username);
+                return this.RedirectToDeveloperHome(entity);
 			});
+		}
+
+		public override ActionResult Edit (Guid id)
+		{
+			if (DevInfo.Current != null && DevInfo.Current.Key.Equals (id)) {
+				return base.Edit (id);
+			}
+
+			return new HttpUnauthorizedResult ("HAL: I think you know what the problem is just as well as I do.");
 		}
 
 		public override ActionResult Edit (Developer entity)
@@ -82,6 +112,19 @@ namespace DevAchievements.WebApp.Controllers
 			return result;
 		}
 
+		public ActionResult Logout()
+		{
+			return View ();
+		}
+
+		[HttpPost]
+		public ActionResult ConfirmLogout()
+		{
+			FormsAuthentication.SignOut ();
+
+			return Redirect ("/");
+		}
+
 		// TODO: remover, apenas para teste.
 		// TODO: ver se devo adicionar no Skahal.Infrastructure.Repositories.MongoDB
 		public void RemoveAll() {
@@ -90,6 +133,7 @@ namespace DevAchievements.WebApp.Controllers
 			var server = client.GetServer();
 			var database = server.GetDatabase(String.IsNullOrEmpty(url.DatabaseName) ? "test" : url.DatabaseName);
 			database.GetCollection ("Developers").RemoveAll ();
+            database.GetCollection("AuthenticationProviderUsers").RemoveAll();
 		}
 
 		[ProxyName("existsDeveloperAccountAtIssuer")]

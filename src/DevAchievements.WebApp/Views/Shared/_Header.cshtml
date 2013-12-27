@@ -1,0 +1,27 @@
+@using System.Linq;
+@using System.Web.Mvc;
+@using DevAchievements.Infrastructure.Web.Security;
+
+<header id="top-menu" class="navbar navbar-fixed-top" role="banner">
+    <nav>
+        <div class="container">
+            <div class="clearfix pull-left">
+                <a class="navbar-brand" href="/">DevAchievements</a>               
+            </div>
+            <div class="clearfix pull-right">
+             @if(User.Identity.IsAuthenticated) {
+            	<span> @DevInfo.Current.Username</span>	
+                <a href="/developer/Logout" class="menu-item">Log out</a>
+                <a href="/developer/edit/@DevInfo.Current.Key" class="menu-item">
+                  @(Html.FluentUI()
+                  		.Hidden("gravatar")
+                  			.Value(DevInfo.Current.Email)
+                  			.Gravatar()
+                  				.OnReady())
+              
+             	</a>   
+            }
+            </div>
+        </div>
+    </nav>
+</header>

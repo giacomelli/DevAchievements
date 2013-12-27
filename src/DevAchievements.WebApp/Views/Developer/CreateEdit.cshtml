@@ -11,8 +11,11 @@
 		.Hidden("Key")
 			.Value(Model.Key)
 		
-		.Hidden("Token")
-			.Value(TempData["token"])
+		.Hidden("Provider")
+			.Value(ViewData["provider"])
+            
+        .Hidden("ProviderUserKey")
+			.Value(ViewData["providerUserKey"])
 
 		.TextBox("Username")
 			.Label("Username")

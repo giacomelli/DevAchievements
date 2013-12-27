@@ -10,5 +10,10 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
         {
 			return ui.CreateChild (GlobalConfiguration.Factory.Create<GravatarFluentUI>("Gravatar_" + Guid.NewGuid().ToString()));
         }
+
+		public static GravatarFluentUI Gravatar(this HiddenFluentUI ui)
+		{
+			return ui.CreateChild (GlobalConfiguration.Factory.Create<GravatarFluentUI>("Gravatar_" + Guid.NewGuid().ToString()));
+		}
     }
 }

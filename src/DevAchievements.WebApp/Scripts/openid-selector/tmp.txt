@@ -1,0 +1,7 @@
+	livejournal : {
+	wordpress : {
+	blogger : {
+	verisign : {
+	claimid : {
+	clickpass : {
+	google_profile : {

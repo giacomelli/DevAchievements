@@ -73,6 +73,35 @@
     <None Include="Globalization\Texts.en-US.txt" />
     <None Include="Scripts\gvChart\README.md" />
     <None Include="Scripts\gvChart\changes.txt" />
+    <None Include="Scripts\openid-selector\README.txt" />
+    <None Include="Scripts\openid-selector\generate-sprite.rb" />
+    <None Include="Scripts\openid-selector\generate-sprite.sh" />
+    <None Include="Scripts\openid-selector\remcomments.sed" />
+    <None Include="Scripts\openid-selector\images.small\aol.ico" />
+    <None Include="Scripts\openid-selector\images.small\blogger.ico" />
+    <None Include="Scripts\openid-selector\images.small\claimid.ico" />
+    <None Include="Scripts\openid-selector\images.small\clickpass.ico" />
+    <None Include="Scripts\openid-selector\images.small\facebook.ico" />
+    <None Include="Scripts\openid-selector\images.small\flickr.ico" />
+    <None Include="Scripts\openid-selector\images.small\google.ico" />
+    <None Include="Scripts\openid-selector\images.small\google_profile.ico" />
+    <None Include="Scripts\openid-selector\images.small\launchpad.ico" />
+    <None Include="Scripts\openid-selector\images.small\linkedin.ico" />
+    <None Include="Scripts\openid-selector\images.small\livejournal.ico" />
+    <None Include="Scripts\openid-selector\images.small\mailru.ico" />
+    <None Include="Scripts\openid-selector\images.small\myopenid.ico" />
+    <None Include="Scripts\openid-selector\images.small\openid.ico" />
+    <None Include="Scripts\openid-selector\images.small\rambler.ico" />
+    <None Include="Scripts\openid-selector\images.small\technorati.ico" />
+    <None Include="Scripts\openid-selector\images.small\twitter.ico" />
+    <None Include="Scripts\openid-selector\images.small\verisign.ico" />
+    <None Include="Scripts\openid-selector\images.small\vidoop.ico" />
+    <None Include="Scripts\openid-selector\images.small\vkontakte.ico" />
+    <None Include="Scripts\openid-selector\images.small\winliveid.ico" />
+    <None Include="Scripts\openid-selector\images.small\wordpress.ico" />
+    <None Include="Scripts\openid-selector\images.small\yahoo.ico" />
+    <None Include="Scripts\openid-selector\images.small\yandex.ico" />
+    <None Include="Content\Site.less" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetOpenAuth.AspNet">
@@ -181,9 +210,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\DeveloperController.cs" />
     <Compile Include="Helpers\HtmlExtensions.cs" />
-    <Compile Include="App_Start\AuthConfig.cs" />
-    <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="App_Start\FluentUIConfig.cs" />
+    <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Helpers\ControllerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -208,7 +237,6 @@
     <Content Include="Views\Shared\_Logo.cshtml" />
     <Content Include="Views\Home\SiteHome.cshtml" />
     <Content Include="Views\Shared\_CreateAccountButton.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
@@ -447,6 +475,91 @@
     <Content Include="Scripts\gvChart\jquery.gvChart-1.1.min.js" />
     <Content Include="Scripts\gvChart\src\jquery.gvChart-1.1.js" />
     <Content Include="Scripts\Google.jsapi.js" />
+    <Content Include="Scripts\openid-selector\demo-mootools.html" />
+    <Content Include="Scripts\openid-selector\demo-prototype.html" />
+    <Content Include="Scripts\openid-selector\demo-ru.html" />
+    <Content Include="Scripts\openid-selector\demo-uk.html" />
+    <Content Include="Scripts\openid-selector\demo.html" />
+    <Content Include="Scripts\openid-selector\generate-sprite.js" />
+    <Content Include="Scripts\openid-selector\css\openid-shadow.css" />
+    <Content Include="Scripts\openid-selector\css\openid.css" />
+    <Content Include="Scripts\openid-selector\images\openid-inputicon.gif" />
+    <Content Include="Scripts\openid-selector\images\openid-providers-en.png" />
+    <Content Include="Scripts\openid-selector\images\openid-providers-ru.png" />
+    <Content Include="Scripts\openid-selector\images.large\aol.gif" />
+    <Content Include="Scripts\openid-selector\images.large\facebook.gif" />
+    <Content Include="Scripts\openid-selector\images.large\google.gif" />
+    <Content Include="Scripts\openid-selector\images.large\mailru.gif" />
+    <Content Include="Scripts\openid-selector\images.large\myopenid.gif" />
+    <Content Include="Scripts\openid-selector\images.large\openid.gif" />
+    <Content Include="Scripts\openid-selector\images.large\rambler.gif" />
+    <Content Include="Scripts\openid-selector\images.large\verisign.gif" />
+    <Content Include="Scripts\openid-selector\images.large\vkontakte.gif" />
+    <Content Include="Scripts\openid-selector\images.large\yahoo.gif" />
+    <Content Include="Scripts\openid-selector\images.large\yandex.gif" />
+    <Content Include="Scripts\openid-selector\images.small\aol.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\aol.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\blogger.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\blogger.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\claimid.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\claimid.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\clickpass.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\clickpass.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\facebook.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\facebook.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\flickr.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\flickr.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\google.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\google.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\google_profile.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\google_profile.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\launchpad.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\launchpad.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\linkedin.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\linkedin.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\livejournal.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\livejournal.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\mailru.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\mailru.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\myopenid.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\myopenid.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\openid.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\openid.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\rambler.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\rambler.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\technorati.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\technorati.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\twitter.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\twitter.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\verisign.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\verisign.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\vidoop.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\vidoop.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\vkontakte.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\vkontakte.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\winliveid.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\winliveid.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\wordpress.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\wordpress.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\yahoo.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\yahoo.ico.png" />
+    <Content Include="Scripts\openid-selector\images.small\yandex.ico.gif" />
+    <Content Include="Scripts\openid-selector\images.small\yandex.ico.png" />
+    <Content Include="Scripts\openid-selector\js\jquery-1.2.6.min.js" />
+    <Content Include="Scripts\openid-selector\js\mootools-core.js" />
+    <Content Include="Scripts\openid-selector\js\mootools-more.js" />
+    <Content Include="Scripts\openid-selector\js\openid-de.js" />
+    <Content Include="Scripts\openid-selector\js\openid-en.js" />
+    <Content Include="Scripts\openid-selector\js\openid-jp.js" />
+    <Content Include="Scripts\openid-selector\js\openid-jquery.js" />
+    <Content Include="Scripts\openid-selector\js\openid-mootools.js" />
+    <Content Include="Scripts\openid-selector\js\openid-prototype.js" />
+    <Content Include="Scripts\openid-selector\js\openid-ru.js" />
+    <Content Include="Scripts\openid-selector\js\openid-uk.js" />
+    <Content Include="Scripts\openid-selector\js\prototype.js" />
+    <Content Include="Scripts\Views\Home\SiteHome.js" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Developer\Logout.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -505,8 +618,10 @@
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
     <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
+  <ItemGroup />
 </Project>

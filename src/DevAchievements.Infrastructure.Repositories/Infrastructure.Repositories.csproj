@@ -56,6 +56,7 @@
     <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MongoDB\MongoDBAuthenticationProviderUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MemoryRepositoriesGenerated.cs" />
     <Compile Include="MongoRepositoriesGenerated.cs" />
@@ -70,6 +71,10 @@
     <ProjectReference Include="..\DevAchievements.Domain\Domain.csproj">
       <Project>{E2D7FB94-6D05-40B5-8DA7-2D39BFFBB204}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DevAchievements.Infrastructure.Web\Infrastructure.Web.csproj">
+      <Project>{f88388fc-cf47-46d8-ad5a-1274a003079f}</Project>
+      <Name>Infrastructure.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

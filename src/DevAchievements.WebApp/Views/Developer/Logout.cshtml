@@ -1,0 +1,8 @@
+@using (Html.BeginForm("ConfirmLogout", null, FormMethod.Post, new { @role="form" })) {
+	<div>
+	Confirm log out?
+	</div>
+	@(Html.FluentUI()
+		.Button("logout-button")
+		.Label("Log out"))
+}
