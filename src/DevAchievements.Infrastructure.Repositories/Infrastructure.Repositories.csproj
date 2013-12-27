@@ -73,7 +73,7 @@
       <Name>Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\DevAchievements.Infrastructure.Web\Infrastructure.Web.csproj">
-      <Project>{f88388fc-cf47-46d8-ad5a-1274a003079f}</Project>
+      <Project>{F88388FC-CF47-46D8-AD5A-1274A003079F}</Project>
       <Name>Infrastructure.Web</Name>
     </ProjectReference>
   </ItemGroup>

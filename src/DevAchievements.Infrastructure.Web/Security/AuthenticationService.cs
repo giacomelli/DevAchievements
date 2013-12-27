@@ -4,6 +4,7 @@ using HelperSharp;
 using DevAchievements.Domain;
 using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Repositories;
+using Skahal.Infrastructure.Framework.Logging;
 
 namespace DevAchievements.Infrastructure.Web.Security
 {
@@ -22,28 +23,32 @@ namespace DevAchievements.Infrastructure.Web.Security
 			var client = AuthenticationFactory.CreateClient (provider);
 			var clientResult = client.VerifyAuthentication (new HttpContextWrapper(HttpContext.Current));
 
-            if (clientResult.IsSuccessful)
-			{
-                result.IsSuccessful = true;
-                result.Provider = provider;
-                result.ProviderUserKey = clientResult.ProviderUserId;
+			if (clientResult.IsSuccessful) {
+				result.IsSuccessful = true;
+				result.Provider = provider;
+				result.ProviderUserKey = clientResult.ProviderUserId;
                 
-                var repository = DependencyService.Create<IAuthenticationProviderUserRepository>();
-                var authenticationProviderUser = repository.FindFirst(d => d.Provider.Equals(provider) && d.ProviderUserKey.Equals(result.ProviderUserKey, StringComparison.Ordinal));
+				var repository = DependencyService.Create<IAuthenticationProviderUserRepository> ();
+				var authenticationProviderUser = repository.FindFirst (d => d.Provider.Equals (provider) && d.ProviderUserKey.Equals (result.ProviderUserKey, StringComparison.Ordinal));
 
-                if (authenticationProviderUser == null)
-                {
-                    result.IsRegisteredDeveloper = false;
-                    result.Developer = MapDeveloperFromProviderResult(clientResult);
-                }
-                else
-                {
-                    result.IsRegisteredDeveloper = true;
-                    var developerService = new DeveloperService();
-                    result.Developer = developerService.GetDeveloperByKey(authenticationProviderUser.LocalUserKey);                    
-                }
+				if (authenticationProviderUser == null) {
+					result.IsRegisteredDeveloper = false;
+					result.Developer = MapDeveloperFromProviderResult (clientResult);
+				} else {
+					result.IsRegisteredDeveloper = true;
+					var developerService = new DeveloperService ();
+					result.Developer = developerService.GetDeveloperByKey (authenticationProviderUser.LocalUserKey);                    
+				}
+
+				LogService.Debug ("Authentication using '{0}' was success for '{1}': IsRegisteredDeveloper = {2}.", provider, result.Developer.Username, result.IsRegisteredDeveloper);
+			}
+			else
+			{
+				LogService.Debug ("Authentication using '{0}' was failed for '{1}':  {2}.", provider, clientResult.ExtraData, clientResult.Error); 
+
 			}
 
+		
 			return result;
 		}
 
