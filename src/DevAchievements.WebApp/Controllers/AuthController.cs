@@ -43,7 +43,7 @@ namespace DevAchievements.WebApp.Controllers
                 }
 			}
 
-			return View();
+			return new HttpUnauthorizedResult ("HAL: Without your space helmet, Dave? You're going to find that rather difficult.");
 		}
 	}
 }
