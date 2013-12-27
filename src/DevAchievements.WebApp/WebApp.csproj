@@ -101,7 +101,6 @@
     <None Include="Scripts\openid-selector\images.small\wordpress.ico" />
     <None Include="Scripts\openid-selector\images.small\yahoo.ico" />
     <None Include="Scripts\openid-selector\images.small\yandex.ico" />
-    <None Include="Content\Site.less" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="DotNetOpenAuth.AspNet">
@@ -561,6 +560,7 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Developer\Logout.cshtml" />
     <Content Include="Scripts\less-1.5.0.min.js" />
+    <Content Include="Content\Site.less" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
