@@ -6,6 +6,7 @@ using System.Web.Configuration;
 
 namespace DevAchievements.WebApp.FunctionalTests
 {
+	#if DEBUG
     [TestFixture ()]
     public class WebConfigTest
     {
@@ -18,5 +19,6 @@ namespace DevAchievements.WebApp.FunctionalTests
 			Assert.IsTrue (compilation.Assemblies.Count >= 13);
         }
     }
+	#endif
 }
 
