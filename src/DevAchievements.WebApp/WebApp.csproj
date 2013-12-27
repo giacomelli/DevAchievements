@@ -560,6 +560,7 @@
     <Content Include="Scripts\Views\Home\SiteHome.js" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Developer\Logout.cshtml" />
+    <Content Include="Scripts\less-1.5.0.min.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
