@@ -8,6 +8,7 @@ using DevAchievements.Domain;
 using DevAchievements.WebApp.Helpers;
 using DevAchievements.Infrastructure.Web.Security;
 using System.Web.Security;
+using AppHarbor.Web.Security;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -33,7 +34,9 @@ namespace DevAchievements.WebApp.Controllers
 			{
                 if (result.IsRegisteredDeveloper)
                 {
-					FormsAuthentication.SetAuthCookie (result.Developer.Username, true);
+					var authenticator = new CookieAuthenticator(); 
+					authenticator.SetCookie(result.Developer.Username, true);
+				
                     return this.RedirectToDeveloperHome(result.Developer);
                 }
                 else

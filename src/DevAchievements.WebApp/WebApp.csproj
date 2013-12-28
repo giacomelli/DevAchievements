@@ -208,6 +208,9 @@
     <Reference Include="TestSharp">
       <HintPath>..\packages\TestSharp.1.0.2\lib\net40\TestSharp.dll</HintPath>
     </Reference>
+    <Reference Include="AppHarbor.Web.Security">
+      <HintPath>..\references\AppHarbor.Web.Security.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

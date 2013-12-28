@@ -14,6 +14,7 @@ using MongoDB.Driver;
 using DevAchievements.Infrastructure.Web.Security;
 using DevAchievements.WebApp.Helpers;
 using System.Web.Security;
+using AppHarbor.Web.Security;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -120,7 +121,8 @@ namespace DevAchievements.WebApp.Controllers
 		[HttpPost]
 		public ActionResult ConfirmLogout()
 		{
-			FormsAuthentication.SignOut ();
+			var authenticator = new CookieAuthenticator(); 
+			authenticator.SignOut();
 
 			return Redirect ("/");
 		}
