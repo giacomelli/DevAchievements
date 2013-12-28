@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using DevAchievements.Domain;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace DevAchievements.Infrastructure.AchievementProviders
 {
@@ -11,6 +13,10 @@ namespace DevAchievements.Infrastructure.AchievementProviders
 	/// </summary>
     public abstract class AchievementProviderBase : IAchievementProvider
     {
+		#region Fields
+		private Regex s_parseValueRegex = new Regex(@"[^\d]", RegexOptions.Compiled);
+		#endregion
+
         #region Constructors
 		/// <summary>
 		/// Initializes a new instance of the
@@ -98,13 +104,23 @@ namespace DevAchievements.Infrastructure.AchievementProviders
             var followersAchievement = new Achievement()
             {
                 Name = name,
-				Value = Convert.ToInt32(value.ToString().Replace(".", "").Replace(",", "")),
+				Value = ParseValue(value.ToString()),
                 Link = link,
 				Issuer = issuer
             };
 
             achievements.Add(followersAchievement);
         }
+
+		/// <summary>
+		/// Parses the value.
+		/// </summary>
+		/// <returns>The value.</returns>
+		/// <param name="value">Value.</param>
+		protected int ParseValue(string value)
+		{
+			return int.Parse (s_parseValueRegex.Replace (value, ""), CultureInfo.InvariantCulture);
+		}
         #endregion     
     }
 }

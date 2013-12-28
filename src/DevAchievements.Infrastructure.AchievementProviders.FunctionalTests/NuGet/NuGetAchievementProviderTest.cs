@@ -18,6 +18,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.FunctionalTests.Nu
 			Assert.AreEqual ("Packages", actual[0].Name);
 			Assert.AreEqual ("Packages downloads", actual[1].Name);
 			Assert.AreEqual ("Max single package downloads", actual[2].Name);
+			Assert.IsTrue (actual [2].Value >= 1000);
 		}
 
 		[Test ()]

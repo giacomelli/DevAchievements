@@ -8,6 +8,7 @@ using HelperSharp;
 using NuGet;
 using RestSharp;
 using Skahal.Infrastructure.Framework.Logging;
+using System.Globalization;
 
 namespace DevAchievements.Infrastructure.AchievementProviders.NuGet
 {
@@ -60,12 +61,12 @@ namespace DevAchievements.Infrastructure.AchievementProviders.NuGet
 			var downloads = dom[".downloads"];
 
 			if (downloads.Count () > 0) {
-				var maxSingle = downloads.OrderByDescending (d => d.InnerText).First ();
+				var maxSingle = downloads.OrderByDescending (d => ParseValue(d.InnerText)).First ();
 
 				AddAchievement(
 					achievements, 
 					"Max single package downloads", 
-					maxSingle.InnerText.Trim().Replace("downloads", "").Replace(" ", ""), 
+					maxSingle.InnerText, 
 					"https://www.nuget.org/packages/{0}".With(
 						maxSingle.ParentNode.PreviousSibling.PreviousSibling.PreviousElementSibling.FirstChild.InnerText));
 			}
