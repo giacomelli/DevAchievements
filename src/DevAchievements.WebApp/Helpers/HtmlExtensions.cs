@@ -29,5 +29,11 @@ namespace DevAchievements.WebApp.Helpers
 
 			return MvcHtmlString.Empty;
 		}
+
+		public static MvcHtmlString StatusMessage(this HtmlHelper helper)
+		{
+			helper.RenderPartial("_StatusMessage");
+			return MvcHtmlString.Empty;
+		}
 	}
 }

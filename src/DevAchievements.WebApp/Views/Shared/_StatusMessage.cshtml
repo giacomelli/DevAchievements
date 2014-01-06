@@ -1,0 +1,22 @@
+@{
+    var cssClass = string.Empty;
+
+    if (TempData["Error"] != null)
+    {
+        cssClass = "alert-danger";
+    }
+    else if (TempData["Success"] != null)
+    {
+        cssClass = "alert-success";
+    }
+
+    var message = TempData["Error"] != null ? TempData["Error"].ToString() : TempData["Success"] != null ? TempData["Success"].ToString() : string.Empty;
+    var showDisplay = string.IsNullOrEmpty(message) ? "none" : "block";    
+
+    <div class="alert @cssClass" style="display:@showDisplay;">
+        <p class="message">
+            @Html.Raw(@message)
+            @Html.ValidationSummary(null, new { id = "validation-summary-errors" })
+        </p>
+    </div>       
+}

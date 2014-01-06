@@ -1,13 +1,14 @@
 using System;
 using DotNetOpenAuth.AspNet.Clients;
 using DotNetOpenAuth.AspNet;
-using DevAchievement.Infrastructure.Web.Configuration;
+using DevAchievements.Infrastructure.Web.Configuration;
 
 namespace DevAchievements.Infrastructure.Web.Security
 {
 	#region Enums
 	public enum AuthenticationProvider
 	{
+		DevAchievements,
 		Twitter,
 		Google,
 		Facebook,

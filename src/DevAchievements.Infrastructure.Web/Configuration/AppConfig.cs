@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HelperSharp;
 
-namespace DevAchievement.Infrastructure.Web.Configuration
+namespace DevAchievements.Infrastructure.Web.Configuration
 {
 	/// <summary>
 	/// App config.

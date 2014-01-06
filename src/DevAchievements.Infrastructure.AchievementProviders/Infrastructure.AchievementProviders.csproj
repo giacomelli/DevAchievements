@@ -48,9 +48,6 @@
     <Reference Include="StacMan">
       <HintPath>..\packages\StacMan.1.1.0.0\lib\net45\StacMan.dll</HintPath>
     </Reference>
-    <Reference Include="HelperSharp">
-      <HintPath>..\packages\HelperSharp.0.0.3.3\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
     <Reference Include="RestSharp">
       <HintPath>..\packages\RestSharp.104.3.3\lib\net4\RestSharp.dll</HintPath>
     </Reference>
@@ -70,6 +67,9 @@
     </Reference>
     <Reference Include="CsQuery">
       <HintPath>..\packages\CsQuery.1.3.4\lib\net40\CsQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.5\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

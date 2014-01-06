@@ -36,9 +36,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="HelperSharp">
-      <HintPath>..\packages\HelperSharp.0.0.3.3\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Abstractions">
       <HintPath>..\packages\System.IO.Abstractions.1.4.0.68\lib\net35\System.IO.Abstractions.dll</HintPath>
     </Reference>
@@ -46,7 +43,10 @@
       <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
     </Reference>
     <Reference Include="KissSpecifications">
-      <HintPath>..\packages\KissSpecifications.1.1.0\lib\net35\KissSpecifications.dll</HintPath>
+      <HintPath>..\references\KissSpecifications.dll</HintPath>
+    </Reference>
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.5\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -63,10 +63,15 @@
     <Compile Include="DomainSpecificationsGenerated.cs" />
     <Compile Include="AchievementProviderService.cs" />
     <Compile Include="AchievementHistory.cs" />
+    <Compile Include="Specifications\MustExistSpecification.cs" />
+    <Compile Include="Specifications\MustBeUniqueSpecification.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup>
+    <Folder Include="Specifications\" />
+  </ItemGroup>
 </Project>

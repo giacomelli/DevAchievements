@@ -1,10 +1,12 @@
 @using HelperSharp;
 @using System.Web.Mvc;
-@model DevAchievements.Domain.Developer
+@model DevAchievements.Application.DeveloperCreateEditViewModel
 
 @section Scripts{
 	<script type="text/javascript" src="~/Scripts/Views/Developer/Create.js"></script>
 }
+
+@Html.StatusMessage()
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @role="form" })) {
 	@(Html.FluentUI()
@@ -12,10 +14,10 @@
 			.Value(Model.Key)
 		
 		.Hidden("Provider")
-			.Value(ViewData["provider"])
+			.Value(Model.Provider)
             
         .Hidden("ProviderUserKey")
-			.Value(ViewData["providerUserKey"])
+			.Value(Model.ProviderUserKey)
 
 		.TextBox("Username")
 			.Label("Username")

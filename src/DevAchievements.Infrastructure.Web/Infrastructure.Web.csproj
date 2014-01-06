@@ -57,9 +57,6 @@
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="HelperSharp">
-      <HintPath>..\packages\HelperSharp.0.0.3.4\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework" />
     <Reference Include="System.Net.Http.Primitives">
       <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net45\System.Net.Http.Primitives.dll</HintPath>
@@ -140,6 +137,9 @@
       <HintPath>..\packages\DotNetOpenAuth.AspNet.4.3.4.13329\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.5\lib\net35\HelperSharp.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />

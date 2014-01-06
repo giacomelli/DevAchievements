@@ -166,9 +166,6 @@
     <Reference Include="LogentriesLog4net">
       <HintPath>..\packages\logentries.log4net.2.4.0\lib\net40\LogentriesLog4net.dll</HintPath>
     </Reference>
-    <Reference Include="HelperSharp">
-      <HintPath>..\packages\HelperSharp.0.0.3.3\lib\net35\HelperSharp.dll</HintPath>
-    </Reference>
     <Reference Include="System.IO.Abstractions">
       <HintPath>..\packages\System.IO.Abstractions.1.4.0.68\lib\net35\System.IO.Abstractions.dll</HintPath>
     </Reference>
@@ -210,6 +207,9 @@
     </Reference>
     <Reference Include="AppHarbor.Web.Security">
       <HintPath>..\references\AppHarbor.Web.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="HelperSharp">
+      <HintPath>..\packages\HelperSharp.0.0.3.5\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />
@@ -574,6 +574,7 @@
     <Content Include="Views\Developer\Logout.cshtml" />
     <Content Include="Scripts\less-1.5.0.min.js" />
     <Content Include="Content\Site.less" />
+    <Content Include="Views\Shared\_StatusMessage.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

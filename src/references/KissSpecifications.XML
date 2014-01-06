@@ -1,0 +1,326 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KissSpecifications</name>
+    </assembly>
+    <members>
+        <member name="T:KissSpecifications.Commons.MustNotBeNullSpecification`1">
+            <summary>
+            Target must not be null.
+            </summary>
+            <typeparam name="TTarget">The target.</typeparam>
+        </member>
+        <member name="F:KissSpecifications.Commons.MustNotBeNullSpecification`1.NotSatisfiedReasonText">
+            <summary>
+            The default text for not satisfied reason.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustNotBeNullSpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the target object satisfies the specification.
+            </summary>
+            <param name="target">The target object to be validated.</param>
+            <returns>
+                <c>true</c> if target object satisfies the specification; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.Commons.MustNotHaveNullOrDefaultPropertySpecification`1">
+            <summary>
+            Target must not have the specified property with a null value or default value.
+            </summary>
+            <typeparam name="TTarget">The target.</typeparam>
+        </member>
+        <member name="F:KissSpecifications.Commons.MustNotHaveNullOrDefaultPropertySpecification`1.NotSatisfiedReasonText">
+            <summary>
+            The default text for not satisfied reason.
+            </summary>
+        </member>
+        <member name="F:KissSpecifications.Commons.MustNotHaveNullOrDefaultPropertySpecification`1.m_propertiesName">
+            <summary>
+            The properties name.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustNotHaveNullOrDefaultPropertySpecification`1.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MustNotHaveNullOrDefaultPropertySpecification`1" /> class.
+            </summary>
+            <param name="propertiesName">The properties name.</param>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustNotHaveNullOrDefaultPropertySpecification`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}}[])">
+            <summary>
+            Initializes a new instance of the
+            <see cref="T:KissSpecifications.Commons.MustNotHaveNullOrDefaultPropertySpecification`1" /> class.
+            </summary>
+            <param name="properties">The properties.</param>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustNotHaveNullOrDefaultPropertySpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the target object satisfies the specification.
+            </summary>
+            <param name="target">The target object to be validated.</param>
+            <returns>
+                <c>true</c> if target object satisfies the specification; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.Commons.MustHaveNullOrDefaultPropertySpecification`1">
+            <summary>
+            Target must have the specified property has a null value.
+            </summary>
+            <typeparam name="TTarget">The target.</typeparam>
+        </member>
+        <member name="F:KissSpecifications.Commons.MustHaveNullOrDefaultPropertySpecification`1.NotSatisfiedReasonText">
+            <summary>
+            The default text for not satisfied reason.
+            </summary>
+        </member>
+        <member name="F:KissSpecifications.Commons.MustHaveNullOrDefaultPropertySpecification`1.m_propertiesName">
+            <summary>
+            The properties name.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustHaveNullOrDefaultPropertySpecification`1.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MustHaveNullOrDefaultPropertySpecification`1" /> class.
+            </summary>
+            <param name="propertiesName">The properties name.</param>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustHaveNullOrDefaultPropertySpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the target object satisfies the specification.
+            </summary>
+            <param name="target">The target object to be validated.</param>
+            <returns>
+                <c>true</c> if target object satisfies the specification; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.Commons.MustNotHaveEmptyPropertyTextSpecification`1">
+            <summary>
+            Target must not have the specified text property empty.
+            </summary>
+            <typeparam name="TTarget">The target.</typeparam>
+        </member>
+        <member name="F:KissSpecifications.Commons.MustNotHaveEmptyPropertyTextSpecification`1.NotSatisfiedReasonText">
+            <summary>
+            The default text for not satisfied reason.
+            </summary>
+        </member>
+        <member name="F:KissSpecifications.Commons.MustNotHaveEmptyPropertyTextSpecification`1.m_propertiesName">
+            <summary>
+            The properties name.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustNotHaveEmptyPropertyTextSpecification`1.#ctor(System.String[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:MustNotHaveEmptyPropertyTextSpecification`1" /> class.
+            </summary>
+            <param name="propertiesName">The properties name.</param>
+        </member>
+        <member name="M:KissSpecifications.Commons.MustNotHaveEmptyPropertyTextSpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the target object satisfies the specification.
+            </summary>
+            <param name="target">The target object to be validated.</param>
+            <returns>
+                <c>true</c> if target object satisfies the specification; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.Globalization.DefaultGlobalizationResolver">
+            <summary>
+            The default IGlobalizationResolver.
+            <remarks>
+            This resolver does not perform any globalization.
+            </remarks></summary>
+        </member>
+        <member name="M:KissSpecifications.Globalization.DefaultGlobalizationResolver.GetText(System.String)">
+            <summary>
+            Get a localized version of the english text.
+            </summary>
+            <param name="englishText">The original english text.</param>
+            <returns>
+            The localized text.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.Globalization.FuncGlobalizationResolver">
+            <summary>
+            An IGlobalizationResolver's implementation using a function to delegate the globalization.
+            </summary>
+        </member>
+        <member name="F:KissSpecifications.Globalization.FuncGlobalizationResolver.m_globalize">
+            <summary>
+            The delegation function for globalization.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.Globalization.FuncGlobalizationResolver.#ctor(System.Func{System.String,System.String})">
+            <summary>
+            Initializes a new instance of the <see cref="T:KissSpecifications.Globalization.FuncGlobalizationResolver" /> class.
+            </summary>
+            <param name="globalize">The delegation function for globalization.</param>
+        </member>
+        <member name="M:KissSpecifications.Globalization.FuncGlobalizationResolver.GetText(System.String)">
+            <summary>
+            Get a localized version of the english text.
+            </summary>
+            <param name="englishText">The original english text.</param>
+            <returns>
+            The localized text.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.Globalization.IGlobalizationResolver">
+            <summary>
+            Defines a globalization resolver interface.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.Globalization.IGlobalizationResolver.GetText(System.String)">
+            <summary>
+            Get a localized version of the english text.
+            </summary>
+            <param name="englishText">The original english text.</param>
+            <returns>The localized text.</returns>
+        </member>
+        <member name="T:KissSpecifications.ISpecification`1">
+            <summary>
+            Defines a interface for a basic specification, based on Specification Pattern: http://en.wikipedia.org/wiki/Specification_pattern.
+            </summary>
+            <typeparam name="TTarget">The type of target object that specification can verify.</typeparam>
+        </member>
+        <member name="P:KissSpecifications.ISpecification`1.NotSatisfiedReason">
+            <summary>
+            Gets the not satisfied reason.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.ISpecification`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the target object satisfies the specification.
+            </summary>
+            <param name="target">The target object to be validated.</param>
+            <returns>
+                <c>true</c> if target object satisfies the specification; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.KissSpecificationsConfig">
+            <summary>
+            KissSpecifications global configuration.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.KissSpecificationsConfig.#ctor">
+            <summary>
+            Initializes static members of the <see cref="T:KissSpecifications.KissSpecificationsConfig" /> class.
+            </summary>
+        </member>
+        <member name="P:KissSpecifications.KissSpecificationsConfig.GlobalizationResolver">
+            <summary>
+            Gets or sets the globalization resolver.
+            </summary>
+            <value>
+            The globalization resolver.
+            </value>
+        </member>
+        <member name="T:KissSpecifications.SpecificationAttribute">
+            <summary>
+            DataAnnotation attribute using a specification.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.SpecificationAttribute.#ctor(System.Type)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KissSpecifications.SpecificationAttribute" /> class.
+            </summary>
+            <param name="specification">The specification type.</param>
+        </member>
+        <member name="P:KissSpecifications.SpecificationAttribute.Specification">
+            <summary>
+            Gets the specification type.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.SpecificationAttribute.IsValid(System.Object)">
+            <summary>
+            Determines whether the specified value of the object is valid.
+            </summary>
+            <param name="value">The value of the object to validate.</param>
+            <returns>
+            true if the specified value is valid; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.SpecificationBase`1">
+            <summary>
+            A base class for specifications.
+            </summary>
+            <typeparam name="TTarget">The type of target object that specification can verify.</typeparam>
+        </member>
+        <member name="P:KissSpecifications.SpecificationBase`1.NotSatisfiedReason">
+            <summary>
+            Gets or sets the not satisfied reason.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.SpecificationBase`1.IsSatisfiedBy(`0)">
+            <summary>
+            Determines whether the target object satisfies the specification.
+            </summary>
+            <param name="target">The target object to be validated.</param>
+            <returns>
+                <c>true</c> if target object satisfies the specification; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="T:KissSpecifications.SpecificationNotSatisfiedException">
+            <summary>
+            Exception raised when a specification is not satisfied.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.SpecificationNotSatisfiedException.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:KissSpecifications.SpecificationNotSatisfiedException" /> class.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.SpecificationNotSatisfiedException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KissSpecifications.SpecificationNotSatisfiedException" /> class.
+            </summary>
+            <param name="notSatisfiedReason">The not satisfied reason.</param>
+        </member>
+        <member name="M:KissSpecifications.SpecificationNotSatisfiedException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KissSpecifications.SpecificationNotSatisfiedException" /> class.
+            </summary>
+            <param name="notSatisfiedReason">The not satisfied reason.</param>
+            <param name="innerException">The inner exception.</param>
+        </member>
+        <member name="M:KissSpecifications.SpecificationNotSatisfiedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:KissSpecifications.SpecificationNotSatisfiedException" /> class.
+            </summary>
+            <param name="serializationInfo">The serialization info.</param>
+            <param name="streamingContext">The streaming context.</param>
+        </member>
+        <member name="T:KissSpecifications.SpecificationService">
+            <summary>
+            The infrastructure service for Specifications.
+            </summary>
+        </member>
+        <member name="M:KissSpecifications.SpecificationService.FilterSpecificationsAreNotSatisfiedBy``1(``0,KissSpecifications.ISpecification{``0}[])">
+            <summary>
+            Filter the specified specifications considering only that are not satisfied by target object.
+            </summary>
+            <typeparam name="TTarget">The type of object to be validate.</typeparam>
+            <param name="target">The target object to validate.</param>
+            <param name="specifications">The specifications to filter.</param>
+            <returns>The specifications filtered.</returns>
+        </member>
+        <member name="M:KissSpecifications.SpecificationService.ThrowIfAnySpecificationIsNotSatisfiedBy``1(``0,KissSpecifications.ISpecification{``0}[])">
+            <summary>
+            If any specification was not satisfied by the target object specified, a SpecificationNotSatisfiedException
+            will be throw with NotSatisfiedReason for the first not satisfied specification.
+            </summary>
+            <typeparam name="TTarget">The type of object to be validate.</typeparam>
+            <param name="target">The target object to validate.</param>
+            <param name="specifications">The specifications to validate.</param>
+        </member>
+        <member name="M:KissSpecifications.SpecificationService.ThrowIfAnySpecificationIsNotSatisfiedByAny``1(System.Collections.Generic.IEnumerable{``0},KissSpecifications.ISpecification{``0}[])">
+            <summary>
+            If any specification was not satisfied by the any of target objects specified, a SpecificationNotSatisfiedException
+            will be throw with NotSatisfiedReason for the first not satisfied specification.
+            </summary>
+            <typeparam name="TTarget">The type of object to be validate.</typeparam>
+            <param name="targets">The target objects to validate.</param>
+            <param name="specifications">The specifications to validate.</param>
+        </member>
+    </members>
+</doc>
