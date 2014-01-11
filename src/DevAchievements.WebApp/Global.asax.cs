@@ -14,6 +14,7 @@ using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Logging;
 using Skahal.Infrastructure.Framework.Repositories;
 using DevAchievements.WebApp.App_Start;
+using DevAchievements.Infrastructure.Web.Configuration;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile="Web.config", Watch = true)]
 
@@ -30,6 +31,9 @@ namespace DevAchievements.WebApp
 		{
 			LogService.Debug ("Application starting...");
 			LogService.Debug ("Machine: {0}", Environment.MachineName);
+
+			LogService.Debug ("Validating configuration...");
+			ConfigValidator.Validate ();
 
 			LogService.Debug ("Registering areas...");
 			AreaRegistration.RegisterAllAreas ();

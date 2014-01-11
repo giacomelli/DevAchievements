@@ -12,7 +12,7 @@ namespace DevAchievements.Domain
 	/// </summary>
 	public class Developer : User
     {
-        #region Constructors
+		#region Constructors
 		/// <summary>
 		/// Initializes a new instance of the <see cref="DevAchievements.Domain.Developer"/> class.
 		/// </summary>

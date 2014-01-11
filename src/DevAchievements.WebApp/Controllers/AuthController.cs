@@ -37,7 +37,7 @@ namespace DevAchievements.WebApp.Controllers
 					var authenticator = new CookieAuthenticator(); 
 					authenticator.SetCookie(result.Developer.Username, true);
 				
-                    return this.RedirectToDeveloperHome(result.Developer);
+					return this.RedirectToDeveloperHome(result.Developer.Username);
                 }
                 else
                 {

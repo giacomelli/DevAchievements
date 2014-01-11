@@ -66,6 +66,7 @@
     <Compile Include="DomainSpecificationsUnitTestsGenerated.cs" />
     <Compile Include="DomainUnitTestsGenerated.cs" />
     <Compile Include="AchievementTest.cs" />
+    <Compile Include="Specifications\DeveloperMustHaveValidUsernameSpecificationTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -83,4 +84,7 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup>
+    <Folder Include="Specifications\" />
+  </ItemGroup>
 </Project>

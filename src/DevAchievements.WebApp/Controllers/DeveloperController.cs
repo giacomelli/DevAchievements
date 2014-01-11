@@ -16,6 +16,8 @@ using DevAchievements.WebApp.Helpers;
 using System.Web.Security;
 using AppHarbor.Web.Security;
 using DevAchievements.Application;
+using Skahal.Infrastructure.Framework.Commons;
+using Skahal.Infrastructure.Framework.Repositories;
 
 namespace DevAchievements.WebApp.Controllers
 {
@@ -30,7 +32,7 @@ namespace DevAchievements.WebApp.Controllers
 			DeleteEntityByIdFunc = (key) => DeveloperCreateEditAppService.Delete (key);
 			GetEntitiesFunc = () => DeveloperCreateEditAppService.GetAll ();
 
-			GetGridValuesFunc = (entity) => new object[] { DeveloperUI.GetAvatarUrl(entity), entity.FullName, entity.Username, entity.Email, String.Join(", ", entity.AccountsAtIssuers.Select(r => r.IssuerName)) };
+			GetGridValuesFunc = (entity) => new object[] { DeveloperUI.GetAvatarUrl(entity.Email), entity.FullName, entity.Username, entity.Email, String.Join(", ", entity.AccountsAtIssuers.Select(r => r.IssuerName)) };
 			SaveEntityFunc = (entity) =>
 			{
 				DeveloperCreateEditAppService.Save(entity);
@@ -75,10 +77,10 @@ namespace DevAchievements.WebApp.Controllers
          
 			return this.Call (() => {                
 				SaveEntity(entity);
+				DependencyService.Create<IUnitOfWork>().Commit();
+				ClearUserCache (entity.Username);
 
-				ClearUserCache (entity);
-
-                return this.RedirectToDeveloperHome(entity);
+				return this.RedirectToDeveloperHome(entity.Username);
 			}, (ex) => { 
 				return View ("CreateEdit", entity);
 			});
@@ -96,7 +98,7 @@ namespace DevAchievements.WebApp.Controllers
 		public override ActionResult Edit (DeveloperCreateEditViewModel entity)
 		{
 			var result = base.Edit (entity);
-			ClearUserCache (entity);
+			ClearUserCache (entity.Username);
 
 			return result;
 		}
@@ -137,7 +139,8 @@ namespace DevAchievements.WebApp.Controllers
 		[ProxyName("getAchievementHistory")]
 		public JsonResult GetAchievementHistory(string developerKey, string achievementKey)
 		{
-			var developer = GetEntityById (new Guid(developerKey));
+			var service = new DeveloperService ();
+			var developer = service.GetDeveloperByKey(new Guid(developerKey));
 			var achievement = developer.GetAchievementByKey (achievementKey);
 
 			return Json (achievement.History, JsonRequestBehavior.AllowGet);
@@ -145,11 +148,11 @@ namespace DevAchievements.WebApp.Controllers
 		#endregion
 
 		#region Helpers
-		private static void ClearUserCache (Developer entity)
+		private static void ClearUserCache (string username)
 		{
 			var outputCacheManager = new OutputCacheManager ();
 			outputCacheManager.RemoveItem ("Home", "Index", new {
-				username = entity.Username
+				username = username
 			});
 		}
 		#endregion

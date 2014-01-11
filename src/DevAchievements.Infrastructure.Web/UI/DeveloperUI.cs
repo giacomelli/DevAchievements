@@ -8,10 +8,10 @@ namespace DevAchievements.Infrastructure.Web.UI
 {
 	public static class DeveloperUI
     {
-		public static string GetAvatarUrl(Developer developer)
+		// TODO: Use HelperSharp.GravatarHelper.GetAvatarUrl.
+		public static string GetAvatarUrl(string email)
 		{
 			var avatarHash = "";
-			var email = developer.Email;
 
 			if (!String.IsNullOrWhiteSpace (email)) {
 				// Create a new instance of the MD5CryptoServiceProvider object.  

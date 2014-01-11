@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DevAchievements.Domain;
 using System.Linq;
 using DevAchievements.Infrastructure.Web.Security;
+using AutoMapper;
 
 namespace DevAchievements.Application
 {
@@ -16,7 +17,7 @@ namespace DevAchievements.Application
 		/// </summary>
 		static DeveloperCreateEditAppService()
 		{
-			AutoMapper.Mapper.CreateMap<Developer, DeveloperCreateEditViewModel> ();
+			AutoMapper.Mapper.CreateMap<Developer, DeveloperCreateEditViewModel> ().ReverseMap ();
 		}
 
 		/// <summary>
@@ -74,8 +75,15 @@ namespace DevAchievements.Application
 		/// <param name="model">Model.</param>
 		public static void Save(DeveloperCreateEditViewModel model)
 		{
-			DomainService.SaveDeveloper (model as Developer);
-			AuthenticationService.SaveAuthenticationProviderUser(model, model.Provider, model.ProviderUserKey);
+			var entity = Mapper.Map<Developer> (model);
+			var oldDeveloper = DomainService.GetDeveloperByKey (model.Key);
+
+			if (oldDeveloper != null) {
+				entity.Achievements = oldDeveloper.Achievements;
+			}
+
+			DomainService.SaveDeveloper (entity);
+			AuthenticationService.SaveAuthenticationProviderUser(entity, model.Provider, model.ProviderUserKey);
 		}
 
 		private static DeveloperCreateEditViewModel FillModel (Developer model)

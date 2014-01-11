@@ -32,8 +32,9 @@ namespace DevAchievements.Domain
 				new MustNotHaveNullOrDefaultPropertySpecification<Developer>(
 					d => d.AccountsAtIssuers, 
 					d => d.Email,
-					d => d.FullName,
-					d => d.Username),
+					d => d.FullName),
+
+				new DeveloperMustHaveValidUsernameSpecification(),
 
 				new MustBeUniqueSpecification<Developer>((t) => GetDeveloperByUsername(t.Username), "username"));
 		}

@@ -194,6 +194,7 @@
     <Compile Include="Security\AuthenticationResult.cs" />
     <Compile Include="Security\DevInfo.cs" />
     <Compile Include="Configuration\AppConfig.cs" />
+    <Compile Include="Configuration\ConfigValidator.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -9,9 +9,9 @@ namespace DevAchievements.WebApp.Helpers
 {
     public static class ControllerExtensions
     {
-        public static RedirectResult RedirectToDeveloperHome(this Controller controller, Developer developer)
+		public static RedirectResult RedirectToDeveloperHome(this Controller controller, string username)
         {
-            return new RedirectResult("/" + developer.Username);
+			return new RedirectResult("/" + username);
         }
     }
 }

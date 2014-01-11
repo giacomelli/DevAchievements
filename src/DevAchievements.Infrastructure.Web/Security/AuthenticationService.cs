@@ -31,13 +31,16 @@ namespace DevAchievements.Infrastructure.Web.Security
 				var repository = DependencyService.Create<IAuthenticationProviderUserRepository> ();
 				var authenticationProviderUser = repository.FindFirst (d => d.Provider.Equals (provider) && d.ProviderUserKey.Equals (result.ProviderUserKey, StringComparison.Ordinal));
 
-				if (authenticationProviderUser == null) {
-					result.IsRegisteredDeveloper = false;
-					result.Developer = MapDeveloperFromProviderResult (clientResult);
-				} else {
-					result.IsRegisteredDeveloper = true;
+				if (authenticationProviderUser != null) {
 					var developerService = new DeveloperService ();
-					result.Developer = developerService.GetDeveloperByKey (authenticationProviderUser.LocalUserKey);                    
+					result.Developer = developerService.GetDeveloperByKey (authenticationProviderUser.LocalUserKey);     
+				}
+
+				// In case of developer has been deleted but has the cookie.
+				result.IsRegisteredDeveloper = result.Developer != null;
+
+				if (!result.IsRegisteredDeveloper) {
+					result.Developer = MapDeveloperFromProviderResult (clientResult);
 				}
 
 				LogService.Debug ("Authentication using '{0}' was success for '{1}': IsRegisteredDeveloper = {2}.", provider, result.Developer.Username, result.IsRegisteredDeveloper);
