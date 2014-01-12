@@ -9,8 +9,8 @@
                 <a class="navbar-brand" href="/">DevAchievements</a>               
             </div>
             <div class="clearfix pull-right">
-             @if(User.Identity.IsAuthenticated) {
-            	<span> @DevInfo.Current.Username</span>	
+             @if(DevInfo.IsAuthenticated) {
+            	<span>@DevInfo.Current.Username</span>	
                 <a href="/developer/Logout" class="menu-item">Log out</a>
                 <a href="/developer/edit/@DevInfo.Current.Key" class="menu-item">
                   @(Html.FluentUI()

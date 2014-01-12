@@ -5,8 +5,14 @@ using HelperSharp;
 
 namespace DevAchievements.Infrastructure.Web.Configuration
 {
+    /// <summary>
+    /// The application configuration validator.
+    /// </summary>
 	public static class ConfigValidator
     {
+        /// <summary>
+        /// Performs the validation of application configuration to avoid run the app with config mistakes.
+        /// </summary>
 		public static void Validate ()
         {
 			ThrowIfEmpty("DevAchievements:Twitter:ConsumerKey");

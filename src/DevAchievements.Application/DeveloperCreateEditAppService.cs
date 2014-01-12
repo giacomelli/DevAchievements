@@ -83,7 +83,11 @@ namespace DevAchievements.Application
 			}
 
 			DomainService.SaveDeveloper (entity);
-			AuthenticationService.SaveAuthenticationProviderUser(entity, model.Provider, model.ProviderUserKey);
+
+            if (!String.IsNullOrWhiteSpace(model.ProviderUserKey))
+            {
+                AuthenticationService.SaveAuthenticationProviderUser(entity, model.Provider, model.ProviderUserKey);
+            }
 		}
 
 		private static DeveloperCreateEditViewModel FillModel (Developer model)

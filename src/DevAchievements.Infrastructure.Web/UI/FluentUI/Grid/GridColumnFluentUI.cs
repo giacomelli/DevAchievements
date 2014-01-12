@@ -13,13 +13,6 @@ namespace DevAchievements.Infrastructure.Web.UI.FluentUI
 			UIData.Title = title;
 		}
 
-		public GridColumnFluentUI Width(string width)
-		{
-			UIData.Width = width;
-
-			return this;
-		}
-
 		public GridFluentUI AsTemplate(string template)
 		{
 			UIData.Template = template;

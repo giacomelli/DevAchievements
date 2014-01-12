@@ -11,7 +11,7 @@ namespace DevAchievements.WebApp.FunctionalTests
     public class WebConfigTest
     {
         [Test ()]
-		public void Compilaton_Assemlies_HasAllAssemblies ()
+		public void Compilaton_Assemblies_HasAllAssemblies ()
         {
 			var config = ConfigHelper.ReadConfig ("DevAchievements.WebApp");
 			var compilation = (CompilationSection) config.GetSection ("system.web/compilation");

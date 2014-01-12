@@ -9,6 +9,18 @@ namespace DevAchievements.Infrastructure.Web.Security
 	/// </summary>
 	public static class DevInfo
     {
+        /// <summary>
+        /// Gets a value indicating is authenticated.
+        /// </summary>
+        /// <value><c>true</c> if is authenticated; otherwise, <c>false</c>.</value>
+        public static bool IsAuthenticated 
+        {
+            get
+            {
+                return HttpContext.Current.User.Identity.IsAuthenticated && Current != null;
+            }
+        }
+
 		/// <summary>
 		/// Gets the current.
 		/// </summary>

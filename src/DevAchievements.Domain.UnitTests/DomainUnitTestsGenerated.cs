@@ -195,10 +195,10 @@ namespace DevAchievements.Domain.UnitTests
 		public void InitializeTest()
 		{
 			Stubs.Initialize ();
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "1" } );
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "2" } );
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "3" } );
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "4" } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "1", Username = "name_1", Email = "name@test.com", FullName = "name" } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "2", Username = "name_2"  } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "3", Username = "name_3"  } );
+			Stubs.DeveloperRepository.Add (new Developer() { Key = "4", Username = "name_4"  } );
 			Stubs.UnitOfWork.Commit ();
 
 			m_target = new DeveloperService ();
@@ -275,8 +275,9 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]  
 		public void SaveDeveloper_DeveloperDoesNotExists_Created()
 		{
-			var developer = new Developer () { Key = "5" };
- 
+			var developer = new Developer () { Key = "5", Username = "test", FullName = "test", Email = "test@test.com" };
+			developer.AddAccountAtIssuer(new DeveloperAccountAtIssuer() { Username = "test", IssuerName = "Test" });
+
 			m_target.SaveDeveloper (developer); 
 
 			Assert.AreEqual(5, m_target.CountAllDevelopers());
@@ -286,10 +287,9 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]
 		public void SaveDeveloper_DeveloperDoesExists_Updated()
 		{
-			var developer = new Developer () { 
-				Key = "1" 
-			};
-
+			var developer = m_target.GetDeveloperByKey("1");
+			developer.AddAccountAtIssuer(new DeveloperAccountAtIssuer() { Username = "test", IssuerName = "Test" });
+		
 			m_target.SaveDeveloper (developer);
 
 			Assert.AreEqual(4, m_target.CountAllDevelopers());

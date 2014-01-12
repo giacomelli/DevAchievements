@@ -35,6 +35,22 @@ namespace DevAchievements.Infrastructure.Web.UI
 
 			return "http://www.gravatar.com/avatar/{0}.jpg".With(avatarHash); 
 		}
+
+        // TODO: move to HelperSharp.
+        public static string GetUsernameFromEmail(string email)
+        {
+            ExceptionHelper.ThrowIfNullOrEmpty("email", email);
+
+            string result = null;
+            int indexOf = email.IndexOf("@");
+
+            if (indexOf > -1)
+            {
+                result = email.Substring(0, indexOf);
+            }
+
+            return result;
+        }
     }
 }
 

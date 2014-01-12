@@ -8,35 +8,35 @@ using HelperSharp;
 
 namespace DevAchievements.Domain
 {
-	public partial class DeveloperService
-	{
-		/// <summary>
-		/// Gets the developer by username.
-		/// </summary>
-		/// <returns>The developer.</returns>
-		/// <param name="userName">The userName.</param>  
-		public Developer GetDeveloperByUsername(string userName)
-		{
-			return MainRepository.FindFirst(d => d.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
-		}
+    public partial class DeveloperService
+    {
+        /// <summary>
+        /// Gets the developer by username.
+        /// </summary>
+        /// <returns>The developer.</returns>
+        /// <param name="userName">The userName.</param>  
+        public Developer GetDeveloperByUsername(string userName)
+        {
+            return MainRepository.FindFirst(d => d.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
+        }
 
-		/// <summary>
-		/// Executes the save specification.
-		/// </summary>
-		/// <param name="developer">Developer.</param>
-		partial void ExecuteSaveSpecification (Developer developer)
-		{
-			SpecificationService.ThrowIfAnySpecificationIsNotSatisfiedBy(
-				developer, 
+        /// <summary>
+        /// Executes the save specification.
+        /// </summary>
+        /// <param name="developer">Developer.</param>
+        partial void ExecuteSaveSpecification(Developer developer)
+        {
+            SpecificationService.ThrowIfAnySpecificationIsNotSatisfiedBy(
+                developer, 
 
-				new MustNotHaveNullOrDefaultPropertySpecification<Developer>(
-					d => d.AccountsAtIssuers, 
-					d => d.Email,
-					d => d.FullName),
+                new MustNotHaveNullOrDefaultPropertySpecification<Developer>(
+                    d => d.AccountsAtIssuers, 
+                    d => d.Email,
+                    d => d.FullName),
 
-				new DeveloperMustHaveValidUsernameSpecification(),
+                new DeveloperMustHaveValidUsernameSpecification(),
 
-				new MustBeUniqueSpecification<Developer>((t) => GetDeveloperByUsername(t.Username), "username"));
-		}
-	}
+                new MustBeUniqueSpecification<Developer>((t) => GetDeveloperByUsername(t.Username), "username"));
+        }
+    }
 }

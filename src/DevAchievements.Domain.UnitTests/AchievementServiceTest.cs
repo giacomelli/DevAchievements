@@ -17,7 +17,7 @@ namespace DevAchievements.Domain.UnitTests
 			DependencyService.Register<IAchievementRepository>(new MemoryAchievementRepository());
 
 			var target = new AchievementService ();
-            var account = new Developer();
+			var account = new Developer () { Username = "test", FullName = "test", Email = "test@test.com" };
 			account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithoutAchievements"));
             target.UpdateDeveloperAchievements(account);
 			Assert.AreEqual (0, account.Achievements.Count);
@@ -30,7 +30,7 @@ namespace DevAchievements.Domain.UnitTests
 			DependencyService.Register<IAchievementRepository>(new MemoryAchievementRepository());
 
 			var target = new AchievementService ();
-            var account = new Developer();
+			var account = new Developer() { Username = "test", FullName = "test", Email = "test@test.com" };
             account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithAchievements"));
             target.UpdateDeveloperAchievements(account);
 			Assert.AreEqual (2, account.Achievements.Count);

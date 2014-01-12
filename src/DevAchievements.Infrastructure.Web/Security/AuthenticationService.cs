@@ -1,10 +1,13 @@
 using System;
+using System.Linq;
 using System.Web;
-using HelperSharp;
 using DevAchievements.Domain;
+using HelperSharp;
 using Skahal.Infrastructure.Framework.Commons;
-using Skahal.Infrastructure.Framework.Repositories;
 using Skahal.Infrastructure.Framework.Logging;
+using Skahal.Infrastructure.Framework.Repositories;
+using DevAchievements.Infrastructure.Web.UI;
+using DevAchievements.Domain.Specifications;
 
 namespace DevAchievements.Infrastructure.Web.Security
 {
@@ -33,7 +36,7 @@ namespace DevAchievements.Infrastructure.Web.Security
 
 				if (authenticationProviderUser != null) {
 					var developerService = new DeveloperService ();
-					result.Developer = developerService.GetDeveloperByKey (authenticationProviderUser.LocalUserKey);     
+                    result.Developer = developerService.GetDeveloperByKey (authenticationProviderUser.LocalUserKey);     
 				}
 
 				// In case of developer has been deleted but has the cookie.
@@ -59,8 +62,10 @@ namespace DevAchievements.Infrastructure.Web.Security
         {
             var dev = new Developer()
             {
-                Username = clientResult.UserName
+                Username = DeveloperUI.GetUsernameFromEmail(clientResult.UserName)
             };            
+
+            dev.Username = DeveloperMustHaveValidUsernameSpecification.RemoveUsernameInvalidChars(dev.Username);
 
             var data = clientResult.ExtraData;
 
@@ -79,8 +84,11 @@ namespace DevAchievements.Infrastructure.Web.Security
 
 		public static void SaveAuthenticationProviderUser(Developer developer, AuthenticationProvider provider, string providerUserKey)
 		{
+            ExceptionHelper.ThrowIfNullOrEmpty("providerUserKey", providerUserKey);
+
 			var repository = DependencyService.Create<IAuthenticationProviderUserRepository> ();
             repository.SetUnitOfWork(DependencyService.Create<IUnitOfWork>());
+
 
             var authenticationProviderUser = repository.FindFirst(
                 a =>    a.LocalUserKey.Equals(developer.Key) 
