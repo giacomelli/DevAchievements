@@ -51,6 +51,11 @@ namespace DevAchievements.Domain.Specifications
         /// <param name="username">The isername.</param>
         public static string RemoveUsernameInvalidChars(string username)
         {
+            if (String.IsNullOrWhiteSpace(username))
+            {
+                return username;
+            }
+
             return s_invalidCharsRegex.Replace(username, String.Empty);
         }
         #endregion
