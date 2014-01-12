@@ -66,8 +66,7 @@ namespace DevAchievements.Domain.UnitTests.Specifications
         [Test]
         public void RemoveUsernameInvalidChars_InvalidChars_CharsRemoved() 
         {
-            var target = new DeveloperMustHaveValidUsernameSpecification();
-            Assert.AreEqual("1234567890_asdfghjkl", target.RemoveUsernameInvalidChars("1234567890-=!@#$%&*()_ asdfghjkl;'"));
+             Assert.AreEqual("1234567890_asdfghjkl", DeveloperMustHaveValidUsernameSpecification.RemoveUsernameInvalidChars("1234567890-=!@#$%&*()_ asdfghjkl;'"));
         }
     }
 }

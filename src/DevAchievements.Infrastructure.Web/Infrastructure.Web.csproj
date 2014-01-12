@@ -142,6 +142,9 @@
     <Reference Include="HelperSharp">
       <HintPath>..\packages\HelperSharp.0.0.3.5\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
+    <Reference Include="KissSpecifications">
+      <HintPath>..\packages\KissSpecifications.1.1.5\lib\net35\KissSpecifications.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
