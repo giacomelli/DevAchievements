@@ -82,6 +82,9 @@ namespace DevAchievements.Application
 				entity.Achievements = oldDeveloper.Achievements;
 			}
 
+            // Remove the accounts at issuers not configured.
+            entity.AccountsAtIssuers = entity.AccountsAtIssuers.Where(a => !String.IsNullOrWhiteSpace(a.Username)).ToList();
+
 			DomainService.SaveDeveloper (entity);
 
             if (!String.IsNullOrWhiteSpace(model.ProviderUserKey))

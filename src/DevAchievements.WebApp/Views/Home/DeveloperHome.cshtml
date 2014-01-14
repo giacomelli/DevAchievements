@@ -15,7 +15,7 @@
 			.Hidden("developerKey")
 				.Value(Model.Developer.Key)
                 
-			.Image(DeveloperUI.GetAvatarUrl(Model.Developer.Username))
+			.Image(DeveloperUI.GetAvatarUrl(Model.Developer.Email))
 				.Width("128px")
 		)
 		@Html.DevName(@Model.Developer)

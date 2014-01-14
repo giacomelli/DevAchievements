@@ -18,7 +18,9 @@ namespace DevAchievements.Application
 		public DeveloperHomeViewModel (Developer developer)
 		{
 			Developer = developer;
-			Issuers = Developer.Achievements.Select (a => a.Issuer.Name).Distinct ().OrderBy (a => a).ToList ();
+			Issuers = Developer.Achievements
+                .Where (a => developer.AccountsAtIssuers.Any(i => i.IssuerName.Equals(a.Issuer.Name, StringComparison.OrdinalIgnoreCase)))
+                .Select (a => a.Issuer.Name).Distinct ().OrderBy (a => a).ToList ();
 		}
 		#endregion
 
