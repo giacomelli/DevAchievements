@@ -3,11 +3,7 @@
 @section Scripts{
   	<script type="text/javascript" src="~/Scripts/Views/Home/SiteHome.js"></script>
  }
-
-@*@Html.Logo()*@
-@Html.CreateAccountButton((string)@Model)
-
-
+ 
  <form action="Auth/SignInWith" method="get" id="openid_form">
 	<fieldset>
 		<legend>Sign-in or Create New Account</legend>

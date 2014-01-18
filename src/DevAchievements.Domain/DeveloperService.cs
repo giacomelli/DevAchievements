@@ -21,6 +21,16 @@ namespace DevAchievements.Domain
         }
 
         /// <summary>
+        /// Gets the developer by e-mail.
+        /// </summary>
+        /// <returns>The developer.</returns>
+        /// <param name="email">The e-mail.</param>  
+        public Developer GetDeveloperByEmail(string email)
+        {
+            return MainRepository.FindFirst(d => d.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        }
+
+        /// <summary>
         /// Executes the save specification.
         /// </summary>
         /// <param name="developer">Developer.</param>
@@ -36,7 +46,9 @@ namespace DevAchievements.Domain
 
                 new DeveloperMustHaveValidUsernameSpecification(),
 
-                new MustBeUniqueSpecification<Developer>((t) => GetDeveloperByUsername(t.Username), "username"));
+                new MustBeUniqueSpecification<Developer>((t) => GetDeveloperByUsername(t.Username), "username"),
+                
+                new MustBeUniqueSpecification<Developer>((t) => GetDeveloperByEmail(t.Email), "e-mail"));
 
             SpecificationService.ThrowIfAnySpecificationIsNotSatisfiedByAny(
                 developer.AccountsAtIssuers,

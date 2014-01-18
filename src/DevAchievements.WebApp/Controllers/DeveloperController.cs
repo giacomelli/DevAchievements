@@ -49,7 +49,7 @@ namespace DevAchievements.WebApp.Controllers
 			var model = CreateNewEntity ();
 
 			if (authenticationResult == null) {
-				model.Provider = AuthenticationProvider.DevAchievements;
+                return this.RedirectToHome();
 			} else {
 				var dev = authenticationResult.Developer;
                 model.Username = dev.Username;
@@ -114,7 +114,7 @@ namespace DevAchievements.WebApp.Controllers
 			var authenticator = new CookieAuthenticator(); 
 			authenticator.SignOut();
 
-			return Redirect ("/");
+            return this.RedirectToHome();
 		}
 
 		// TODO: remover, apenas para teste.

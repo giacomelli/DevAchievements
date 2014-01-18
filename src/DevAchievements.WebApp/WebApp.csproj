@@ -244,11 +244,9 @@
     <Content Include="Scripts\Bootstrap\js\bootstrap.js" />
     <Content Include="Scripts\Bootstrap\js\bootstrap.min.js" />
     <Content Include="Views\Home\DeveloperHome.cshtml" />
-    <Content Include="Views\Home\DeveloperNotFound.cshtml" />
     <Content Include="Views\Shared\_TextBoxFor.cshtml" />
     <Content Include="Views\Shared\_Logo.cshtml" />
     <Content Include="Views\Home\SiteHome.cshtml" />
-    <Content Include="Views\Shared\_CreateAccountButton.cshtml" />
     <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\Bootstrap\fonts\glyphicons-halflings-regular.ttf" />

@@ -8,7 +8,6 @@ namespace DevAchievements.Infrastructure.Web.Security
 	#region Enums
 	public enum AuthenticationProvider
 	{
-		DevAchievements,
 		Twitter,
 		Google,
 		Facebook,

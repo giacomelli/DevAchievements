@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,6 +12,11 @@ namespace DevAchievements.WebApp.Helpers
 		public static RedirectResult RedirectToDeveloperHome(this Controller controller, string username)
         {
 			return new RedirectResult("/" + username);
+        }
+
+        public static RedirectResult RedirectToHome(this Controller controller)
+        {
+            return new RedirectResult("/");
         }
     }
 }

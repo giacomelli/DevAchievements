@@ -23,13 +23,6 @@ namespace DevAchievements.WebApp.Helpers
 			return MvcHtmlString.Empty;
 		}
 
-		public static MvcHtmlString CreateAccountButton(this HtmlHelper helper, string username)
-		{
-			helper.RenderPartial("_CreateAccountButton", username);
-
-			return MvcHtmlString.Empty;
-		}
-
 		public static MvcHtmlString StatusMessage(this HtmlHelper helper)
 		{
 			helper.RenderPartial("_StatusMessage");
