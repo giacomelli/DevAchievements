@@ -1,0 +1,1 @@
+C:\mongodb\bin\mongod.exe --dbpath "C:\Users\giacomelli\Dropbox\Skahal\middleware\DevAchievements\db"

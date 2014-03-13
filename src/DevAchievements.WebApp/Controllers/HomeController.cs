@@ -21,10 +21,10 @@ namespace DevAchievements.WebApp.Controllers
 
 			if (dev == null) {
 				return View ("SiteHome", (object)username);
-			}
+			}			
 
-			var achievementService = new AchievementService ();
-			achievementService.UpdateDeveloperAchievements (dev);
+            var achievementService = new AchievementService();
+            achievementService.UpdateDeveloperAchievements(dev);
 
 			var viewModel = new DeveloperHomeViewModel (dev);
      

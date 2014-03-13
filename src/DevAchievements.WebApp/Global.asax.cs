@@ -15,6 +15,9 @@ using Skahal.Infrastructure.Framework.Logging;
 using Skahal.Infrastructure.Framework.Repositories;
 using DevAchievements.WebApp.App_Start;
 using DevAchievements.Infrastructure.Web.Configuration;
+using DevAchievements.Infrastructure.Web.Security;
+using Skahal.Infrastructure.Framework.People;
+using Ninject;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile="Web.config", Watch = true)]
 
@@ -44,23 +47,16 @@ namespace DevAchievements.WebApp
 			LogService.Debug ("Registering routes...");
 			RouteConfig.RegisterRoutes (RouteTable.Routes);
 
-			LogService.Debug ("Domain setup...");
-			RepositoriesConfig.RegisterMongoDB ();
-
 			LogService.Debug ("Bootstrap setup...");
 			new WebBootstrap ().Setup ();
 	
             LogService.Debug("Loading achievements provider assembly...");
             var dummy = typeof(AchievementProviderBase);
             LogService.Debug("{0} assembly loaded.", dummy.Assembly.GetName().Name);
-            
-			//LogService.Debug ("Registering OAuth providers...");
-			//AuthConfig.RegisterAuth ();
 
-			LogService.Debug ("Registering FluentUI...");
+    		LogService.Debug ("Registering FluentUI...");
 			FluentUIConfig.Register ();
-
-
+         
 			LogService.Debug ("Application started.");
 		}
 

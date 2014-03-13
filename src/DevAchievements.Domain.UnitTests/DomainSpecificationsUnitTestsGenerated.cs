@@ -52,12 +52,12 @@ namespace DevAchievements.Domain.UnitTests
 		public void IsSatisfiedBy_ExistsAchievement_True()
 		{
 			Stubs.Initialize ();
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "1" });
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 1L });
 			Stubs.UnitOfWork.Commit ();
 			 
 			var target = new AchievementExistsSpecification();
 			
-			Assert.IsTrue(target.IsSatisfiedBy(new Achievement() { Key = "1" }));
+			Assert.IsTrue(target.IsSatisfiedBy(new Achievement() { Id = 1L }));
 		}
 		#endregion
 	}
@@ -70,33 +70,33 @@ namespace DevAchievements.Domain.UnitTests
 		public void IsSatisfiedBy_ThereIsAnotherAchievementWithSameName_False()
 	 	{
 			Stubs.Initialize ();
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "1", Name = "Name" });
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 1L, Name = "Name" });
 			Stubs.UnitOfWork.Commit ();
 			var target = new AchievementUniqueNameSpecification();
 			
-			Assert.IsFalse(target.IsSatisfiedBy(new Achievement() { Key = "2", Name = "Name" }));
+			Assert.IsFalse(target.IsSatisfiedBy(new Achievement() { Id = 2L, Name = "Name" }));
 		}
 		
 		[Test]
 		public void IsSatisfiedBy_TheSameAchievementAlreadySavedWithSameName_True()
 		{
 			Stubs.Initialize ();
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "1", Name = "Name" });
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 1L, Name = "Name" });
 			Stubs.UnitOfWork.Commit ();
 			var target = new AchievementUniqueNameSpecification(); 
 			
-			Assert.IsTrue(target.IsSatisfiedBy(new Achievement() { Key ="1", Name = "Name" })); 
+			Assert.IsTrue(target.IsSatisfiedBy(new Achievement() { Id = 1L, Name = "Name" })); 
 		}
 		
 		[Test]
 		public void IsSatisfiedBy_ThereIsNoAchievementWithSameName_True()
 		{
 			Stubs.Initialize ();
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "1", Name = "Name 1" });
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 1L, Name = "Name 1" });
 			Stubs.UnitOfWork.Commit ();
 			var target = new AchievementUniqueNameSpecification();
 			
-			Assert.IsTrue(target.IsSatisfiedBy(new Achievement() { Key = "2", Name = "Name" }));
+			Assert.IsTrue(target.IsSatisfiedBy(new Achievement() { Id = 2L, Name = "Name" }));
 		}
 		#endregion
 	}
@@ -134,54 +134,16 @@ namespace DevAchievements.Domain.UnitTests
 		public void IsSatisfiedBy_ExistsDeveloper_True()
 		{
 			Stubs.Initialize ();
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "1" });
+			Stubs.DeveloperRepository.Add (new Developer() { Id = 1L });
 			Stubs.UnitOfWork.Commit ();
 			 
 			var target = new DeveloperExistsSpecification();
 			
-			Assert.IsTrue(target.IsSatisfiedBy(new Developer() { Key = "1" }));
+			Assert.IsTrue(target.IsSatisfiedBy(new Developer() { Id = 1L }));
 		}
 		#endregion
 	}
-		[TestFixture()]
-	public partial class DeveloperUniqueNameSpecificationTest
-	{
 
-		#region Tests
-		[Test]
-		public void IsSatisfiedBy_ThereIsAnotherDeveloperWithSameName_False()
-	 	{
-			Stubs.Initialize ();
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "1", Name = "Name" });
-			Stubs.UnitOfWork.Commit ();
-			var target = new DeveloperUniqueNameSpecification();
-			
-			Assert.IsFalse(target.IsSatisfiedBy(new Developer() { Key = "2", Name = "Name" }));
-		}
-		
-		[Test]
-		public void IsSatisfiedBy_TheSameDeveloperAlreadySavedWithSameName_True()
-		{
-			Stubs.Initialize ();
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "1", Name = "Name" });
-			Stubs.UnitOfWork.Commit ();
-			var target = new DeveloperUniqueNameSpecification(); 
-			
-			Assert.IsTrue(target.IsSatisfiedBy(new Developer() { Key ="1", Name = "Name" })); 
-		}
-		
-		[Test]
-		public void IsSatisfiedBy_ThereIsNoDeveloperWithSameName_True()
-		{
-			Stubs.Initialize ();
-			Stubs.DeveloperRepository.Add (new Developer() { Key = "1", Name = "Name 1" });
-			Stubs.UnitOfWork.Commit ();
-			var target = new DeveloperUniqueNameSpecification();
-			
-			Assert.IsTrue(target.IsSatisfiedBy(new Developer() { Key = "2", Name = "Name" }));
-		}
-		#endregion
-	}
 	}
 
 

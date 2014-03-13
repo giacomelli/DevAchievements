@@ -1,7 +1,6 @@
-using System;
-using DotNetOpenAuth.AspNet.Clients;
-using DotNetOpenAuth.AspNet;
 using DevAchievements.Infrastructure.Web.Configuration;
+using DotNetOpenAuth.AspNet;
+using DotNetOpenAuth.AspNet.Clients;
 
 namespace DevAchievements.Infrastructure.Web.Security
 {

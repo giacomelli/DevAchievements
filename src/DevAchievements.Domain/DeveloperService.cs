@@ -17,7 +17,7 @@ namespace DevAchievements.Domain
         /// <param name="userName">The userName.</param>  
         public Developer GetDeveloperByUsername(string userName)
         {
-            return MainRepository.FindFirst(d => d.Username.Equals(userName, StringComparison.OrdinalIgnoreCase));
+            return MainRepository.FindFirst(d => d.Username == userName);
         }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace DevAchievements.Domain
         /// <param name="email">The e-mail.</param>  
         public Developer GetDeveloperByEmail(string email)
         {
-            return MainRepository.FindFirst(d => d.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+            return MainRepository.FindFirst(d => d.Email == email);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace DevAchievements.Domain
             SpecificationService.ThrowIfAnySpecificationIsNotSatisfiedByAny(
                 developer.AccountsAtIssuers,
                 new MustNotHaveNullOrDefaultPropertySpecification<DeveloperAccountAtIssuer>(
-                    a => a.IssuerName,
+                    a => a.AchievementIssuerId,
                     a => a.Username));
         }
     }

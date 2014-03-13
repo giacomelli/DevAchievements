@@ -18,7 +18,7 @@ namespace DevAchievements.Domain.UnitTests
 
 			var target = new AchievementService ();
 			var account = new Developer () { Username = "test", FullName = "test", Email = "test@test.com" };
-			account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithoutAchievements"));
+			account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer(0, "DeveloperWithoutAchievements"));
             target.UpdateDeveloperAchievements(account);
 			Assert.AreEqual (0, account.Achievements.Count);
 		}
@@ -31,7 +31,7 @@ namespace DevAchievements.Domain.UnitTests
 
 			var target = new AchievementService ();
 			var account = new Developer() { Username = "test", FullName = "test", Email = "test@test.com" };
-            account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer("Test", "DeveloperWithAchievements"));
+            account.AccountsAtIssuers.Add(new DeveloperAccountAtIssuer(0, "DeveloperWithAchievements"));
             target.UpdateDeveloperAchievements(account);
 			Assert.AreEqual (2, account.Achievements.Count);
 

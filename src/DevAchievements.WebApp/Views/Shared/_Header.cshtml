@@ -12,7 +12,7 @@
              @if(DevInfo.IsAuthenticated) {
             	<span>@DevInfo.Current.Username</span>	
                 <a href="/developer/Logout" class="menu-item">Log out</a>
-                <a href="/developer/edit/@DevInfo.Current.Key" class="menu-item">
+                <a href="/developer/edit/@DevInfo.Current.Id" class="menu-item">
                   @(Html.FluentUI()
                   		.Hidden("gravatar")
                   			.Value(DevInfo.Current.Email)

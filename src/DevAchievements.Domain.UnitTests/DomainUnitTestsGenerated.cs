@@ -71,10 +71,10 @@ namespace DevAchievements.Domain.UnitTests
 		public void InitializeTest()
 		{
 			Stubs.Initialize ();
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "1" } );
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "2" } );
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "3" } );
-			Stubs.AchievementRepository.Add (new Achievement() { Key = "4" } );
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 1L } );
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 2L } );
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 3L } );
+			Stubs.AchievementRepository.Add (new Achievement() { Id = 4L } );
 			Stubs.UnitOfWork.Commit ();
 
 			m_target = new AchievementService ();
@@ -93,7 +93,7 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]
 		public void DeleteAchievement_AchievementNotExistis_Exception()
 		{
-			ExceptionAssert.IsThrowing (new ArgumentException("Achievement with key '0' does not exists."), () => {
+			ExceptionAssert.IsThrowing (new ArgumentException("Achievement with Id '0' does not exists."), () => {
 				m_target.DeleteAchievement(0);
 			});
 		}
@@ -103,16 +103,16 @@ namespace DevAchievements.Domain.UnitTests
 		{
 			Assert.AreEqual (4, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement("1");
+			m_target.DeleteAchievement(1L);
 			Assert.AreEqual (3, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement("2");
+			m_target.DeleteAchievement(2L);
 			Assert.AreEqual (2, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement("3");
+			m_target.DeleteAchievement(3L);
 			Assert.AreEqual (1, m_target.CountAllAchievements ());
 
-			m_target.DeleteAchievement("4");
+			m_target.DeleteAchievement(4L);
 			Assert.AreEqual (0, m_target.CountAllAchievements ());
 		}
 
@@ -126,18 +126,18 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]
 		public void GetAchievementByKey_KeyAchievementDoesNotExists_Null ()
 		{
-			var actual = m_target.GetAchievementByKey (0);
+			var actual = m_target.GetAchievementById (0);
 			Assert.IsNull (actual);
 		}
 
 		[Test]
 		public void GetAchievementByKey_KeyAchievementExists_Achievement ()
 		{
-			var actual = m_target.GetAchievementByKey ("2");
-			Assert.AreEqual ("2", actual.Key);
+			var actual = m_target.GetAchievementById (2L);
+			Assert.AreEqual (2L, actual.Id);
 
-			actual = m_target.GetAchievementByKey ("3");
-			Assert.AreEqual ("3", actual.Key);
+			actual = m_target.GetAchievementById (3L);
+			Assert.AreEqual (3L, actual.Id);
 		}	
 	 
 		[Test]
@@ -151,25 +151,25 @@ namespace DevAchievements.Domain.UnitTests
 		[Test]  
 		public void SaveAchievement_AchievementDoesNotExists_Created()
 		{
-			var achievement = new Achievement () { Key = "5" };
+			var achievement = new Achievement () { Id = 5L };
  
 			m_target.SaveAchievement (achievement); 
 
 			Assert.AreEqual(5, m_target.CountAllAchievements());
-			Assert.AreEqual ("5", m_target.GetAchievementByKey (achievement.Key).Key);
+			Assert.AreEqual (5L, m_target.GetAchievementById (achievement.Id).Id);
 		}
  
 		[Test]
 		public void SaveAchievement_AchievementDoesExists_Updated()
 		{
 			var achievement = new Achievement () { 
-				Key = "1" 
+				Id = 1L 
 			};
 
 			m_target.SaveAchievement (achievement);
 
 			Assert.AreEqual(4, m_target.CountAllAchievements());
-			Assert.AreEqual ("1", m_target.GetAchievementByKey (achievement.Key).Key);
+			Assert.AreEqual (1L, m_target.GetAchievementById (achievement.Id).Id);
 		}
  
 		#endregion

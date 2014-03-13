@@ -25,6 +25,12 @@ namespace DevAchievements.WebApp
 				defaults: new { controller = "Auth", action = "Index" }
 			);
 
+            routes.MapRoute (
+                name: "Internal",
+                url: "__Internal/{action}",
+                defaults: new { controller = "__Internal", action = "Index" }
+            );
+
 
 			routes.MapRoute(
 				"Developer_Profile", 

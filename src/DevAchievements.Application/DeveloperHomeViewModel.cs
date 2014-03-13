@@ -19,8 +19,8 @@ namespace DevAchievements.Application
 		{
 			Developer = developer;
 			Issuers = Developer.Achievements
-                .Where (a => developer.AccountsAtIssuers.Any(i => i.IssuerName.Equals(a.Issuer.Name, StringComparison.OrdinalIgnoreCase)))
-                .Select (a => a.Issuer.Name).Distinct ().OrderBy (a => a).ToList ();
+                .Where (a => developer.AccountsAtIssuers.Any(i => i.AchievementIssuerId.Equals(a.Issuer.Id)))
+                .Select (a => a.Issuer).Distinct ().OrderBy (a => a.Name).ToList ();
 		}
 		#endregion
 
@@ -33,7 +33,7 @@ namespace DevAchievements.Application
 		/// <summary>
 		/// Gets the issuers.
 		/// </summary>
-		public IList<string> Issuers { get; private set; }
+		public IList<AchievementIssuer> Issuers { get; private set; }
 		#endregion
 
 	}

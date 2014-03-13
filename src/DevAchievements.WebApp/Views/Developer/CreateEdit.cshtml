@@ -10,9 +10,10 @@
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { @role="form" })) {
 	@(Html.FluentUI()
-		.Hidden("Key")
-			.Value(Model.Key)
+		.Hidden("Id")
+			.Value(Model.Id))
 		
+	@(Html.FluentUI()
 		.Hidden("Provider")
 			.Value(Model.Provider)
             
@@ -38,16 +39,16 @@
 
 	for(var i = 0; i < Model.AccountsAtIssuers.Count; i++)
     {
-    	var account = Model.AccountsAtIssuers[i];
+    	DeveloperAccountAtIssuer account = Model.AccountsAtIssuers[i];
     	<div>
     	@(Html.FluentUI()
     		.TextBox("AccountsAtIssuers[{0}].Username", i)
-    			.Label(account.IssuerName)
-    			.Placeholder("{0} username", account.IssuerName)
+    			.Label(account.GetAchievementIssuerName())
+    			.Placeholder("{0} username", account.GetAchievementIssuerName())
     			.Value(account.Username)
     		
-    		.Hidden("AccountsAtIssuers[{0}].IssuerName", i)
-    			.Value(account.IssuerName)
+    		.Hidden("AccountsAtIssuers[{0}].AchievementIssuerId", i)
+    			.Value(account.AchievementIssuerId)
     	)
     	</div>
     }

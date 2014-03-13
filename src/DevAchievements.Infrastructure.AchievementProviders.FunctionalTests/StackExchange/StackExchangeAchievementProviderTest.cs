@@ -12,7 +12,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.FunctionalTests.St
 		public void GetAchievementsByDeveloper_UserName_Achievements ()
 		{
 			var target = new StackExchangeAchievementProvider ();
-			var actual = target.GetAchievements (new DeveloperAccountAtIssuer ("stackoverflow", "giacomelli"));
+			var actual = target.GetAchievements (new DeveloperAccountAtIssuer (0, "giacomelli"));
 			Assert.AreEqual (4, actual.Count);
 			Assert.AreEqual ("StackOverflow", actual[0].Issuer.Name);
 		}
@@ -21,14 +21,14 @@ namespace DevAchievements.Infrastructure.AchievementProviders.FunctionalTests.St
 		public void Exists_UserNotExists_False ()
 		{
 			var target = new StackExchangeAchievementProvider ();
-			Assert.IsFalse(target.Exists(new DeveloperAccountAtIssuer("stackoverflow", Guid.NewGuid().ToString())));
+			Assert.IsFalse(target.Exists(new DeveloperAccountAtIssuer(0, Guid.NewGuid().ToString())));
 		}
 
 		[Test ()]
 		public void Exists_UserExists_True ()
 		{
 			var target = new StackExchangeAchievementProvider ();
-			Assert.IsTrue(target.Exists(new DeveloperAccountAtIssuer("stackoverflow", "giacomelli")));
+			Assert.IsTrue(target.Exists(new DeveloperAccountAtIssuer(0, "giacomelli")));
 		}
 	}
 }

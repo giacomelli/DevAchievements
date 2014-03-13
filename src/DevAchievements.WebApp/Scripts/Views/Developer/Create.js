@@ -5,7 +5,7 @@ $(function() {
 });
 
 $(function() {
-	var issuers = $('[id$=__IssuerName]');
+	var issuers = $('[id$=__AchievementIssuerId]');
 	$('[id$=__Username]').each(function(i, e) {
 		$(this).blur(function() {
 			var field = $(this);

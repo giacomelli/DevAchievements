@@ -32,11 +32,11 @@ namespace DevAchievements.Infrastructure.Web.Security
 				result.ProviderUserKey = clientResult.ProviderUserId;
                 
 				var repository = DependencyService.Create<IAuthenticationProviderUserRepository> ();
-				var authenticationProviderUser = repository.FindFirst (d => d.Provider.Equals (provider) && d.ProviderUserKey.Equals (result.ProviderUserKey, StringComparison.Ordinal));
+                var authenticationProviderUser = repository.FindFirst (d => d.Provider == provider && d.ProviderUserKey == result.ProviderUserKey);
 
 				if (authenticationProviderUser != null) {
 					var developerService = new DeveloperService ();
-                    result.Developer = developerService.GetDeveloperByKey (authenticationProviderUser.LocalUserKey);     
+                    result.Developer = developerService.GetDeveloperById (authenticationProviderUser.LocalUserKey);     
 				}
 
 				// In case of developer has been deleted but has the cookie.
@@ -91,15 +91,15 @@ namespace DevAchievements.Infrastructure.Web.Security
 
 
             var authenticationProviderUser = repository.FindFirst(
-                a =>    a.LocalUserKey.Equals(developer.Key) 
+                a =>    a.LocalUserKey == developer.Id 
                 &&      a.Provider == provider
-                &&      a.ProviderUserKey.Equals(providerUserKey, StringComparison.Ordinal));
+                &&      a.ProviderUserKey == providerUserKey);
 
             if(authenticationProviderUser == null)
             {
                 authenticationProviderUser = new AuthenticationProviderUser()
                 {
-                     LocalUserKey = developer.Key,
+                     LocalUserKey = developer.Id,
                      Provider = provider,
                      ProviderUserKey = providerUserKey
                 };

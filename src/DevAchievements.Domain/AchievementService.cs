@@ -10,11 +10,15 @@ using Skahal.Infrastructure.Framework.Repositories;
 
 namespace DevAchievements.Domain
 {
+    /// <summary>
+    /// Domain layer service for achievemnts.
+    /// </summary>
     public partial class AchievementService
     {
         #region Fields
         private AchievementProviderService m_providerService = new AchievementProviderService();
         #endregion
+
         #region Methods
         /// <summary>
         /// Gets the achievements by developer.
@@ -33,8 +37,8 @@ namespace DevAchievements.Domain
 
                     foreach (var issuer in provider.SupportedIssuers)
                     {
-                        var accountAtIssuer = developer.GetAccountAtIssuer(issuer.Name);
-                        var oldAchievements = developer.GetAchievementsAtIssuer(issuer.Name);
+                        var accountAtIssuer = developer.GetAccountAtIssuer(issuer.Id);
+                        var oldAchievements = developer.GetAchievementsAtIssuer(issuer.Id);
 
                         if (accountAtIssuer != null)
                         {
@@ -44,7 +48,7 @@ namespace DevAchievements.Domain
 
                                 foreach (var updatedAchievement in updatedAchievements)
                                 {
-                                    var oldAchievement = oldAchievements.FirstOrDefault(o => o.Name.Equals(updatedAchievement.Name, StringComparison.OrdinalIgnoreCase));
+                                    var oldAchievement = oldAchievements.FirstOrDefault(o => o.Name == updatedAchievement.Name);
 
                                     if (oldAchievement == null)
                                     {
@@ -77,23 +81,6 @@ namespace DevAchievements.Domain
             var devService = new DeveloperService();
             devService.SaveDeveloper(developer);
             DependencyService.Create<IUnitOfWork>().Commit();
-        }
-
-        /// <summary>
-        /// Gets all achievements issuers.
-        /// </summary>
-        /// <returns>The all issuers.</returns>
-        public IList<AchievementIssuer> GetAllIssuers()
-        {
-            var issuers = new List<AchievementIssuer>();
-            var providers = m_providerService.GetAchievementProviders();
-
-            foreach (var provider in providers)
-            {
-                issuers.AddRange(provider.SupportedIssuers);
-            }
-
-            return issuers;
         }
         #endregion
     }

@@ -13,7 +13,7 @@
 	<header>
 		@(Html.FluentUI()
 			.Hidden("developerKey")
-				.Value(Model.Developer.Key)
+				.Value(Model.Developer.Id)
                 
 			.Image(DeveloperUI.GetAvatarUrl(Model.Developer.Email))
 				.Width("128px")
@@ -29,15 +29,15 @@
 @foreach(var issuer in Model.Issuers)
 {
 	<div class="panel panel-primary">
-  		<div class="panel-heading">@issuer <span class="pull-right">@Model.Developer.GetAccountAtIssuer(issuer).Username</span></div>
+  		<div class="panel-heading">@issuer.Name <span class="pull-right">@Model.Developer.GetAccountAtIssuer(issuer.Id).Username</span></div>
   		<div class="panel-body">
   				<div class="container">
   					<div class="row">
   						<div class="col-md-7">
-			    		    @foreach(var achievement in Model.Developer.GetAchievementsAtIssuer(issuer))
+			    		    @foreach(var achievement in Model.Developer.GetAchievementsAtIssuer(issuer.Id))
 						    {
 						    	<div class="row">
-									<div id="@achievement.Key" data-issuer="@issuer" class="row achievement">
+									<div id="@achievement.Id" data-issuer="@issuer" class="row achievement">
 										<div class="col-md-3">
 					        			    <a href="@achievement.Link">@achievement.Name</a>
 					        			</div>

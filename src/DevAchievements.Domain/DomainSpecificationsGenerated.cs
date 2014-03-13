@@ -30,9 +30,9 @@ namespace DevAchievements.Domain.Specifications
                 NotSatisfiedReason = "Achievement can't be null.";
                 return false;
             }
-            else if (new AchievementService().GetAchievementByKey(target.Key) == null)
+            else if (new AchievementService().GetAchievementById(target.Id) == null)
             {
-                NotSatisfiedReason = "Achievement with key '{0}' does not exists.".With(target.Key);
+                NotSatisfiedReason = "Achievement with key '{0}' does not exists.".With(target.Id);
                 return false;
             }
 
@@ -89,38 +89,11 @@ namespace DevAchievements.Domain.Specifications
                 NotSatisfiedReason = "Developer can't be null.";
                 return false;
             }
-            else if (new DeveloperService().GetDeveloperByKey(target.Key) == null)
+            else if (new DeveloperService().GetDeveloperById(target.Id) == null)
             {
-                NotSatisfiedReason = "Developer with key '{0}' does not exists.".With(target.Key);
+                NotSatisfiedReason = "Developer with key '{0}' does not exists.".With(target.Id);
                 return false;
             }
-
-            return true;
-        }
-        #endregion
-    }
-
-    /// <summary>
-    /// Developer unique name specification.
-    /// </summary>
-    public class DeveloperUniqueNameSpecification : SpecificationBase<Developer>
-    {
-        #region implemented abstract members of SpecificationBase
-        /// <summary> 
-        /// Determines whether the target object satisfiy the specification.
-        /// </summary>
-        /// <param name="target">The target object to be validated.</param>
-        /// <returns><c>true</c> if this instance is satisfied by the specified target; otherwise, <c>false</c>.</returns>
-        public override bool IsSatisfiedBy(Developer target)
-        {
-            var developerService = new DeveloperService();
-            var otherDeveloperWithSameName = developerService.GetDeveloperByName(target.Name);
-
-            if (otherDeveloperWithSameName != null && otherDeveloperWithSameName != target)
-            {
-                NotSatisfiedReason = "There is another Developer with the name '{0}'. Developers should have unique name.".With(target.Name);
-                return false;
-            } 
 
             return true;
         }

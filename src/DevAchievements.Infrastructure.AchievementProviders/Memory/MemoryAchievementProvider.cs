@@ -56,7 +56,7 @@ namespace DevAchievements.Infrastructure.AchievementProviders.Memory
 		{
 			var achievements = new List<Achievement> ();
 
-			var issuer = SupportedIssuers.First (i => i.Name.Equals (account.IssuerName));
+			var issuer = SupportedIssuers.First (i => i.Name.Equals (account.AchievementIssuerId));
 			AddAchievement (achievements, "Test 1", 1 + s_calls, "http://localhost", issuer);
 			AddAchievement (achievements, "Test 2", 2 + s_calls + 2, "http://localhost", issuer);
 			AddAchievement (achievements, "Test 3", 3, "http://localhost", issuer);

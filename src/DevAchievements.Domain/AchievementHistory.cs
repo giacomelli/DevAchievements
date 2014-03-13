@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using Skahal.Infrastructure.Framework.Domain;
 
 namespace DevAchievements.Domain
 {
@@ -7,7 +8,7 @@ namespace DevAchievements.Domain
     /// Achievement history.
     /// </summary>
     [DebuggerDisplay("{DateTime}: {Value}")]
-    public class AchievementHistory
+    public class AchievementHistory : EntityWithIdBase<long>
     {
         #region Constructors
         /// <summary>
@@ -16,6 +17,7 @@ namespace DevAchievements.Domain
         /// <param name="achievement">The achievement.</param>
         public AchievementHistory(Achievement achievement)
         {
+            Achievement = achievement;
             DateTime = achievement.DateTime;
             Value = achievement.Value;
         }
@@ -27,18 +29,28 @@ namespace DevAchievements.Domain
         {
         }
         #endregion
+
         #region Properties
+
+        /// <summary>
+        /// Gets or sets the achievement.
+        /// </summary>
+        /// <value>
+        /// The achievement.
+        /// </value>
+        public virtual Achievement Achievement { get; set; }
+
         /// <summary>
         /// Gets or sets the date time.
         /// </summary>
         /// <value>The date time.</value>
-        public DateTime DateTime { get; set; }
+        public virtual DateTime DateTime { get; set; }
          
         /// <summary>
         /// Gets or sets the value.
         /// </summary>
         /// <value>The value.</value>
-        public int Value { get; set; }
+        public virtual int Value { get; set; }
         #endregion
     }
 }

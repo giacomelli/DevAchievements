@@ -13,6 +13,7 @@ Features
 
 Roadmap
 -------- 
+ - Add GitHub as an authentication provider.
  - Show a bar or gauge in each badge, showing how is the user perform against the others users: below the rate, in the rate and above the rate.
  - Implement others badges providers
  	- GitHub

@@ -45,13 +45,13 @@ namespace DevAchievements.Domain
         #endregion
         #region Methods
         /// <summary>
-        /// Gets the achievement by key.
+        /// Gets the achievement by identifier.
         /// </summary>
-        /// <returns>The achievement.</returns>
-        /// <param name="key">The key.</param>  
-        public Achievement GetAchievementByKey(object key)
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public Achievement GetAchievementById(long id)
         {
-            return MainRepository.FindBy(key);
+            return MainRepository.FindBy(id);
         }
 
         /// <summary>
@@ -107,29 +107,27 @@ namespace DevAchievements.Domain
 
             ExecuteSaveSpecification(achievement);
 			
-            MainRepository[achievement.Key] = achievement;
+            MainRepository[achievement.Id] = achievement;
             UnitOfWork.Commit();  
         }
 
-        /// <summary> 
-        /// Executes the delete specification.
-        /// </summary>  
-        partial void ExecuteDeleteSpecification(object achievementKey, Achievement achievement);
+        partial void ExecuteDeleteSpecification(long achievementId, Achievement achievement);
 
-        /// <summary>  
+        /// <summary>
         /// Deletes the achievement.
-        /// </summary> 
-        /// <param name="key">The key.</param> 
-        public void DeleteAchievement(object key)
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <exception cref="System.ArgumentException">Achievement with key '{0}' does not exists..With(key)</exception>
+        public void DeleteAchievement(long id)
         { 
-            var achievement = GetAchievementByKey(key);
+            var achievement = GetAchievementById(id);
 			
             if (achievement == null)
             {
-                throw new ArgumentException("Achievement with key '{0}' does not exists.".With(key));
+                throw new ArgumentException("Achievement with id '{0}' does not exists.".With(id));
             }
-			
-            ExecuteDeleteSpecification(key, achievement);
+
+            ExecuteDeleteSpecification(id, achievement);
 
             MainRepository.Remove(achievement); 
             UnitOfWork.Commit();
@@ -171,35 +169,14 @@ namespace DevAchievements.Domain
         #endregion
         #region Methods
         /// <summary>
-        /// Gets the developer by key.
+        /// Gets the developer by identifier.
         /// </summary>
-        /// <returns>The developer.</returns>
-        /// <param name="key">The key.</param>  
-        public Developer GetDeveloperByKey(object key)
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
+        public Developer GetDeveloperById(long id)
         {
-            return MainRepository.FindBy(key);
-        }
-
-        /// <summary>
-        /// Gets the developer by name.
-        /// </summary>
-        /// <returns>The developer</returns>
-        /// <param name="name">The name.</param>
-        public Developer GetDeveloperByName(string name)
-        {
-            Expression<Func<Developer, bool>> filter; 
-			
-            if (String.IsNullOrWhiteSpace(name))
-            {
-                filter = (e) => String.IsNullOrWhiteSpace(e.Name);
-            }
-            else
-            {
-                filter = (e) => !String.IsNullOrWhiteSpace(e.Name) && e.Name.Equals(name, StringComparison.OrdinalIgnoreCase);
-            }
-			
-            return MainRepository.FindAll(filter).FirstOrDefault();
-        }
+            return MainRepository.FindBy(id);
+        }       
 
         /// <summary>
         /// Gets all Developers. 
@@ -207,7 +184,7 @@ namespace DevAchievements.Domain
         /// <returns>The all Developers.</returns>
         public IList<Developer> GetAllDevelopers()
         {
-            return MainRepository.FindAll(g => true).ToList();
+            return MainRepository.FindAll().ToList();
         }
 
         /// <summary>
@@ -215,7 +192,7 @@ namespace DevAchievements.Domain
         /// </summary>
         public long CountAllDevelopers()
         { 
-            return MainRepository.CountAll(g => true); 
+            return MainRepository.CountAll(null); 
         }
 
         /// <summary>
@@ -233,29 +210,27 @@ namespace DevAchievements.Domain
 
             ExecuteSaveSpecification(developer);
 			
-            MainRepository[developer.Key] = developer;
+            MainRepository[developer.Id] = developer;
             UnitOfWork.Commit();  
         }
 
-        /// <summary> 
-        /// Executes the delete specification.
-        /// </summary>  
-        partial void ExecuteDeleteSpecification(object developerKey, Developer developer);
+        partial void ExecuteDeleteSpecification(long developerId, Developer developer);
 
-        /// <summary>  
+        /// <summary>
         /// Deletes the developer.
-        /// </summary> 
-        /// <param name="key">The key.</param> 
-        public void DeleteDeveloper(object key)
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <exception cref="System.ArgumentException">Developer with id '{0}' does not exists..With(id)</exception>
+        public void DeleteDeveloper(long id)
         { 
-            var developer = GetDeveloperByKey(key);
+            var developer = GetDeveloperById(id);
 			
             if (developer == null)
             {
-                throw new ArgumentException("Developer with key '{0}' does not exists.".With(key));
+                throw new ArgumentException("Developer with id '{0}' does not exists.".With(id));
             }
 			
-            ExecuteDeleteSpecification(key, developer);
+            ExecuteDeleteSpecification(id, developer);
 
             MainRepository.Remove(developer); 
             UnitOfWork.Commit();

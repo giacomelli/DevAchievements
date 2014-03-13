@@ -45,10 +45,10 @@ namespace DevAchievements.Application
 		/// Gets the by key.
 		/// </summary>
 		/// <returns>The by key.</returns>
-		/// <param name="key">Key.</param>
-		public static DeveloperCreateEditViewModel GetByKey(Guid key)
+		/// <param name="id">Key.</param>
+		public static DeveloperCreateEditViewModel GetById(long id)
 		{
-			return FillModel (DomainService.GetDeveloperByKey (key));
+			return FillModel (DomainService.GetDeveloperById (id));
 		} 
 
 		/// <summary>
@@ -63,10 +63,10 @@ namespace DevAchievements.Application
 		/// <summary>
 		/// Delete the specified key.
 		/// </summary>
-		/// <param name="key">Key.</param>
-		public static void Delete(Guid key)
+		/// <param name="id">Key.</param>
+		public static void Delete(long id)
 		{
-			DomainService.DeleteDeveloper (key);
+			DomainService.DeleteDeveloper (id);
 		}
 
 		/// <summary>
@@ -76,7 +76,7 @@ namespace DevAchievements.Application
 		public static void Save(DeveloperCreateEditViewModel model)
 		{
 			var entity = Mapper.Map<Developer> (model);
-			var oldDeveloper = DomainService.GetDeveloperByKey (model.Key);
+			var oldDeveloper = DomainService.GetDeveloperById (model.Id);
 
 			if (oldDeveloper != null) {
 				entity.Achievements = oldDeveloper.Achievements;
@@ -95,14 +95,14 @@ namespace DevAchievements.Application
 
 		private static DeveloperCreateEditViewModel FillModel (Developer model)
 		{
-			var service = new AchievementService ();
-			var issuers = service.GetAllIssuers ();
+            var service = new AchievementIssuerService ();
+            var issuers = service.GetAllAchievementIssuers ();
 
 			foreach (var issuer in issuers) {
-				model.AddAccountAtIssuer (new DeveloperAccountAtIssuer (issuer.Name, ""));
+                model.AddAccountAtIssuer (new DeveloperAccountAtIssuer (issuer.Id, ""));
 			}
 
-			model.AccountsAtIssuers = model.AccountsAtIssuers.OrderBy (a => a.IssuerName).ToList();
+			model.AccountsAtIssuers = model.AccountsAtIssuers.OrderBy (a => a.AchievementIssuerId).ToList();
 
 			return AutoMapper.Mapper.Map<DeveloperCreateEditViewModel> (model);
 		}

@@ -1,0 +1,9 @@
+﻿@model IList<Developer>
+
+Developers:
+<ul>
+@foreach(var dev in Model)
+{
+    <li>@dev.Username</li>
+}
+</ul>

@@ -1,38 +1,33 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using DevAchievements.Domain;
-using DevTrends.MvcDonutCaching;
-using ProxyApi;
-using DevAchievements.Infrastructure.Web;
-using System.Security.Cryptography;
-using DevAchievements.Infrastructure.Web.UI;
-using DevAchievements.Infrastructure.Repositories.MongoDB;
-using MongoDB.Driver;
-using DevAchievements.Infrastructure.Web.Security;
-using DevAchievements.WebApp.Helpers;
-using System.Web.Security;
 using AppHarbor.Web.Security;
 using DevAchievements.Application;
+using DevAchievements.Domain;
+using DevAchievements.Infrastructure.Web;
+using DevAchievements.Infrastructure.Web.Security;
+using DevAchievements.Infrastructure.Web.UI;
+using DevAchievements.WebApp.Helpers;
+using DevTrends.MvcDonutCaching;
+using ProxyApi;
 using Skahal.Infrastructure.Framework.Commons;
 using Skahal.Infrastructure.Framework.Repositories;
 
 namespace DevAchievements.WebApp.Controllers
 {
-	public class DeveloperController : FuncControllerBase<DeveloperCreateEditViewModel, Guid>
+	public class DeveloperController : FuncControllerBase<DeveloperCreateEditViewModel, long>
     {
 		#region Constructors
 		public DeveloperController() 
 		{
 			CreateNewEntityFunc = () => DeveloperCreateEditAppService.CreateNew ();
-			GetEntityIdFunc = (model) => (Guid)model.Key;
-			GetEntityByIdFunc = (key) => DeveloperCreateEditAppService.GetByKey(key);
-			DeleteEntityByIdFunc = (key) => DeveloperCreateEditAppService.Delete (key);
+            GetEntityIdFunc = (model) => model.Id;
+            GetEntityByIdFunc = (id) => DeveloperCreateEditAppService.GetById(id);
+            DeleteEntityByIdFunc = (id) => DeveloperCreateEditAppService.Delete (id);
 			GetEntitiesFunc = () => DeveloperCreateEditAppService.GetAll ();
 
-			GetGridValuesFunc = (entity) => new object[] { DeveloperUI.GetAvatarUrl(entity.Email), entity.FullName, entity.Username, entity.Email, String.Join(", ", entity.AccountsAtIssuers.Select(r => r.IssuerName)) };
+			GetGridValuesFunc = (entity) => 
+                                new object[] { DeveloperUI.GetAvatarUrl(entity.Email), entity.FullName, entity.Username, entity.Email, String.Join(", ", entity.AccountsAtIssuers.Select(r => r.AchievementIssuerId)) };
 			SaveEntityFunc = (entity) =>
 			{
 				DeveloperCreateEditAppService.Save(entity);
@@ -73,8 +68,6 @@ namespace DevAchievements.WebApp.Controllers
 		[HttpPost]
 		public override ActionResult Create (DeveloperCreateEditViewModel entity)
 		{
-			entity.Key = Guid.NewGuid();
-         
 			return this.Call (() => {                
 				SaveEntity(entity);
 				DependencyService.Create<IUnitOfWork>().Commit();
@@ -86,9 +79,9 @@ namespace DevAchievements.WebApp.Controllers
 			});
 		}
 
-		public override ActionResult Edit (Guid id)
+		public override ActionResult Edit (long id)
 		{
-			if (DevInfo.Current != null && DevInfo.Current.Key.Equals (id)) {
+			if (DevInfo.Current != null && DevInfo.Current.Id.Equals (id)) {
 				return base.Edit (id);
 			}
 
@@ -117,33 +110,22 @@ namespace DevAchievements.WebApp.Controllers
             return this.RedirectToHome();
 		}
 
-		// TODO: remover, apenas para teste.
-		// TODO: ver se devo adicionar no Skahal.Infrastructure.Repositories.MongoDB
-		public void RemoveAll() {
-			var url = new MongoUrl(System.Configuration.ConfigurationManager.AppSettings.Get("MONGOLAB_URI"));
-			var client = new MongoClient(url);
-			var server = client.GetServer();
-			var database = server.GetDatabase(String.IsNullOrEmpty(url.DatabaseName) ? "test" : url.DatabaseName);
-			database.GetCollection ("Developers").RemoveAll ();
-            database.GetCollection("AuthenticationProviderUsers").RemoveAll();
-		}
-
 		[ProxyName("existsDeveloperAccountAtIssuer")]
-		public JsonResult ExistsDeveloperAccountAtIssuer(string issuerName, string username)
+        public JsonResult ExistsDeveloperAccountAtIssuer(long achievementIssuerId, string username)
 		{
 			var service = new AchievementProviderService ();
 	
-			return Json (service.ExistsDeveloperAccountAtIssuer(issuerName, username), JsonRequestBehavior.AllowGet);
+            return Json (service.ExistsDeveloperAccountAtIssuer(achievementIssuerId, username), JsonRequestBehavior.AllowGet);
 		} 
 
 		[ProxyName("getAchievementHistory")]
-		public JsonResult GetAchievementHistory(string developerKey, string achievementKey)
+		public JsonResult GetAchievementHistory(long developerId, long achievementId)
 		{
 			var service = new DeveloperService ();
-			var developer = service.GetDeveloperByKey(new Guid(developerKey));
-			var achievement = developer.GetAchievementByKey (achievementKey);
+			var developer = service.GetDeveloperById(developerId);
+			var achievement = developer.GetAchievementById (achievementId);
 
-			return Json (achievement.History, JsonRequestBehavior.AllowGet);
+			return Json (achievement.History.Select(h => new { DateTime = h.DateTime, Value = h.Value }), JsonRequestBehavior.AllowGet);
 		}
 		#endregion
 

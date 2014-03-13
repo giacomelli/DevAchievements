@@ -34,12 +34,14 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Skahal.Infrastructure.Framework, Version=1.0.5031.17407, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\references\Skahal.Infrastructure.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.IO.Abstractions">
       <HintPath>..\packages\System.IO.Abstractions.1.4.0.68\lib\net35\System.IO.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Skahal.Infrastructure.Framework">
-      <HintPath>..\packages\Skahal.Infrastructure.Framework.0.5.9\lib\net35\Skahal.Infrastructure.Framework.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\packages\mongocsharpdriver.1.8.3\lib\net35\MongoDB.Bson.dll</HintPath>
@@ -54,6 +56,18 @@
     <Reference Include="HelperSharp">
       <HintPath>..\packages\HelperSharp.0.0.3.5\lib\net35\HelperSharp.dll</HintPath>
     </Reference>
+    <Reference Include="Iesi.Collections">
+      <HintPath>..\packages\Iesi.Collections.3.2.0.4000\lib\Net35\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.3.3.4001\lib\Net35\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate">
+      <HintPath>..\packages\FluentNHibernate.1.4.0.0\lib\net35\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.8.3\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MongoDB\MongoDBAuthenticationProviderUserRepository.cs" />
@@ -62,9 +76,22 @@
     <Compile Include="MongoRepositoriesGenerated.cs" />
     <Compile Include="RepositoriesConfig.cs" />
     <Compile Include="MemoryUserRepository.cs" />
+    <Compile Include="NHibernate\NHibernateRepositoryBase.cs" />
+    <Compile Include="NHibernate\Mapping\AuthenticationProviderUserMap.cs" />
+    <Compile Include="NHibernate\NHibernateUnitOfWork.cs" />
+    <Compile Include="NHibernate\NHibernateAuthenticationProviderUserRepository.cs" />
+    <Compile Include="NHibernate\Mapping\AchievementMap.cs" />
+    <Compile Include="NHibernate\Mapping\DeveloperMap.cs" />
+    <Compile Include="NHibernate\NHibernateAchievementRepository.cs" />
+    <Compile Include="NHibernate\NHibernateDeveloperRepository.cs" />
+    <Compile Include="NHibernate\Mapping\AchievementHistoryMap.cs" />
+    <Compile Include="NHibernate\Mapping\AchievementIssuerMap.cs" />
+    <Compile Include="NHibernate\Mapping\DeveloperAccountAtIssuerMap.cs" />
+    <Compile Include="NHibernate\NHibernateAchievementIssuerRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -79,4 +106,5 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup />
 </Project>

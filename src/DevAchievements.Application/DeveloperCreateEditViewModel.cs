@@ -26,7 +26,7 @@ namespace DevAchievements.Application
 		/// Gets or sets the key.
 		/// </summary>
 		/// <value>The key.</value>
-		public Guid Key { get; set; }
+		public long Id { get; set; }
 
 		/// <summary>
 		/// Gets or sets the full name.

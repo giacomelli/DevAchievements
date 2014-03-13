@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using DevAchievements.Domain.Specifications;
+using HelperSharp;
+using KissSpecifications;
 
 namespace DevAchievements.Domain
 {
@@ -13,6 +16,7 @@ namespace DevAchievements.Domain
         #region Fields
         private static IList<IAchievementProvider> s_achievementProviders;
         #endregion
+
         #region Methods
         /// <summary>
         /// Gets the achievement providers.
@@ -43,41 +47,58 @@ namespace DevAchievements.Domain
                     .Where(p => p.Enabled)
                     .OrderBy(p => p.SupportedIssuers.First().Name)
                     .ToList();
+
+                // Saves the new achievement issuers.
+                var issuerService = new AchievementIssuerService();
+
+                foreach (var provider in s_achievementProviders)
+                {
+                    foreach (var issuer in provider.SupportedIssuers)
+                    {
+                        var savedIssuer = issuerService.GetAchievementIssuerByName(issuer.Name);
+
+                        if (savedIssuer == null)
+                        {
+                            savedIssuer = issuer;
+                            issuerService.SaveAchievementIssuer(savedIssuer);
+                        }
+
+                        // Refresh the id.
+                        issuer.Id = savedIssuer.Id;
+                    }
+                }
             }
 
             return s_achievementProviders;
         }
 
         /// <summary>
-        /// Gets the achievement provider by issuer name.
-        /// </summary>
-        /// <returns>The achievement provider by issuer name.</returns>
-        /// <param name="issuerName">The issuer name.</param>
-        public IAchievementProvider GetAchievementProviderByIssuerName(string issuerName)
-        {
-            return GetAchievementProviders()
-                    .FirstOrDefault(p => p.SupportedIssuers.Any(i => i.Name.Equals(issuerName, StringComparison.OrdinalIgnoreCase)));
-        }
-
-        /// <summary>
         /// Checks if the developer account exists at issuer.
         /// </summary>
         /// <returns><c>true</c>, if developer account at issuer exists, <c>false</c> otherwise.</returns>
-        /// <param name="issuerName">The issuer name.</param>
+        /// <param name="achievementIssuerId">The achievement issuer id.</param>
         /// <param name="username">The developer account username at issuer.</param>
-        public bool ExistsDeveloperAccountAtIssuer(string issuerName, string username)
+        public bool ExistsDeveloperAccountAtIssuer(long achievementIssuerId, string username)
         {
             var provider = GetAchievementProviders()
-                            .FirstOrDefault(p => p.SupportedIssuers.Any(i => i.Name.Equals(issuerName, StringComparison.OrdinalIgnoreCase)));
+                .FirstOrDefault(p => p.SupportedIssuers.Any(i => i.Id == achievementIssuerId));
 
             if (provider == null)
             {
                 return false;
             }
 
+            var service = new AchievementIssuerService();
+            var issuer = service.GetAchievementIssuerById(achievementIssuerId);
+
+            if (issuer == null)
+            {
+                throw new ArgumentException("The achievement issuer with id '{0}' does not exists.".With(achievementIssuerId));
+            }
+
             return provider.Exists(new DeveloperAccountAtIssuer()
             {
-                IssuerName = issuerName,
+                AchievementIssuerId = issuer.Id,
                 Username = username
             });
         }

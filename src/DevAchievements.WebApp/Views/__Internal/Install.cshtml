@@ -1,0 +1,9 @@
+@model IList<AchievementIssuer>
+
+Installed Achievement Issuers:
+<ul>
+@foreach(var issuer in Model)
+{
+    <li>@issuer.Name</li>
+}
+</ul>
