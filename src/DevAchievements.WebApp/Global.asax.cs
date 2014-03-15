@@ -18,6 +18,7 @@ using DevAchievements.Infrastructure.Web.Configuration;
 using DevAchievements.Infrastructure.Web.Security;
 using Skahal.Infrastructure.Framework.People;
 using Ninject;
+using NHibernate.Context;
 
 [assembly: log4net.Config.XmlConfigurator(ConfigFile="Web.config", Watch = true)]
 
@@ -59,6 +60,17 @@ namespace DevAchievements.WebApp
          
 			LogService.Debug ("Application started.");
 		}
+        /*
+        protected void Application_BeginRequest()
+        {
+            var session = NinjectWebCommon.s_sessionFactory.OpenSession();
+            CurrentSessionContext.Bind(session);
+        }
+*/
+        protected void Application_EndRequest()
+        {
+            DependencyService.Create<IUnitOfWork>().Commit();
+        }
 
 		protected void Application_Error(Object sender, EventArgs e)
 		{

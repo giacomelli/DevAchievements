@@ -33,10 +33,6 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Skahal.Infrastructure.Framework, Version=1.0.5031.17407, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\references\Skahal.Infrastructure.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.IO.Abstractions">
       <HintPath>..\packages\System.IO.Abstractions.1.4.0.68\lib\net35\System.IO.Abstractions.dll</HintPath>
@@ -145,6 +141,9 @@
     </Reference>
     <Reference Include="KissSpecifications">
       <HintPath>..\packages\KissSpecifications.1.1.5\lib\net35\KissSpecifications.dll</HintPath>
+    </Reference>
+    <Reference Include="Skahal.Infrastructure.Framework">
+      <HintPath>..\references\Skahal.Infrastructure.Framework.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

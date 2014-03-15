@@ -26,7 +26,7 @@ namespace DevAchievements.WebApp.Controllers
             var achievementService = new AchievementService();
             achievementService.UpdateDeveloperAchievements(dev);
 
-			var viewModel = new DeveloperHomeViewModel (dev);
+            var viewModel = new DeveloperHomeViewModel (dev);
      
 			return View ("DeveloperHome", viewModel);
 		}

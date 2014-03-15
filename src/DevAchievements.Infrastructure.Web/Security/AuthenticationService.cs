@@ -8,23 +8,47 @@ using Skahal.Infrastructure.Framework.Logging;
 using Skahal.Infrastructure.Framework.Repositories;
 using DevAchievements.Infrastructure.Web.UI;
 using DevAchievements.Domain.Specifications;
+using DotNetOpenAuth.AspNet.Clients;
 
 namespace DevAchievements.Infrastructure.Web.Security
 {
+    /// <summary>
+    /// Authentication service.
+    /// </summary>
 	public static class AuthenticationService
     {
+        /// <summary>
+        /// Starts the authentication.
+        /// </summary>
+        /// <param name="provider">Provider.</param>
 		public static void Authenticate(AuthenticationProvider provider)
 		{
 			var context = HttpContext.Current;
-			var url = new Uri ("http://{0}/Auth/VerifySignInWith?provider={1}".With(context.Request.Url.Authority, provider));
-			AuthenticationFactory.CreateClient (provider).RequestAuthentication (new HttpContextWrapper(context), url);
+            AuthenticationFactory.CreateClient (provider).RequestAuthentication (new HttpContextWrapper(context), GetReturnUrl(context, provider));
 		}
 
+        /// <summary>
+        /// Finalizes the authentication.
+        /// </summary>
+        /// <returns>The authentication.</returns>
+        /// <param name="provider">Provider.</param>
         public static AuthenticationResult FinalizeAuthentication(AuthenticationProvider provider)
 		{
             var result = new AuthenticationResult();
 			var client = AuthenticationFactory.CreateClient (provider);
-			var clientResult = client.VerifyAuthentication (new HttpContextWrapper(HttpContext.Current));
+            var context = new HttpContextWrapper(HttpContext.Current);
+            DotNetOpenAuth.AspNet.AuthenticationResult clientResult;
+
+            var oauth2Client = client as OAuth2Client;
+
+            if (oauth2Client == null)
+            {
+                clientResult = client.VerifyAuthentication(context);
+            }
+            else
+            {
+                clientResult = oauth2Client.VerifyAuthentication(context, GetReturnUrl(HttpContext.Current, provider)); 
+            }
 
 			if (clientResult.IsSuccessful) {
 				result.IsSuccessful = true;
@@ -58,6 +82,11 @@ namespace DevAchievements.Infrastructure.Web.Security
 			return result;
 		}
 
+        private static Uri GetReturnUrl(HttpContext context, AuthenticationProvider provider)
+        {
+            return new Uri ("http://{0}/Auth/VerifySignInWith?provider={1}".With(context.Request.Url.Authority, provider));
+        }
+           
         private static Developer MapDeveloperFromProviderResult(DotNetOpenAuth.AspNet.AuthenticationResult clientResult)
         {
             var dev = new Developer()

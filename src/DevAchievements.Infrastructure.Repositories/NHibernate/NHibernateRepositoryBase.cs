@@ -142,7 +142,7 @@ namespace DevAchievements.Infrastructure.Repositories.NHibernate
         protected override void PersistUpdatedItem(TEntity item)
         {
             Session.Evict(item);
-            Session.Update(item);
+            Session.Merge(item);
         }
 
         /// <summary>

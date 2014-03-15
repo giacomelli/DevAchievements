@@ -25,11 +25,17 @@ namespace DevAchievements.WebApp.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using NHibernate.Context;
 
     public static class NinjectWebCommon 
-    {
+    {        
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        public static ISessionFactory s_sessionFactory;
 
+        public static bool IsBind()
+        {
+            return CurrentSessionContext.HasBind(s_sessionFactory);
+        }
         /// <summary>
         /// Gets the kernel.
         /// </summary>
@@ -80,7 +86,7 @@ namespace DevAchievements.WebApp.App_Start
             LogService.Debug ("Domain setup...");
             LogService.Debug("Registering NHibernate...");
 
-            var sessionFactory = Fluently.Configure()
+            s_sessionFactory = Fluently.Configure()
                 .Database(
                     MySQLConfiguration
                     .Standard
@@ -91,26 +97,46 @@ namespace DevAchievements.WebApp.App_Start
                     m.FluentMappings.AddFromAssemblyOf<AuthenticationProviderUserMap>())
                 .ExposeConfiguration((config) => {
                     //var schemaExport = new SchemaExport(config);
-
                     //schemaExport.Drop(false, true);
                     //schemaExport.Create(false, true);
                 })
+                .CurrentSessionContext<WebSessionContext>()
                 .BuildSessionFactory();
 
             kernel.Bind<ISession>().ToMethod(
                 (c) =>
-                    sessionFactory.OpenSession()
-            ).InRequestScope();
+                {
+                    var session = s_sessionFactory.OpenSession();
+                    CurrentSessionContext.Bind(session);
 
-            kernel.Bind<IUnitOfWork>().ToMethod((c) => new NHibernateUnitOfWork(c.Kernel.Get<ISession>())).InRequestScope()
+                    return session;
+                }).InRequestScope()
+            .OnActivation(a =>
+            {
+                LogService.Debug("ISession activated.");
+            })
+            .OnDeactivation(a =>
+                {/*
+                    if(CurrentSessionContext.HasBind(s_sessionFactory))
+                    {
+                        CurrentSessionContext.Unbind(s_sessionFactory);
+                    }
+                */
+                    LogService.Debug("ISession deactivated.");
+            });
+
+            kernel.Bind<IUnitOfWork>().ToMethod(
+                (c) => 
+                new NHibernateUnitOfWork(c.Kernel.Get<ISession>())
+            ).InRequestScope()
             .OnActivation (a =>
-                {
-                        LogService.Debug("IUnitOfWork activated.");
-                })
-                .OnDeactivation (a =>
-                {
-                        LogService.Debug("IUnitOfWork deactivated.");
-                });
+            {
+                    LogService.Debug("IUnitOfWork activated.");
+            })
+            .OnDeactivation (a =>
+            {
+                    LogService.Debug("IUnitOfWork deactivated.");
+            });
 
             BindNH<IAchievementRepository, NHibernateAchievementRepository, Achievement>(kernel);
             BindNH<IAchievementIssuerRepository, NHibernateAchievementIssuerRepository, AchievementIssuer>(kernel);

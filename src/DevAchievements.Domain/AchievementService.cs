@@ -24,7 +24,7 @@ namespace DevAchievements.Domain
         /// Gets the achievements by developer.
         /// </summary>
         /// <param name="developer">The developer.</param>
-        public void UpdateDeveloperAchievements(Developer developer)
+        public Developer UpdateDeveloperAchievements(Developer developer)
         {
             var providers = m_providerService.GetAchievementProviders();
 
@@ -60,7 +60,7 @@ namespace DevAchievements.Domain
                                         if (!oldAchievement.Value.Equals(updatedAchievement.Value))
                                         {
                                             developer.Achievements.Remove(oldAchievement);
-                                            updatedAchievement.History = oldAchievement.History;
+                                            updatedAchievement.History = oldAchievement.History.ToList();
                                             updatedAchievement.History.Add(new AchievementHistory(updatedAchievement));
                                             developer.Achievements.Add(updatedAchievement);
                                         }
@@ -80,7 +80,8 @@ namespace DevAchievements.Domain
 
             var devService = new DeveloperService();
             devService.SaveDeveloper(developer);
-            DependencyService.Create<IUnitOfWork>().Commit();
+   
+            return developer;
         }
         #endregion
     }

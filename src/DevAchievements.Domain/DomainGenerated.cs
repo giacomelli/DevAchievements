@@ -211,7 +211,6 @@ namespace DevAchievements.Domain
             ExecuteSaveSpecification(developer);
 			
             MainRepository[developer.Id] = developer;
-            UnitOfWork.Commit();  
         }
 
         partial void ExecuteDeleteSpecification(long developerId, Developer developer);
